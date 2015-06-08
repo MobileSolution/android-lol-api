@@ -1,4 +1,4 @@
-# LolMatch
+# android-lol-api
 Android application related to League of Legends
 
 ##Usage
