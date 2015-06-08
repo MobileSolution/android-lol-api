@@ -10,7 +10,7 @@ In Application.onCreate()
 Then
 Sync
 
-         final Champions champions = LolApi.getChampions();
+         final Champions championDtos = LolApi.getChampions();
 
 Async
 
@@ -23,7 +23,7 @@ Rx
 ## List of api versions
 [https://developer.riotgames.com/api/methods](https://developer.riotgames.com/api/methods)
 
- * champion-v1.2
+ * championDto-v1.2
  * current-game-v1.0            [NOT YET]
  * featured-games-v1.0          [NOT YET]
  * game-v1.3                    [NOT YET]

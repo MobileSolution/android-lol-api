@@ -1,8 +1,8 @@
 package com.mobilesolutions.lolapi;
 
 import com.google.gson.Gson;
-import com.mobilesolutions.lolapi.models.Champion;
-import com.mobilesolutions.lolapi.models.Champions;
+import com.mobilesolutions.lolapi.models.dto.ChampionDto;
+import com.mobilesolutions.lolapi.models.dto.ChampionListDto;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiClient;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiEndpoint;
 import com.mobilesolutions.lolapi.utls.ErrorConstants;
@@ -64,21 +64,21 @@ public class LolApi {
     /**
      * Retrieve all champions.
      */
-    public static Champions getChampions() {
+    public static ChampionListDto getChampions() {
         return retrofitApiClient.getAllChampions(false, retrofitApiEndpoint.getRegion(), apiKey);
     }
 
     /**
      * Retrieve all champions.
      */
-    public static void getChampions(final Callback<Champions> callback) {
+    public static void getChampions(final Callback<ChampionListDto> callback) {
         retrofitApiClient.getAllChampions(false, retrofitApiEndpoint.getRegion(), apiKey, callback);
     }
 
     /**
      * Retrieve all champions.
      */
-    public static Observable<Champions> getChampionsRx() {
+    public static Observable<ChampionListDto> getChampionsRx() {
         return retrofitApiClient.getAllChampionsRx(false, retrofitApiEndpoint.getRegion(), apiKey);
     }
 
@@ -86,7 +86,7 @@ public class LolApi {
      * Retrieve all champions.
      * That are free to play this week.
      */
-    public static Champions getFreeToPlayChampions() {
+    public static ChampionListDto getFreeToPlayChampions() {
         return retrofitApiClient.getAllChampions(true, retrofitApiEndpoint.getRegion(), apiKey);
     }
 
@@ -94,7 +94,7 @@ public class LolApi {
      * Retrieve all champions.
      * That are free to play this week.
      */
-    public static void getFreeToPlayChampions(final Callback<Champions> callback) {
+    public static void getFreeToPlayChampions(final Callback<ChampionListDto> callback) {
         retrofitApiClient.getAllChampions(true, retrofitApiEndpoint.getRegion(), apiKey, callback);
     }
 
@@ -102,28 +102,28 @@ public class LolApi {
      * Retrieve all champions.
      * That are free to play this week.
      */
-    public static Observable<Champions> getFreeToPlayChampionsRx() {
+    public static Observable<ChampionListDto> getFreeToPlayChampionsRx() {
         return retrofitApiClient.getAllChampionsRx(true, retrofitApiEndpoint.getRegion(), apiKey);
     }
 
     /**
      * Get champion by his id.
      */
-    public static Champion getChampionById(final long championId) {
+    public static ChampionDto getChampionById(final long championId) {
         return retrofitApiClient.getChampionById(championId, retrofitApiEndpoint.getRegion(), apiKey);
     }
 
     /**
      * Get champion by his id.
      */
-    public static void getChampionById(final long championId, Callback<Champion> callback) {
+    public static void getChampionById(final long championId, Callback<ChampionDto> callback) {
         retrofitApiClient.getChampionById(championId, retrofitApiEndpoint.getRegion(), apiKey, callback);
     }
 
     /**
      * Get champion by his id.
      */
-    public static Observable<Champion> getChampionByIdRx(final long championId) {
+    public static Observable<ChampionDto> getChampionByIdRx(final long championId) {
         return retrofitApiClient.getChampionByIdRx(championId, retrofitApiEndpoint.getRegion(), apiKey);
     }
 }

@@ -1,10 +1,10 @@
-package com.mobilesolutions.lolapi.models;
+package com.mobilesolutions.lolapi.models.dto;
 
 import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
 
-public class Champion implements Serializable {
+public class ChampionDto implements Serializable {
 
     @Expose
     private boolean botMmEnabled;

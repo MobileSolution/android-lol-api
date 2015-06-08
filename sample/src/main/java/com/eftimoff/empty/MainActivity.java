@@ -7,13 +7,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.mobilesolutions.lolapi.LolApi;
-import com.mobilesolutions.lolapi.models.Champion;
-import com.mobilesolutions.lolapi.models.Champions;
+import com.mobilesolutions.lolapi.models.dto.ChampionDto;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-import rx.Observable;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -28,10 +26,10 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
 
                 LolApi.setRegion("eune");
-                LolApi.getChampionById(104, new Callback<Champion>() {
+                LolApi.getChampionById(104, new Callback<ChampionDto>() {
                     @Override
-                    public void success(Champion champion, Response response) {
-                        toast("SIZE : " + champion.isFreeToPlay());
+                    public void success(ChampionDto championDto, Response response) {
+                        toast("SIZE : " + championDto.isFreeToPlay());
                     }
 
                     @Override

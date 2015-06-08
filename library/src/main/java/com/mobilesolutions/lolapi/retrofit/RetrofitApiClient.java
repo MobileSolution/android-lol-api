@@ -1,7 +1,7 @@
 package com.mobilesolutions.lolapi.retrofit;
 
-import com.mobilesolutions.lolapi.models.Champion;
-import com.mobilesolutions.lolapi.models.Champions;
+import com.mobilesolutions.lolapi.models.dto.ChampionDto;
+import com.mobilesolutions.lolapi.models.dto.ChampionListDto;
 
 import retrofit.Callback;
 import retrofit.http.GET;
@@ -17,20 +17,20 @@ import rx.Observable;
 public interface RetrofitApiClient {
 
     @GET("/api/lol/{region}/v1.2/champion")
-    Champions getAllChampions(@Query("freeToPlay") boolean freeToPlay, @Path("region") String region, @Query("api_key") String apiKey);
+    ChampionListDto getAllChampions(@Query("freeToPlay") boolean freeToPlay, @Path("region") String region, @Query("api_key") String apiKey);
 
     @GET("/api/lol/{region}/v1.2/champion")
-    void getAllChampions(@Query("freeToPlay") boolean freeToPlay, @Path("region") String region, @Query("api_key") String apiKey, final Callback<Champions> callback);
+    void getAllChampions(@Query("freeToPlay") boolean freeToPlay, @Path("region") String region, @Query("api_key") String apiKey, final Callback<ChampionListDto> callback);
 
     @GET("/api/lol/{region}/v1.2/champion")
-    Observable<Champions> getAllChampionsRx(@Query("freeToPlay") boolean freeToPlay, @Path("region") String region, @Query("api_key") String apiKey);
+    Observable<ChampionListDto> getAllChampionsRx(@Query("freeToPlay") boolean freeToPlay, @Path("region") String region, @Query("api_key") String apiKey);
 
     @GET("/api/lol/{region}/v1.2/champion/{champion_id}")
-    Champion getChampionById(@Path("champion_id") long championId, @Path("region") String region, @Query("api_key") String apiKey);
+    ChampionDto getChampionById(@Path("champion_id") long championId, @Path("region") String region, @Query("api_key") String apiKey);
 
     @GET("/api/lol/{region}/v1.2/champion/{champion_id}")
-    void getChampionById(@Path("champion_id") long championId, @Path("region") String region, @Query("api_key") String apiKey, final Callback<Champion> callback);
+    void getChampionById(@Path("champion_id") long championId, @Path("region") String region, @Query("api_key") String apiKey, final Callback<ChampionDto> callback);
 
     @GET("/api/lol/{region}/v1.2/champion/{champion_id}")
-    Observable<Champion> getChampionByIdRx(@Path("champion_id") long championId, @Path("region") String region, @Query("api_key") String apiKey);
+    Observable<ChampionDto> getChampionByIdRx(@Path("champion_id") long championId, @Path("region") String region, @Query("api_key") String apiKey);
 }
