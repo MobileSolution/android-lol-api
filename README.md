@@ -23,8 +23,8 @@ Rx
 ## List of api versions
 [https://developer.riotgames.com/api/methods](https://developer.riotgames.com/api/methods)
 
- * championDto-v1.2
- * current-game-v1.0            [NOT YET]
+ * champion-v1.2
+ * current-game-v1.0 
  * featured-games-v1.0          [NOT YET]
  * game-v1.3                    [NOT YET]
  * league-v2.5                  [NOT YET]
@@ -38,8 +38,14 @@ Rx
 
 ##### Download
 
-	dependencies {
+	repositories {
+	    maven {
+	        url "https://jitpack.io"
+	    }
+	}
 
+	dependencies {
+	        compile 'com.github.MobileSolution:android-lol-api:v0.0.1'
 	}
 
 ## Licence
