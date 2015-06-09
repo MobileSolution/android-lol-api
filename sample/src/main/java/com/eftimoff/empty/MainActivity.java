@@ -1,6 +1,7 @@
 package com.eftimoff.empty;
 
-import android.os.Bundle;
+import android.os.*;
+import android.os.Process;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
@@ -8,10 +9,16 @@ import android.widget.Toast;
 
 import com.mobilesolutions.lolapi.LolApi;
 import com.mobilesolutions.lolapi.models.champion.ChampionDto;
+import com.mobilesolutions.lolapi.models.champion.ChampionListDto;
+import com.mobilesolutions.lolapi.models.recent.GameDto;
+import com.mobilesolutions.lolapi.models.recent.GameDtoList;
+
+import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+import rx.Observable;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -26,19 +33,18 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
 
                 LolApi.setRegion("eune");
-                LolApi.getChampionById(104, new Callback<ChampionDto>() {
-                    @Override
-                    public void success(ChampionDto championDto, Response response) {
-                        toast("SIZE : " + championDto.isFreeToPlay());
-                    }
+                final Runnable kur = new Runnable() {
 
                     @Override
-                    public void failure(RetrofitError error) {
-                        toast("ERROR : " + error.getMessage());
+                    public void run() {
+                        final GameDtoList champions = LolApi.getRecentGames(55266115 );
+                        Log.d("KUR", champions.getGames().size()+"");
                     }
-                });
+                };
+                new Thread(kur).start();
             }
         });
+
 
     }
 

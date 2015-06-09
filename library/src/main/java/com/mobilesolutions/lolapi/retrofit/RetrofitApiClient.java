@@ -2,6 +2,7 @@ package com.mobilesolutions.lolapi.retrofit;
 
 import com.mobilesolutions.lolapi.models.champion.ChampionDto;
 import com.mobilesolutions.lolapi.models.champion.ChampionListDto;
+import com.mobilesolutions.lolapi.models.recent.GameDtoList;
 
 import retrofit.Callback;
 import retrofit.http.GET;
@@ -33,4 +34,13 @@ public interface RetrofitApiClient {
 
     @GET("/api/lol/{region}/v1.2/champion/{champion_id}")
     Observable<ChampionDto> getChampionByIdRx(@Path("champion_id") long championId, @Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/{region}/v1.3/game/by-summoner/{summoner_id}/recent")
+    GameDtoList getRecentGames(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/{region}/v1.3/game/by-summoner/{summoner_id}/recent")
+    void getRecentGames(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("api_key") String apiKey, final Callback<GameDtoList> callback);
+
+    @GET("/api/lol/{region}/v1.3/game/by-summoner/{summoner_id}/recent")
+    Observable<GameDtoList> getRecentGamesRx(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("api_key") String apiKey);
 }

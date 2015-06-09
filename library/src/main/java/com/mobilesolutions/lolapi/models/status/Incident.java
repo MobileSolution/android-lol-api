@@ -1,5 +1,7 @@
 package com.mobilesolutions.lolapi.models.status;
 
+import android.os.Message;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -34,3 +36,4 @@ public class Incident {
         return updates;
     }
 }
+

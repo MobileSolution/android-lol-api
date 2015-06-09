@@ -1,7 +1,11 @@
 package com.mobilesolutions.lolapi.models.recent;
 
 import com.google.gson.annotations.Expose;
+import com.mobilesolutions.lolapi.models.recent.enums.GameMode;
+import com.mobilesolutions.lolapi.models.recent.enums.GameType;
+import com.mobilesolutions.lolapi.models.recent.enums.SubType;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class GameDto {
@@ -15,9 +19,9 @@ public class GameDto {
     @Expose
     private long gameId;
     @Expose
-    private String gameMode;
+    private GameMode gameMode;
     @Expose
-    private String gameType;
+    private GameType gameType;
     @Expose
     private boolean invalid;
     @Expose
@@ -33,7 +37,7 @@ public class GameDto {
     @Expose
     private RawStatsDto stats;
     @Expose
-    private String subType;
+    private SubType subType;
     @Expose
     private int teamId;
 
@@ -53,11 +57,11 @@ public class GameDto {
         return gameId;
     }
 
-    public String getGameMode() {
+    public GameMode getGameMode() {
         return gameMode;
     }
 
-    public String getGameType() {
+    public GameType getGameType() {
         return gameType;
     }
 
@@ -89,7 +93,7 @@ public class GameDto {
         return stats;
     }
 
-    public String getSubType() {
+    public SubType getSubType() {
         return subType;
     }
 
