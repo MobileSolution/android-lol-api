@@ -1,6 +1,8 @@
 package com.mobilesolutions.lolapi.models.featured;
 
 import com.google.gson.annotations.Expose;
+import com.mobilesolutions.lolapi.models.common.BannedChampion;
+import com.mobilesolutions.lolapi.models.common.Observer;
 
 import java.util.List;
 

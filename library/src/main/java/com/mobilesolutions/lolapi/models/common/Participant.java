@@ -1,6 +1,8 @@
-package com.mobilesolutions.lolapi.models.match;
+package com.mobilesolutions.lolapi.models.common;
 
 import com.google.gson.annotations.Expose;
+import com.mobilesolutions.lolapi.models.common.ParticipantStats;
+import com.mobilesolutions.lolapi.models.common.ParticipantTimeline;
 
 import java.util.List;
 

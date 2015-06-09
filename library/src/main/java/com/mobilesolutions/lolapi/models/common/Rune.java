@@ -1,4 +1,4 @@
-package com.mobilesolutions.lolapi.models.match;
+package com.mobilesolutions.lolapi.models.common;
 
 import com.google.gson.annotations.Expose;
 

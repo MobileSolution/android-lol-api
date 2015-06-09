@@ -1,6 +1,8 @@
 package com.mobilesolutions.lolapi.models.matchhistory;
 
 import com.google.gson.annotations.Expose;
+import com.mobilesolutions.lolapi.models.common.Participant;
+import com.mobilesolutions.lolapi.models.common.ParticipantIdentity;
 
 import java.util.List;
 

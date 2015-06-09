@@ -1,6 +1,7 @@
 package com.mobilesolutions.lolapi.models.match;
 
 import com.google.gson.annotations.Expose;
+import com.mobilesolutions.lolapi.models.common.BannedChampion;
 
 import java.util.List;
 

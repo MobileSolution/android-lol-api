@@ -1,10 +1,9 @@
 package com.mobilesolutions.lolapi.models.match;
 
 import com.google.gson.annotations.Expose;
-import com.mobilesolutions.lolapi.models.featured.*;
+import com.mobilesolutions.lolapi.models.common.ParticipantIdentity;
 import com.mobilesolutions.lolapi.models.featured.Participant;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MatchDetail {
