@@ -2,9 +2,10 @@ package com.mobilesolutions.lolapi.models.team;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class RosterDto {
+public class RosterDto implements Serializable {
 
     @Expose
     private List<TeamMemberInfoDto> memberList;

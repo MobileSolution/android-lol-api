@@ -1,6 +1,7 @@
-package com.mobilesolutions.lolapi.models.common;
+package com.mobilesolutions.lolapi.models.matchhistory;
 
 import com.google.gson.annotations.Expose;
+import com.mobilesolutions.lolapi.models.common.Player;
 
 import java.io.Serializable;
 

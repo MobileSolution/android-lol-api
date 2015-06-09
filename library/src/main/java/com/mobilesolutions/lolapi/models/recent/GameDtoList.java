@@ -3,25 +3,20 @@ package com.mobilesolutions.lolapi.models.recent;
 import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
+import java.util.List;
 
-public class PlayerDto implements Serializable {
+public class GameDtoList implements Serializable {
 
-    @Expose
-    private int championId;
     @Expose
     private long summonerId;
     @Expose
-    private int teamId;
-
-    public int getChampionId() {
-        return championId;
-    }
+    private  List<GameDto> games;
 
     public long getSummonerId() {
         return summonerId;
     }
 
-    public int getTeamId() {
-        return teamId;
+    public List<GameDto> getGames() {
+        return games;
     }
 }

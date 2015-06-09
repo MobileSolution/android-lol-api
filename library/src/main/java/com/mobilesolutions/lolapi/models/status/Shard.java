@@ -3,10 +3,11 @@ package com.mobilesolutions.lolapi.models.status;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Shard {
+public class Shard implements Serializable {
 
     @SerializedName("region_tag")
     @Expose

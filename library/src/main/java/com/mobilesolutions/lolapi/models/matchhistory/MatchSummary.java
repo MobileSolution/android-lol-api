@@ -4,9 +4,10 @@ import com.google.gson.annotations.Expose;
 import com.mobilesolutions.lolapi.models.common.Participant;
 import com.mobilesolutions.lolapi.models.common.ParticipantIdentity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class MatchSummary {
+public class MatchSummary implements Serializable {
 
     @Expose
     private int mapId;

@@ -2,9 +2,10 @@ package com.mobilesolutions.lolapi.models.league;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class LeagueDto {
+public class LeagueDto implements Serializable {
 
     @Expose
     private String queue;

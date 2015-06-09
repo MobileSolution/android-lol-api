@@ -1,12 +1,13 @@
 package com.mobilesolutions.lolapi.models.match;
 
 import com.google.gson.annotations.Expose;
+import com.mobilesolutions.lolapi.models.common.Participant;
 import com.mobilesolutions.lolapi.models.common.ParticipantIdentity;
-import com.mobilesolutions.lolapi.models.featured.Participant;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class MatchDetail {
+public class MatchDetail implements Serializable {
 
     @Expose
     private int mapId;
@@ -25,7 +26,7 @@ public class MatchDetail {
     @Expose
     private List<ParticipantIdentity> participantIdentities;
     @Expose
-    private List<com.mobilesolutions.lolapi.models.featured.Participant> participants;
+    private List<Participant> participants;
     @Expose
     private String platformId;
     @Expose

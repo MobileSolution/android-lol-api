@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.match;
 
 import com.google.gson.annotations.Expose;
 
-public class Position {
+import java.io.Serializable;
+
+public class Position implements Serializable {
 
     @Expose
     private int x;

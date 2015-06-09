@@ -2,9 +2,10 @@ package com.mobilesolutions.lolapi.models.team;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class TeamDto {
+public class TeamDto implements Serializable {
 
     @Expose
     private long createDate;

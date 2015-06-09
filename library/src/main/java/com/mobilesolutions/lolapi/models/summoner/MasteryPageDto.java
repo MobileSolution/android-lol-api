@@ -2,9 +2,10 @@ package com.mobilesolutions.lolapi.models.summoner;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class MasteryPageDto {
+public class MasteryPageDto implements Serializable {
 
     @Expose
     private boolean current;

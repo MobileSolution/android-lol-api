@@ -4,9 +4,10 @@ import com.google.gson.annotations.Expose;
 import com.mobilesolutions.lolapi.models.common.BannedChampion;
 import com.mobilesolutions.lolapi.models.common.Observer;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CurrentGameInfo {
+public class CurrentGameInfo implements Serializable {
 
     @Expose
     private List<BannedChampion> bannedChampions;

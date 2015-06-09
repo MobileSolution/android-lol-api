@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.league;
 
 import com.google.gson.annotations.Expose;
 
-public class LeagueEntryDto {
+import java.io.Serializable;
+
+public class LeagueEntryDto implements Serializable {
 
     @Expose
     private long leaguePoints;

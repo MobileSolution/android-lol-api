@@ -1,12 +1,15 @@
 package com.mobilesolutions.lolapi.models.status;
 
+import android.os.Message;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Incident {
+public class Incident implements Serializable {
 
     @Expose
     private boolean active;
@@ -34,3 +37,4 @@ public class Incident {
         return updates;
     }
 }
+

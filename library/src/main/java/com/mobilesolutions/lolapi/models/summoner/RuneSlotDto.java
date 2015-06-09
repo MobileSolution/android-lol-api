@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.summoner;
 
 import com.google.gson.annotations.Expose;
 
-public class RuneSlotDto {
+import java.io.Serializable;
+
+public class RuneSlotDto implements Serializable {
 
     @Expose
     private int runeId;

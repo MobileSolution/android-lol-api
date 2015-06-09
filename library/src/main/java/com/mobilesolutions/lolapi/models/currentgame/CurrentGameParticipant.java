@@ -4,9 +4,10 @@ import com.google.gson.annotations.Expose;
 import com.mobilesolutions.lolapi.models.common.Mastery;
 import com.mobilesolutions.lolapi.models.common.Rune;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CurrentGameParticipant {
+public class CurrentGameParticipant implements Serializable {
 
     @Expose
     private boolean bot;

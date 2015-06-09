@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.summoner;
 
 import com.google.gson.annotations.Expose;
 
-public class MasteryDto {
+import java.io.Serializable;
+
+public class MasteryDto implements Serializable {
 
     @Expose
     private int id;

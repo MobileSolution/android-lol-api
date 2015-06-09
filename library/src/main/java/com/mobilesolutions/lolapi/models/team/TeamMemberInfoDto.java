@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.team;
 
 import com.google.gson.annotations.Expose;
 
-public class TeamMemberInfoDto {
+import java.io.Serializable;
+
+public class TeamMemberInfoDto implements Serializable {
 
     @Expose
     private long inviteDate;

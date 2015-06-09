@@ -2,10 +2,11 @@ package com.mobilesolutions.lolapi.models.status;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Service {
+public class Service implements Serializable {
 
     @Expose
     private List<Incident> incidents = new ArrayList<Incident>();

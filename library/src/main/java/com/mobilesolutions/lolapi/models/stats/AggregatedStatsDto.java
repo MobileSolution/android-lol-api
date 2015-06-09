@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.stats;
 
 import com.google.gson.annotations.Expose;
 
-public class AggregatedStatsDto {
+import java.io.Serializable;
+
+public class AggregatedStatsDto implements Serializable {
 
     @Expose
     private int averageAssists;
