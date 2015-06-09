@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.summoner;
 
 import com.google.gson.annotations.Expose;
 
-public class SummonerDto {
+import java.io.Serializable;
+
+public class SummonerDto implements Serializable {
 
     @Expose
     private long id;

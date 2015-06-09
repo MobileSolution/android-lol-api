@@ -2,9 +2,10 @@ package com.mobilesolutions.lolapi.models.featured;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class FeaturedGameInfo {
+public class FeaturedGameInfo implements Serializable {
 
     @Expose
     private List<BannedChampion> bannedChampions;

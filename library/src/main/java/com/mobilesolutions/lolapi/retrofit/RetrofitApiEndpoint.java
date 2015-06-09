@@ -1,6 +1,7 @@
 package com.mobilesolutions.lolapi.retrofit;
 
 import com.mobilesolutions.lolapi.utls.ErrorConstants;
+import com.mobilesolutions.lolapi.utls.RegionsEnum;
 
 import retrofit.Endpoint;
 
@@ -15,10 +16,12 @@ public class RetrofitApiEndpoint implements Endpoint {
 
     private String url;
     private String region;
+    private RegionsEnum regionEnum;
 
     public void setRegion(final String region) {
         this.region = region;
         this.url = String.format(ENDPOINT, region);
+        setRegionEnum(findEnumByRegionString(region));
     }
 
     public String getRegion() {
@@ -36,5 +39,22 @@ public class RetrofitApiEndpoint implements Endpoint {
             throw new IllegalStateException(ErrorConstants.ERROR_NO_REGION_PROVIDED);
         }
         return url;
+    }
+
+    public RegionsEnum getRegionEnum() {
+        return regionEnum;
+    }
+
+    public void setRegionEnum(RegionsEnum regionEnum) {
+        this.regionEnum = regionEnum;
+    }
+
+    private RegionsEnum findEnumByRegionString(final String region) {
+        for (RegionsEnum regionsEnum : RegionsEnum.values()) {
+            if (regionsEnum.getRegion().equalsIgnoreCase(region)) {
+                return regionsEnum;
+            }
+        }
+        return RegionsEnum.DEFAULT;
     }
 }

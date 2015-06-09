@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.matchhistory;
 
 import com.google.gson.annotations.Expose;
 
-public class ParticipantTimeline {
+import java.io.Serializable;
+
+public class ParticipantTimeline implements Serializable {
 
     @Expose
     private ParticipantTimelineData ancientGolemAssistsPerMinCounts;

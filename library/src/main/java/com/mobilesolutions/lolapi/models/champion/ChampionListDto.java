@@ -5,7 +5,7 @@ import com.google.gson.annotations.Expose;
 import java.io.Serializable;
 import java.util.List;
 
-public class ChampionListDto {
+public class ChampionListDto implements Serializable {
 
     @Expose
     private List<ChampionDto> champions;

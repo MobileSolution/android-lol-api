@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.featured;
 
 import com.google.gson.annotations.Expose;
 
-public class Observer {
+import java.io.Serializable;
+
+public class Observer implements Serializable {
 
     @Expose
     private String encryptionKey;

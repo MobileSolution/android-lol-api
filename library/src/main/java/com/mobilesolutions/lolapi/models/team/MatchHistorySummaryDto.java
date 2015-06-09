@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.team;
 
 import com.google.gson.annotations.Expose;
 
-public class MatchHistorySummaryDto {
+import java.io.Serializable;
+
+public class MatchHistorySummaryDto implements Serializable {
 
     @Expose
     private int assists;

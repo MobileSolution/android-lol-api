@@ -8,7 +8,7 @@ import com.mobilesolutions.lolapi.models.recent.enums.SubType;
 import java.io.Serializable;
 import java.util.List;
 
-public class GameDto {
+public class GameDto implements Serializable {
 
     @Expose
     private int championId;

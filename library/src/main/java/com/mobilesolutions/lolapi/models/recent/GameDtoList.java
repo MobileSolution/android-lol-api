@@ -5,7 +5,7 @@ import com.google.gson.annotations.Expose;
 import java.io.Serializable;
 import java.util.List;
 
-public class GameDtoList {
+public class GameDtoList implements Serializable {
 
     @Expose
     private long summonerId;

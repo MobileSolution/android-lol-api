@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.stats;
 
 import com.google.gson.annotations.Expose;
 
-public class ChampionStatsDto {
+import java.io.Serializable;
+
+public class ChampionStatsDto implements Serializable {
 
     @Expose
     private int id;

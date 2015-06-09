@@ -2,9 +2,10 @@ package com.mobilesolutions.lolapi.models.match;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Team {
+public class Team implements Serializable {
 
     @Expose
     private List<BannedChampion> bans;

@@ -2,9 +2,10 @@ package com.mobilesolutions.lolapi.models.currentgame;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CurrentGameParticipant {
+public class CurrentGameParticipant implements Serializable {
 
     @Expose
     private boolean bot;

@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.matchhistory;
 
 import com.google.gson.annotations.Expose;
 
-public class Rune {
+import java.io.Serializable;
+
+public class Rune implements Serializable {
 
     @Expose
     private int count;

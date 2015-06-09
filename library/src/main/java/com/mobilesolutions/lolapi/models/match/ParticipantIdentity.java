@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.match;
 
 import com.google.gson.annotations.Expose;
 
-public class ParticipantIdentity {
+import java.io.Serializable;
+
+public class ParticipantIdentity implements Serializable {
 
     @Expose
     private int participantId;

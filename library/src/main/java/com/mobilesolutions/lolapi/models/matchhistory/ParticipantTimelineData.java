@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.matchhistory;
 
 import com.google.gson.annotations.Expose;
 
-public class ParticipantTimelineData {
+import java.io.Serializable;
+
+public class ParticipantTimelineData implements Serializable {
 
     @Expose
     private double tenToTwenty;

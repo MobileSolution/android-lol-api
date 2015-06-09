@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
 
-public class ChampionDto {
+public class ChampionDto implements Serializable {
 
     @Expose
     private boolean botMmEnabled;

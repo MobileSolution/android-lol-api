@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.match;
 
 import com.google.gson.annotations.Expose;
 
-public class BannedChampion {
+import java.io.Serializable;
+
+public class BannedChampion implements Serializable {
 
     @Expose
     private long championId;

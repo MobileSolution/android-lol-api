@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.team;
 
 import com.google.gson.annotations.Expose;
 
-public class TeamStatDetailDto {
+import java.io.Serializable;
+
+public class TeamStatDetailDto implements Serializable {
 
     @Expose
     private int averageGamesPlayed;

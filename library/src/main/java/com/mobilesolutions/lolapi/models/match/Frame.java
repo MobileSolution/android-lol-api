@@ -2,10 +2,11 @@ package com.mobilesolutions.lolapi.models.match;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class Frame {
+public class Frame implements Serializable {
 
     @Expose
     private List<Event> events;

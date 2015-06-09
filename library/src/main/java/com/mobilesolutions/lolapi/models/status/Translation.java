@@ -3,7 +3,9 @@ package com.mobilesolutions.lolapi.models.status;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Translation {
+import java.io.Serializable;
+
+public class Translation implements Serializable {
 
     @Expose
     private String content;

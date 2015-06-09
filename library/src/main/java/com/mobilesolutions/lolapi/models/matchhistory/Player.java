@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.matchhistory;
 
 import com.google.gson.annotations.Expose;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
 
     @Expose
     private String matchHistoryUri;

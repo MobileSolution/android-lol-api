@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.stats;
 
 import com.google.gson.annotations.Expose;
 
-public class PlayerStatsSummaryDto {
+import java.io.Serializable;
+
+public class PlayerStatsSummaryDto implements Serializable {
 
     @Expose
     private AggregatedStatsDto aggregatedStats;

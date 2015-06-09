@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.league;
 
 import com.google.gson.annotations.Expose;
 
-public class MiniSeriesDto {
+import java.io.Serializable;
+
+public class MiniSeriesDto implements Serializable {
 
     @Expose
     private String progress;

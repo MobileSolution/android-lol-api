@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.mobilesolutions.lolapi.LolApi;
 import com.mobilesolutions.lolapi.models.champion.ChampionDto;
 import com.mobilesolutions.lolapi.models.champion.ChampionListDto;
+import com.mobilesolutions.lolapi.models.currentgame.CurrentGameInfo;
 import com.mobilesolutions.lolapi.models.recent.GameDto;
 import com.mobilesolutions.lolapi.models.recent.GameDtoList;
 
@@ -33,9 +34,9 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
 
                 LolApi.setRegion("eune");
-                LolApi.getRecentGames(55266115, new Callback<GameDtoList>() {
+                LolApi.getCurrentGame(55266115, new Callback<CurrentGameInfo>() {
                     @Override
-                    public void success(GameDtoList gameDtoList, Response response) {
+                    public void success(CurrentGameInfo currentGameInfo, Response response) {
 
                     }
 

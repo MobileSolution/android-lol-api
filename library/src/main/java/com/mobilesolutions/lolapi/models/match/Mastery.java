@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.match;
 
 import com.google.gson.annotations.Expose;
 
-public class Mastery {
+import java.io.Serializable;
+
+public class Mastery implements Serializable {
 
     @Expose
     private long masteryId;

@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.featured;
 
 import com.google.gson.annotations.Expose;
 
-public class Participant {
+import java.io.Serializable;
+
+public class Participant implements Serializable {
 
     @Expose
     private boolean bot;

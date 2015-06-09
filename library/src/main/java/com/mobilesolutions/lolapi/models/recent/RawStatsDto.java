@@ -2,7 +2,9 @@ package com.mobilesolutions.lolapi.models.recent;
 
 import com.google.gson.annotations.Expose;
 
-public class RawStatsDto {
+import java.io.Serializable;
+
+public class RawStatsDto implements Serializable {
 
     @Expose
     private int assists;
