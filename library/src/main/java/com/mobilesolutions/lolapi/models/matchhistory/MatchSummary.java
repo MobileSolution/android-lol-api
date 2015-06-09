@@ -1,13 +1,10 @@
-package com.mobilesolutions.lolapi.models.match;
+package com.mobilesolutions.lolapi.models.matchhistory;
 
 import com.google.gson.annotations.Expose;
-import com.mobilesolutions.lolapi.models.featured.*;
-import com.mobilesolutions.lolapi.models.featured.Participant;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MatchDetail {
+public class MatchSummary {
 
     @Expose
     private int mapId;
@@ -26,7 +23,7 @@ public class MatchDetail {
     @Expose
     private List<ParticipantIdentity> participantIdentities;
     @Expose
-    private List<com.mobilesolutions.lolapi.models.featured.Participant> participants;
+    private List<Participant> participants;
     @Expose
     private String platformId;
     @Expose
@@ -35,10 +32,6 @@ public class MatchDetail {
     private String region;
     @Expose
     private String season;
-    @Expose
-    private List<Team> teams;
-    @Expose
-    private Timeline timeline;
 
     public int getMapId() {
         return mapId;
@@ -90,13 +83,5 @@ public class MatchDetail {
 
     public String getSeason() {
         return season;
-    }
-
-    public List<Team> getTeams() {
-        return teams;
-    }
-
-    public Timeline getTimeline() {
-        return timeline;
     }
 }

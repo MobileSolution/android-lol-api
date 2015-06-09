@@ -1,4 +1,4 @@
-package com.mobilesolutions.lolapi.models.match;
+package com.mobilesolutions.lolapi.models.matchhistory;
 
 import com.google.gson.annotations.Expose;
 
