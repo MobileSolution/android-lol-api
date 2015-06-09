@@ -25,7 +25,7 @@ Rx
 
  * champion-v1.2
  * current-game-v1.0 
- * featured-games-v1.0          [NOT YET]
+ * featured-games-v1.0
  * game-v1.3
  * league-v2.5                  [NOT YET]
  * lol-static-data-v1.2         [NOT YET]

@@ -3,6 +3,7 @@ package com.mobilesolutions.lolapi.retrofit;
 import com.mobilesolutions.lolapi.models.champion.ChampionDto;
 import com.mobilesolutions.lolapi.models.champion.ChampionListDto;
 import com.mobilesolutions.lolapi.models.currentgame.CurrentGameInfo;
+import com.mobilesolutions.lolapi.models.featured.FeaturedGames;
 import com.mobilesolutions.lolapi.models.recent.GameDtoList;
 
 import retrofit.Callback;
@@ -53,5 +54,17 @@ public interface RetrofitApiClient {
 
     @GET("/observer-mode/rest/consumer/getSpectatorGameInfo/{platformId}/{summoner_id}")
     Observable<CurrentGameInfo> getCurrentGameRx(@Path("platformId") String platformId,@Path("summoner_id") long summonerId, @Query("api_key") String apiKey);
+
+    @GET("/observer-mode/rest/featured")
+    FeaturedGames getFeaturedGames(@Query("api_key") String apiKey);
+
+    @GET("/observer-mode/rest/featured")
+    void  getFeaturedGames(@Query("api_key") String apiKey,final Callback<FeaturedGames> callback);
+
+    @GET("/observer-mode/rest/featured")
+    Observable<FeaturedGames>  getFeaturedGamesRx(@Query("api_key") String apiKey);
+
+/*    @GET("/api/lol/{region}/v2.5/league/by-summoner/{summonerIds}")
+    GameDtoList getRecentGames(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("api_key") String apiKey);*/
 
 }

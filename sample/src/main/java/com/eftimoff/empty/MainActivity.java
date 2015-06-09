@@ -11,6 +11,7 @@ import com.mobilesolutions.lolapi.LolApi;
 import com.mobilesolutions.lolapi.models.champion.ChampionDto;
 import com.mobilesolutions.lolapi.models.champion.ChampionListDto;
 import com.mobilesolutions.lolapi.models.currentgame.CurrentGameInfo;
+import com.mobilesolutions.lolapi.models.featured.FeaturedGames;
 import com.mobilesolutions.lolapi.models.recent.GameDto;
 import com.mobilesolutions.lolapi.models.recent.GameDtoList;
 
@@ -34,9 +35,9 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
 
                 LolApi.setRegion("eune");
-                LolApi.getCurrentGame(55266115, new Callback<CurrentGameInfo>() {
+                LolApi.getFeaturedGames(new Callback<FeaturedGames>() {
                     @Override
-                    public void success(CurrentGameInfo currentGameInfo, Response response) {
+                    public void success(FeaturedGames featuredGames, Response response) {
 
                     }
 

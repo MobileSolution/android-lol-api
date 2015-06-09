@@ -1,9 +1,9 @@
 package com.mobilesolutions.lolapi.models.recent;
 
 import com.google.gson.annotations.Expose;
-import com.mobilesolutions.lolapi.models.recent.enums.GameMode;
-import com.mobilesolutions.lolapi.models.recent.enums.GameType;
-import com.mobilesolutions.lolapi.models.recent.enums.SubType;
+import com.mobilesolutions.lolapi.models.common.enums.GameMode;
+import com.mobilesolutions.lolapi.models.common.enums.GameType;
+import com.mobilesolutions.lolapi.models.common.enums.SubType;
 
 import java.io.Serializable;
 import java.util.List;

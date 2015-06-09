@@ -3,6 +3,8 @@ package com.mobilesolutions.lolapi.models.currentgame;
 import com.google.gson.annotations.Expose;
 import com.mobilesolutions.lolapi.models.common.BannedChampion;
 import com.mobilesolutions.lolapi.models.common.Observer;
+import com.mobilesolutions.lolapi.models.common.enums.GameMode;
+import com.mobilesolutions.lolapi.models.common.enums.GameType;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,13 +18,13 @@ public class CurrentGameInfo implements Serializable {
     @Expose
     private long gameLength;
     @Expose
-    private String gameMode;
+    private GameMode gameMode;
     @Expose
     private long gameQueueConfigId;
     @Expose
     private long gameStartTime;
     @Expose
-    private String gameType;
+    private GameType gameType;
     @Expose
     private long mapId;
     @Expose
@@ -44,7 +46,7 @@ public class CurrentGameInfo implements Serializable {
         return gameLength;
     }
 
-    public String getGameMode() {
+    public GameMode getGameMode() {
         return gameMode;
     }
 
@@ -56,7 +58,7 @@ public class CurrentGameInfo implements Serializable {
         return gameStartTime;
     }
 
-    public String getGameType() {
+    public GameType getGameType() {
         return gameType;
     }
 

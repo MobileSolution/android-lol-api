@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.mobilesolutions.lolapi.models.champion.ChampionDto;
 import com.mobilesolutions.lolapi.models.champion.ChampionListDto;
 import com.mobilesolutions.lolapi.models.currentgame.CurrentGameInfo;
+import com.mobilesolutions.lolapi.models.featured.FeaturedGames;
 import com.mobilesolutions.lolapi.models.recent.GameDto;
 import com.mobilesolutions.lolapi.models.recent.GameDtoList;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiClient;
@@ -149,5 +150,26 @@ public class LolApi {
      */
     public static Observable<CurrentGameInfo> getCurrentGameRx(final long summonerId) {
         return retrofitApiClient.getCurrentGameRx(retrofitApiEndpoint.getRegionEnum().getPlatformId(), summonerId, apiKey);
+    }
+
+    /**
+     * Get list of featured games.
+     */
+    public static FeaturedGames getFeaturedGames() {
+        return retrofitApiClient.getFeaturedGames(apiKey);
+    }
+
+    /**
+     * Get list of featured games.
+     */
+    public static void getFeaturedGames(Callback<FeaturedGames> callback) {
+        retrofitApiClient.getFeaturedGames(apiKey, callback);
+    }
+
+    /**
+     * Get list of featured games.
+     */
+    public static Observable<FeaturedGames> getFeaturedGamesRx() {
+        return retrofitApiClient.getFeaturedGamesRx(apiKey);
     }
 }

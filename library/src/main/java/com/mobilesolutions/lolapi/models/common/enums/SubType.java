@@ -1,4 +1,4 @@
-package com.mobilesolutions.lolapi.models.recent.enums;
+package com.mobilesolutions.lolapi.models.common.enums;
 
 public enum SubType {
     NONE,
