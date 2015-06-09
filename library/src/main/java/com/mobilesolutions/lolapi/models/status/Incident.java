@@ -1,7 +1,8 @@
-package com.mobilesolutions.lolapi.models;
+package com.mobilesolutions.lolapi.models.status;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.mobilesolutions.lolapi.models.Message;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.mobilesolutions.lolapi.LolApi;
-import com.mobilesolutions.lolapi.models.dto.ChampionDto;
+import com.mobilesolutions.lolapi.models.champion.ChampionDto;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;

@@ -2,6 +2,7 @@ package com.mobilesolutions.lolapi.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.mobilesolutions.lolapi.models.status.Translation;
 
 import java.util.ArrayList;
 import java.util.List;

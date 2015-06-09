@@ -1,8 +1,8 @@
 package com.mobilesolutions.lolapi;
 
 import com.google.gson.Gson;
-import com.mobilesolutions.lolapi.models.dto.ChampionDto;
-import com.mobilesolutions.lolapi.models.dto.ChampionListDto;
+import com.mobilesolutions.lolapi.models.champion.ChampionDto;
+import com.mobilesolutions.lolapi.models.champion.ChampionListDto;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiClient;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiEndpoint;
 import com.mobilesolutions.lolapi.utls.ErrorConstants;

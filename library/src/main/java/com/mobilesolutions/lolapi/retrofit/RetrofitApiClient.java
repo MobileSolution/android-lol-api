@@ -1,7 +1,7 @@
 package com.mobilesolutions.lolapi.retrofit;
 
-import com.mobilesolutions.lolapi.models.dto.ChampionDto;
-import com.mobilesolutions.lolapi.models.dto.ChampionListDto;
+import com.mobilesolutions.lolapi.models.champion.ChampionDto;
+import com.mobilesolutions.lolapi.models.champion.ChampionListDto;
 
 import retrofit.Callback;
 import retrofit.http.GET;

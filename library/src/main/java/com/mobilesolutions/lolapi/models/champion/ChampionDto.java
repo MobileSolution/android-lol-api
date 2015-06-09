@@ -1,4 +1,4 @@
-package com.mobilesolutions.lolapi.models.dto;
+package com.mobilesolutions.lolapi.models.champion;
 
 import com.google.gson.annotations.Expose;
 

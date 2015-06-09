@@ -1,4 +1,4 @@
-package com.mobilesolutions.lolapi.models;
+package com.mobilesolutions.lolapi.models.status;
 
 import com.google.gson.annotations.Expose;
 
