@@ -23,7 +23,7 @@ public enum RegionsEnum {
     }
 
     public String getRegion() {
-        return region;
+        return region.toLowerCase();
     }
 
     public String getPlatformId() {

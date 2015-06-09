@@ -12,10 +12,14 @@ import com.mobilesolutions.lolapi.models.champion.ChampionDto;
 import com.mobilesolutions.lolapi.models.champion.ChampionListDto;
 import com.mobilesolutions.lolapi.models.currentgame.CurrentGameInfo;
 import com.mobilesolutions.lolapi.models.featured.FeaturedGames;
+import com.mobilesolutions.lolapi.models.league.LeagueDto;
+import com.mobilesolutions.lolapi.models.league.enums.QueueEnum;
 import com.mobilesolutions.lolapi.models.recent.GameDto;
 import com.mobilesolutions.lolapi.models.recent.GameDtoList;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -33,23 +37,12 @@ public class MainActivity extends ActionBarActivity {
         viewById.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 LolApi.setRegion("eune");
-                LolApi.getFeaturedGames(new Callback<FeaturedGames>() {
-                    @Override
-                    public void success(FeaturedGames featuredGames, Response response) {
-
-                    }
-
-                    @Override
-                    public void failure(RetrofitError error) {
-
-                    }
-                });
             }
         });
 
-
+//Team id - TEAM-ad7ca460-03e1-11e5-8e2b-782bcb46f3e4
+        //summoner 22782151
     }
 
     private void toast(final String message) {

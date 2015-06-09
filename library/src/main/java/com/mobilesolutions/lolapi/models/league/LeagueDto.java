@@ -1,6 +1,8 @@
 package com.mobilesolutions.lolapi.models.league;
 
 import com.google.gson.annotations.Expose;
+import com.mobilesolutions.lolapi.models.league.enums.QueueEnum;
+import com.mobilesolutions.lolapi.models.league.enums.TierEnum;
 
 import java.io.Serializable;
 import java.util.List;
@@ -8,17 +10,17 @@ import java.util.List;
 public class LeagueDto implements Serializable {
 
     @Expose
-    private String queue;
+    private QueueEnum queue;
     @Expose
     private String name;
     @Expose
     private List<LeagueEntryDto> entries;
     @Expose
-    private String tier;
+    private TierEnum tier;
     @Expose
     private String participantId;
 
-    public String getQueue() {
+    public QueueEnum getQueue() {
         return queue;
     }
 
@@ -30,7 +32,7 @@ public class LeagueDto implements Serializable {
         return entries;
     }
 
-    public String getTier() {
+    public TierEnum getTier() {
         return tier;
     }
 

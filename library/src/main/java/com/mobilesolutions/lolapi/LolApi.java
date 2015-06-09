@@ -1,18 +1,20 @@
 package com.mobilesolutions.lolapi;
 
+import android.text.TextUtils;
+
 import com.google.gson.Gson;
 import com.mobilesolutions.lolapi.models.champion.ChampionDto;
 import com.mobilesolutions.lolapi.models.champion.ChampionListDto;
 import com.mobilesolutions.lolapi.models.currentgame.CurrentGameInfo;
 import com.mobilesolutions.lolapi.models.featured.FeaturedGames;
-import com.mobilesolutions.lolapi.models.recent.GameDto;
+import com.mobilesolutions.lolapi.models.league.LeagueDto;
 import com.mobilesolutions.lolapi.models.recent.GameDtoList;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiClient;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiEndpoint;
 import com.mobilesolutions.lolapi.utls.ErrorConstants;
-import com.mobilesolutions.lolapi.utls.RegionsEnum;
 
 import java.util.List;
+import java.util.Map;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -171,5 +173,167 @@ public class LolApi {
      */
     public static Observable<FeaturedGames> getFeaturedGamesRx() {
         return retrofitApiClient.getFeaturedGamesRx(apiKey);
+    }
+
+    /**
+     * Get leagues mapped by summoner ID for a given list of summoner IDs.
+     */
+    public static Map<String, List<LeagueDto>> getLeaguesBySummenrIds(final List<String> summonerIds) {
+        if (summonerIds.size() > 10) {
+            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+        }
+        return retrofitApiClient.getLeaguesBySummenrIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", summonerIds), apiKey);
+    }
+
+    /**
+     * Get leagues mapped by summoner ID for a given list of summoner IDs.
+     */
+    public static void getLeaguesBySummenrIds(final List<String> summonerIds, final Callback<Map<String, List<LeagueDto>>> callback) {
+        if (summonerIds.size() > 10) {
+            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+        }
+        retrofitApiClient.getLeaguesBySummenrIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", summonerIds), apiKey, callback);
+    }
+
+    /**
+     * Get leagues mapped by summoner ID for a given list of summoner IDs.
+     */
+    public static Observable<Map<String, List<LeagueDto>>> getLeaguesBySummenrIdsRx(final List<String> summonerIds) {
+        if (summonerIds.size() > 10) {
+            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+        }
+        return retrofitApiClient.getLeaguesBySummenrIdsRx(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", summonerIds), apiKey);
+    }
+
+    /**
+     * Get league entries mapped by summoner ID for a given list of summoner IDs.
+     */
+    public static Map<String, List<LeagueDto>> getLeagueEntriesBySummenrIds(final List<String> summonerIds) {
+        if (summonerIds.size() > 10) {
+            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+        }
+        return retrofitApiClient.getLeagueEntriesBySummenrIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", summonerIds), apiKey);
+    }
+
+    /**
+     * Get leagues mapped by summoner ID for a given list of summoner IDs.
+     */
+    public static void getLeagueEntriesBySummenrIds(final List<String> summonerIds, final Callback<Map<String, List<LeagueDto>>> callback) {
+        if (summonerIds.size() > 10) {
+            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+        }
+        retrofitApiClient.getLeagueEntriesBySummenrIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", summonerIds), apiKey, callback);
+    }
+
+    /**
+     * Get leagues mapped by summoner ID for a given list of summoner IDs.
+     */
+    public static Observable<Map<String, List<LeagueDto>>> getLeagueEntriesBySummenrIdsRx(final List<String> summonerIds) {
+        if (summonerIds.size() > 10) {
+            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+        }
+        return retrofitApiClient.getLeagueEntriesBySummenrIdsRx(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", summonerIds), apiKey);
+    }
+
+    /**
+     * Get leagues mapped by team ID for a given list of team IDs.
+     */
+    public static Map<String, List<LeagueDto>> getLeaguesByTeamIds(final List<String> teamIds) {
+        if (teamIds.size() > 10) {
+            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+        }
+        return retrofitApiClient.getLeaguesByTeamIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", teamIds), apiKey);
+    }
+
+    /**
+     * Get leagues mapped by team ID for a given list of team IDs.
+     */
+    public static void getLeaguesByTeamIds(final List<String> teamIds, final Callback<Map<String, List<LeagueDto>>> callback) {
+        if (teamIds.size() > 10) {
+            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+        }
+        retrofitApiClient.getLeaguesByTeamIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", teamIds), apiKey, callback);
+    }
+
+    /**
+     * Get leagues mapped by team ID for a given list of team IDs.
+     */
+    public static Observable<Map<String, List<LeagueDto>>> getLeaguesByTeamIdsRx(final List<String> teamIds) {
+        if (teamIds.size() > 10) {
+            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+        }
+        return retrofitApiClient.getLeaguesByTeamIdsRx(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", teamIds), apiKey);
+    }
+
+    /**
+     * Get league entries mapped by team ID for a given list of team IDs.
+     */
+    public static Map<String, List<LeagueDto>> getLeagueEntriesByTeamIds(final List<String> teamIds) {
+        if (teamIds.size() > 10) {
+            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+        }
+        return retrofitApiClient.getLeagueEntriesByTeamIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", teamIds), apiKey);
+    }
+
+    /**
+     * Get league entries mapped by team ID for a given list of team IDs.
+     */
+    public static void getLeagueEntriesByTeamIds(final List<String> teamIds, final Callback<Map<String, List<LeagueDto>>> callback) {
+        if (teamIds.size() > 10) {
+            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+        }
+        retrofitApiClient.getLeagueEntriesByTeamIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", teamIds), apiKey, callback);
+    }
+
+    /**
+     * Get league entries mapped by team ID for a given list of team IDs.
+     */
+    public static Observable<Map<String, List<LeagueDto>>> getLeagueEntriesByTeamIdsRx(final List<String> teamIds) {
+        if (teamIds.size() > 10) {
+            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+        }
+        return retrofitApiClient.getLeagueEntriesByTeamIdsRx(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", teamIds), apiKey);
+    }
+
+    /**
+     * Get challenger tier leagues.
+     */
+    public static LeagueDto getChallengerLeague(final String queueType) {
+        return retrofitApiClient.getChallengerLeague(retrofitApiEndpoint.getRegionEnum().getRegion(), queueType, apiKey);
+    }
+
+    /**
+     * Get challenger tier leagues.
+     */
+    public static void getChallengerLeague(final String queueType, final Callback<LeagueDto> callback) {
+        retrofitApiClient.getChallengerLeague(retrofitApiEndpoint.getRegionEnum().getRegion(), queueType, apiKey, callback);
+    }
+
+    /**
+     * Get challenger tier leagues.
+     */
+    public static Observable<LeagueDto> getChallengerLeagueRx(final String queueType) {
+        return retrofitApiClient.getChallengerLeagueRx(retrofitApiEndpoint.getRegionEnum().getRegion(), queueType, apiKey);
+    }
+
+    /**
+     * Get master tier leagues.
+     */
+    public static LeagueDto getMasterLeague(final String queueType) {
+        return retrofitApiClient.getMasterLeague(retrofitApiEndpoint.getRegionEnum().getRegion(), queueType, apiKey);
+    }
+
+    /**
+     * Get master tier leagues.
+     */
+    public static void getMasterLeague(final String queueType, final Callback<LeagueDto> callback) {
+        retrofitApiClient.getMasterLeague(retrofitApiEndpoint.getRegionEnum().getRegion(), queueType, apiKey, callback);
+    }
+
+    /**
+     * Get master tier leagues.
+     */
+    public static Observable<LeagueDto> getMasterLeagueRx(final String queueType) {
+        return retrofitApiClient.getMasterLeagueRx(retrofitApiEndpoint.getRegionEnum().getRegion(), queueType, apiKey);
     }
 }
