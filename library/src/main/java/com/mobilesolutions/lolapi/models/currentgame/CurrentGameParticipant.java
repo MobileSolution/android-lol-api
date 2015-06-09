@@ -1,8 +1,6 @@
 package com.mobilesolutions.lolapi.models.currentgame;
 
 import com.google.gson.annotations.Expose;
-import com.mobilesolutions.lolapi.models.Mastery;
-import com.mobilesolutions.lolapi.models.Rune;
 
 import java.util.List;
 

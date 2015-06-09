@@ -1,6 +1,7 @@
-package com.mobilesolutions.lolapi.models;
+package com.mobilesolutions.lolapi.models.match;
 
 import com.google.gson.annotations.Expose;
+import com.mobilesolutions.lolapi.models.featured.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +23,9 @@ public class MatchDetail {
 //    @Expose
 //    private String matchVersion;
 //    @Expose
-//    private List<ParticipantIdentity> participantIdentities = new ArrayList<ParticipantIdentity>();
+//    private List<ParticipantIdentity> participantIdentities;
 //    @Expose
-//    private List<Participant> participants= new ArrayList<Participant>();
+//    private List<com.mobilesolutions.lolapi.models.featured.Participant> participants;
 //    @Expose
 //    private String platformId;
 //    @Expose
@@ -34,7 +35,7 @@ public class MatchDetail {
 //    @Expose
 //    private String season;
 //    @Expose
-//    private List<Team> teams= new ArrayList<Team>();
+//    private List<Team> teams;
 //    @Expose
-//    private Timeline timeline;
+//    private long timeline;
 }

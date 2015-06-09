@@ -1,8 +1,6 @@
 package com.mobilesolutions.lolapi.models.featured;
 
 import com.google.gson.annotations.Expose;
-import com.mobilesolutions.lolapi.models.Observer;
-import com.mobilesolutions.lolapi.models.Participant;
 
 import java.util.List;
 
