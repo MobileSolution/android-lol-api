@@ -33,15 +33,17 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
 
                 LolApi.setRegion("eune");
-                final Runnable kur = new Runnable() {
+                LolApi.getRecentGames(55266115, new Callback<GameDtoList>() {
+                    @Override
+                    public void success(GameDtoList gameDtoList, Response response) {
+
+                    }
 
                     @Override
-                    public void run() {
-                        final GameDtoList champions = LolApi.getRecentGames(55266115 );
-                        Log.d("KUR", champions.getGames().size()+"");
+                    public void failure(RetrofitError error) {
+
                     }
-                };
-                new Thread(kur).start();
+                });
             }
         });
 
