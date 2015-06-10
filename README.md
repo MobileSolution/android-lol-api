@@ -1,6 +1,8 @@
 # android-lol-api
 Android application related to League of Legends
 
+[![jitpack](https://img.shields.io/github/release/MobileSolution/android-lol-api.svg?label=JitPack)](https://jitpack.io/#MobileSolution/android-lol-api/v0.0.2)
+
 ##Usage
 In Application.onCreate()
 
@@ -45,7 +47,7 @@ Rx
 	}
 
 	dependencies {
-	        compile 'com.github.MobileSolution:android-lol-api:v0.0.1'
+	        compile 'com.github.MobileSolution:android-lol-api:v0.0.2'
 	}
 
 ## Licence
