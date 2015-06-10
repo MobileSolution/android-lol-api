@@ -1,30 +1,15 @@
 package com.eftimoff.empty;
 
-import android.os.*;
-import android.os.Process;
+import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.mobilesolutions.lolapi.LolApi;
-import com.mobilesolutions.lolapi.models.champion.ChampionDto;
 import com.mobilesolutions.lolapi.models.champion.ChampionListDto;
-import com.mobilesolutions.lolapi.models.currentgame.CurrentGameInfo;
-import com.mobilesolutions.lolapi.models.featured.FeaturedGames;
-import com.mobilesolutions.lolapi.models.league.LeagueDto;
-import com.mobilesolutions.lolapi.models.league.enums.QueueEnum;
-import com.mobilesolutions.lolapi.models.recent.GameDto;
-import com.mobilesolutions.lolapi.models.recent.GameDtoList;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
-import rx.Observable;
+import com.mobilesolutions.lolapi.models.status.ShardStatus;
+import com.mobilesolutions.lolapi.utls.Region;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -37,11 +22,11 @@ public class MainActivity extends ActionBarActivity {
         viewById.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LolApi.setRegion("eune");
+                LolApi.setRegion(Region.EUNE);
             }
         });
 
-//Team id - TEAM-ad7ca460-03e1-11e5-8e2b-782bcb46f3e4
+        //Team id - TEAM-ad7ca460-03e1-11e5-8e2b-782bcb46f3e4
         //summoner 22782151
     }
 
@@ -53,4 +38,5 @@ public class MainActivity extends ActionBarActivity {
     private void log(final String message) {
         Log.i("MAIN", message);
     }
+
 }

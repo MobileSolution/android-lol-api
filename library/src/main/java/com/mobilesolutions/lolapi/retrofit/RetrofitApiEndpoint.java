@@ -1,7 +1,7 @@
 package com.mobilesolutions.lolapi.retrofit;
 
 import com.mobilesolutions.lolapi.utls.ErrorConstants;
-import com.mobilesolutions.lolapi.utls.RegionsEnum;
+import com.mobilesolutions.lolapi.utls.Region;
 
 import retrofit.Endpoint;
 
@@ -13,24 +13,27 @@ import retrofit.Endpoint;
 public class RetrofitApiEndpoint implements Endpoint {
 
     private static final String ENDPOINT = "https://%s.api.pvp.net";
+    private static final String SHARDS_ENDPOINT = "http://status.leagueoflegends.com/";
 
     private String url;
-    private String region;
-    private RegionsEnum regionEnum;
+    private Region regionEnum;
 
     public void setRegion(final String region) {
-        this.region = region;
         this.url = String.format(ENDPOINT, region);
-        setRegionEnum(findEnumByRegionString(region));
+        this.regionEnum = findEnumByRegionString(region);
     }
 
     public String getRegion() {
-        return region;
+        return regionEnum.getRegion();
+    }
+
+    public String getPlatformId() {
+        return regionEnum.getPlatformId();
     }
 
     @Override
     public String getName() {
-        return region;
+        return regionEnum.getRegion();
     }
 
     @Override
@@ -41,20 +44,20 @@ public class RetrofitApiEndpoint implements Endpoint {
         return url;
     }
 
-    public RegionsEnum getRegionEnum() {
-        return regionEnum;
+    public void useShardsEndpoint() {
+        this.url = SHARDS_ENDPOINT;
     }
 
-    public void setRegionEnum(RegionsEnum regionEnum) {
-        this.regionEnum = regionEnum;
+    public void useRegionEndpoint() {
+        this.url = String.format(ENDPOINT, regionEnum.getRegion());
     }
 
-    private RegionsEnum findEnumByRegionString(final String region) {
-        for (RegionsEnum regionsEnum : RegionsEnum.values()) {
+    private Region findEnumByRegionString(final String region) {
+        for (Region regionsEnum : Region.values()) {
             if (regionsEnum.getRegion().equalsIgnoreCase(region)) {
                 return regionsEnum;
             }
         }
-        return RegionsEnum.DEFAULT;
+        return Region.DEFAULT;
     }
 }

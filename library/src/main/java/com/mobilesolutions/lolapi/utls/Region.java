@@ -1,6 +1,6 @@
 package com.mobilesolutions.lolapi.utls;
 
-public enum RegionsEnum {
+public enum Region {
     BR("BR", "BR1"),
     EUNE("EUNE", "EUN1"),
     EUW("EUW", "EUW1"),
@@ -17,7 +17,7 @@ public enum RegionsEnum {
     private final String region;
     private final String platformId;
 
-    RegionsEnum(final String region, final String platformId) {
+    Region(final String region, final String platformId) {
         this.region = region;
         this.platformId = platformId;
     }

@@ -6,6 +6,8 @@ import com.mobilesolutions.lolapi.models.currentgame.CurrentGameInfo;
 import com.mobilesolutions.lolapi.models.featured.FeaturedGames;
 import com.mobilesolutions.lolapi.models.league.LeagueDto;
 import com.mobilesolutions.lolapi.models.recent.GameDtoList;
+import com.mobilesolutions.lolapi.models.status.Shard;
+import com.mobilesolutions.lolapi.models.status.ShardStatus;
 
 import java.util.List;
 import java.util.Map;
@@ -121,5 +123,23 @@ public interface RetrofitApiClient {
 
     @GET("/api/lol/{region}/v2.5/league/master")
     Observable<LeagueDto> getMasterLeagueRx(@Path("region") String region, @Query("type") String queue, @Query("api_key") String apiKey);
+
+    @GET("/shards")
+    List<Shard> getShards();
+
+    @GET("/shards")
+    void getShards(final Callback<List<Shard>> callback);
+
+    @GET("/shards")
+    Observable<List<Shard>> getShardsRx();
+
+    @GET("/shards/{region}")
+    ShardStatus getShardStatus(@Path("region") String region);
+
+    @GET("/shards/{region}")
+    void getShardStatus(@Path("region") String region, final Callback<ShardStatus> callback);
+
+    @GET("/shards/{region}")
+    Observable<ShardStatus> getShardStatusRx(@Path("region") String region);
 
 }
