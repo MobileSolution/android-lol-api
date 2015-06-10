@@ -22,6 +22,7 @@ import com.mobilesolutions.lolapi.models.status.ShardStatus;
 import com.mobilesolutions.lolapi.models.summoner.MasteryPagesDto;
 import com.mobilesolutions.lolapi.models.summoner.RunePagesDto;
 import com.mobilesolutions.lolapi.models.summoner.SummonerDto;
+import com.mobilesolutions.lolapi.models.team.TeamDto;
 
 import java.util.List;
 import java.util.Map;
@@ -335,6 +336,24 @@ public interface RetrofitApiClient {
 
     @GET("/api/lol/{region}/v1.4/summoner/{summoner_ids}/runes")
     Observable<Map<String, RunePagesDto>> getRunePagesBySummonerIdsRx(@Path("region") String region, @Path("summoner_ids") String summonerIds, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/{region}/v2.4/team/by-summoner/{summoner_ids}")
+    Map<String, List<TeamDto>> getTeamsBySummonerIds(@Path("region") String region, @Path("summoner_ids") String summonerIds, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/{region}/v2.4/team/by-summoner/{summoner_ids}")
+    void getTeamsBySummonerIds(@Path("region") String region, @Path("summoner_ids") String summonerIds, @Query("api_key") String apiKey, final Callback<Map<String, List<TeamDto>>> callback);
+
+    @GET("/api/lol/{region}/v2.4/team/by-summoner/{summoner_ids}")
+    Observable<Map<String, List<TeamDto>>> getTeamsBySummonerIdsRx(@Path("region") String region, @Path("summoner_ids") String summonerIds, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/{region}/v2.4/team/{team_ids}")
+    Map<String, TeamDto> getTeamsByTeamIds(@Path("region") String region, @Path("team_ids") String teamIds, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/{region}/v2.4/team/{team_ids}")
+    void getTeamsByTeamIds(@Path("region") String region, @Path("team_ids") String teamIds, @Query("api_key") String apiKey, final Callback<Map<String, TeamDto>> callback);
+
+    @GET("/api/lol/{region}/v2.4/team/{team_ids}")
+    Observable<Map<String, TeamDto>> getTeamsByTeamIdsRx(@Path("region") String region, @Path("team_ids") String teamIds, @Query("api_key") String apiKey);
 
 }
 

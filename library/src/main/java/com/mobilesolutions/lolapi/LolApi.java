@@ -25,6 +25,7 @@ import com.mobilesolutions.lolapi.models.status.ShardStatus;
 import com.mobilesolutions.lolapi.models.summoner.MasteryPagesDto;
 import com.mobilesolutions.lolapi.models.summoner.RunePagesDto;
 import com.mobilesolutions.lolapi.models.summoner.SummonerDto;
+import com.mobilesolutions.lolapi.models.team.TeamDto;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiClient;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiEndpoint;
 import com.mobilesolutions.lolapi.utls.ErrorConstants;
@@ -918,4 +919,63 @@ public class LolApi {
         return retrofitApiClient.getRunePagesBySummonerIdsRx(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey);
     }
 
+    /**
+     * Get teams mapped by summoner ID for a given list of summoner IDs.
+     */
+    public static Map<String, List<TeamDto>> getTeamsBySummonerIds(final List<String> summonerIds) {
+        if (summonerIds.size() > 10) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_TEN_SUMMONERS);
+        }
+        return retrofitApiClient.getTeamsBySummonerIds(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey);
+    }
+
+    /**
+     * Get teams mapped by summoner ID for a given list of summoner IDs.
+     */
+    public static void getTeamsBySummonerIds(final List<String> summonerIds, final Callback<Map<String, List<TeamDto>>> callback) {
+        if (summonerIds.size() > 10) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_TEN_SUMMONERS);
+        }
+        retrofitApiClient.getTeamsBySummonerIds(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey, callback);
+    }
+
+    /**
+     * Get teams mapped by summoner ID for a given list of summoner IDs.
+     */
+    public static Observable<Map<String, List<TeamDto>>> getTeamsBySummonerIdsRx(final List<String> summonerIds) {
+        if (summonerIds.size() > 10) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_TEN_SUMMONERS);
+        }
+        return retrofitApiClient.getTeamsBySummonerIdsRx(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey);
+    }
+
+    /**
+     * Get teams mapped by team ID for a given list of team IDs.
+     */
+    public static Map<String, TeamDto> getTeamsByTeamIds(final List<String> summonerIds) {
+        if (summonerIds.size() > 10) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_TEN_SUMMONERS);
+        }
+        return retrofitApiClient.getTeamsByTeamIds(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey);
+    }
+
+    /**
+     * Get teams mapped by team ID for a given list of team IDs.
+     */
+    public static void getTeamsByTeamIds(final List<String> summonerIds, final Callback<Map<String, TeamDto>> callback) {
+        if (summonerIds.size() > 10) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_TEN_SUMMONERS);
+        }
+        retrofitApiClient.getTeamsByTeamIds(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey, callback);
+    }
+
+    /**
+     * Get teams mapped by team ID for a given list of team IDs.
+     */
+    public static Observable<Map<String, TeamDto>> getTeamsByTeamIdsRx(final List<String> summonerIds) {
+        if (summonerIds.size() > 10) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_TEN_SUMMONERS);
+        }
+        return retrofitApiClient.getTeamsByTeamIdsRx(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey);
+    }
 }

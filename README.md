@@ -36,7 +36,7 @@ Rx
  * matchhistory-v2.2            [NOT YET]
  * stats-v1.3                   [NOT YET]
  * summoner-v1.4
- * team-v2.4                    [NOT YET]
+ * team-v2.4
 
 ##### Download
 

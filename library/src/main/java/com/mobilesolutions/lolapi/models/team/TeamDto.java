@@ -24,9 +24,7 @@ public class TeamDto implements Serializable {
     @Expose
     private String name;
     @Expose
-    private long roster;
-    @Expose
-    private RosterDto summonerId;
+    private RosterDto roster;
     @Expose
     private long secondLastJoinDate;
     @Expose
@@ -70,12 +68,8 @@ public class TeamDto implements Serializable {
         return name;
     }
 
-    public long getRoster() {
+    public RosterDto getRoster() {
         return roster;
-    }
-
-    public RosterDto getSummonerId() {
-        return summonerId;
     }
 
     public long getSecondLastJoinDate() {
