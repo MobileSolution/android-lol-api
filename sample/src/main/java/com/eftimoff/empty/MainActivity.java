@@ -27,6 +27,17 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 LolApi.setRegion("eune");
+                LolApi.getMatchHistoryBySummonerId(40743772, 0, 2, new Callback<MatchSummary>() {
+                    @Override
+                    public void success(MatchSummary matchSummary, Response response) {
+
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+
+                    }
+                });
             }
         });
     }

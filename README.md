@@ -32,9 +32,9 @@ Rx
  * league-v2.5
  * lol-static-data-v1.2
  * lol-status-v1.0
- * match-v2.2                   [NOT YET]
+ * match-v2.2
  * matchhistory-v2.2
- * stats-v1.3                   [NOT YET]
+ * stats-v1.3
  * summoner-v1.4
  * team-v2.4
 

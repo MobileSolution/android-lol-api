@@ -35,9 +35,7 @@ public class Team implements Serializable {
     @Expose
     private int vilemawKills;
     @Expose
-    private int winner;
-    @Expose
-    private boolean championId;
+    private boolean winner;
 
     public List<BannedChampion> getBans() {
         return bans;
@@ -91,11 +89,7 @@ public class Team implements Serializable {
         return vilemawKills;
     }
 
-    public int getWinner() {
+    public boolean getWinner() {
         return winner;
-    }
-
-    public boolean isChampionId() {
-        return championId;
     }
 }

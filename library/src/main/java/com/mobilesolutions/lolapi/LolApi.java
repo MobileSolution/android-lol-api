@@ -8,6 +8,7 @@ import com.mobilesolutions.lolapi.models.champion.ChampionListDto;
 import com.mobilesolutions.lolapi.models.currentgame.CurrentGameInfo;
 import com.mobilesolutions.lolapi.models.featured.FeaturedGames;
 import com.mobilesolutions.lolapi.models.league.LeagueDto;
+import com.mobilesolutions.lolapi.models.match.MatchDetail;
 import com.mobilesolutions.lolapi.models.matchhistory.Match;
 import com.mobilesolutions.lolapi.models.matchhistory.MatchSummary;
 import com.mobilesolutions.lolapi.models.recent.GameDtoList;
@@ -22,6 +23,8 @@ import com.mobilesolutions.lolapi.models.statics.RuneDto;
 import com.mobilesolutions.lolapi.models.statics.RuneList;
 import com.mobilesolutions.lolapi.models.statics.SummonerSpellDto;
 import com.mobilesolutions.lolapi.models.statics.SummonerSpellListDto;
+import com.mobilesolutions.lolapi.models.stats.PlayerStatsSummaryListDto;
+import com.mobilesolutions.lolapi.models.stats.RankedStatsDto;
 import com.mobilesolutions.lolapi.models.status.Shard;
 import com.mobilesolutions.lolapi.models.status.ShardStatus;
 import com.mobilesolutions.lolapi.models.summoner.MasteryPagesDto;
@@ -978,23 +981,107 @@ public class LolApi {
     }
 
     /**
-     * Retrieve match history by summoner ID.
+     * Retrieve last 15 match histories by summoner ID.
      */
     public static MatchSummary getMatchHistoryBySummonerId(final long summonerId) {
-        return retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
+        return retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, 0, 14, apiKey);
     }
 
     /**
-     * Retrieve match history by summoner ID.
+     * Retrieve last 15 match histories by summoner ID.
      */
     public static void getMatchHistoryBySummonerId(final long summonerId, final Callback<MatchSummary> callback) {
-        retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, apiKey, callback);
+        retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, 0, 14, apiKey, callback);
     }
 
     /**
-     * Retrieve match history by summoner ID.
+     * Retrieve last 15 match histories by summoner ID.
      */
     public static Observable<MatchSummary> getMatchHistoryBySummonerIdRx(final long summonerId) {
-        return retrofitApiClient.getMatchHistoryBySummonerIdRx(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
+        return retrofitApiClient.getMatchHistoryBySummonerIdRx(retrofitApiEndpoint.getRegion(), summonerId, 0, 14, apiKey);
+    }
+
+    /**
+     * Retrieve last match histories by summoner ID.
+     */
+    public static MatchSummary getMatchHistoryBySummonerId(final long summonerId, final int beginIndex, final int endIndex) {
+        return retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, beginIndex, endIndex, apiKey);
+    }
+
+    /**
+     * Retrieve last match histories by summoner ID.
+     */
+    public static void getMatchHistoryBySummonerId(final long summonerId, final int beginIndex, final int endIndex, final Callback<MatchSummary> callback) {
+        retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, beginIndex, endIndex, apiKey, callback);
+    }
+
+    /**
+     * Retrieve last match histories by summoner ID.
+     */
+    public static Observable<MatchSummary> getMatchHistoryBySummonerIdRx(final long summonerId, final int beginIndex, final int endIndex) {
+        return retrofitApiClient.getMatchHistoryBySummonerIdRx(retrofitApiEndpoint.getRegion(), summonerId, beginIndex, endIndex, apiKey);
+    }
+
+    /**
+     * Get ranked stats by summoner ID.
+     */
+    public static RankedStatsDto getRankedStatsBySummnoerId(final long summonerId) {
+        return retrofitApiClient.getRankedStatsBySummnoerId(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
+    }
+
+    /**
+     * Get ranked stats by summoner ID.
+     */
+    public static void getRankedStatsBySummnoerId(final long summonerId, final Callback<RankedStatsDto> callback) {
+        retrofitApiClient.getRankedStatsBySummnoerId(retrofitApiEndpoint.getRegion(), summonerId, apiKey, callback);
+    }
+
+    /**
+     * Get ranked stats by summoner ID.
+     */
+    public static Observable<RankedStatsDto> getRankedStatsBySummnoerIdRx(final long summonerId) {
+        return retrofitApiClient.getRankedStatsBySummnoerIdRx(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
+    }
+
+    /**
+     * Get player stats summaries by summoner ID.
+     */
+    public static PlayerStatsSummaryListDto getStatsSummariesBySummonerId(final long summonerId) {
+        return retrofitApiClient.getStatsSummariesBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
+    }
+
+    /**
+     * Get player stats summaries by summoner ID.
+     */
+    public static void getStatsSummariesBySummonerId(final long summonerId, final Callback<PlayerStatsSummaryListDto> callback) {
+        retrofitApiClient.getStatsSummariesBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, apiKey, callback);
+    }
+
+    /**
+     * Get player stats summaries by summoner ID.
+     */
+    public static Observable<PlayerStatsSummaryListDto> getStatsSummariesBySummonerIdRx(final long summonerId) {
+        return retrofitApiClient.getStatsSummariesBySummonerIdRx(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
+    }
+
+    /**
+     * Retrieve match by match ID.
+     */
+    public static MatchDetail getMatchByMatchId(final long summonerId) {
+        return retrofitApiClient.getMatchByMatchId(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
+    }
+
+    /**
+     * Retrieve match by match ID.
+     */
+    public static void getMatchByMatchId(final long summonerId, final Callback<MatchDetail> callback) {
+        retrofitApiClient.getMatchByMatchId(retrofitApiEndpoint.getRegion(), summonerId, apiKey, callback);
+    }
+
+    /**
+     * Retrieve match by match ID.
+     */
+    public static Observable<MatchDetail> getMatchByMatchIdRx(final long summonerId) {
+        return retrofitApiClient.getMatchByMatchIdRx(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
     }
 }
