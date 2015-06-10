@@ -8,9 +8,9 @@ import java.util.List;
 public class PlayerHistory implements Serializable {
 
     @Expose
-    private List<MatchSummary> matches;
+    private List<Match> matches;
 
-    public List<MatchSummary> getMatches() {
+    public List<Match> getMatches() {
         return matches;
     }
 }

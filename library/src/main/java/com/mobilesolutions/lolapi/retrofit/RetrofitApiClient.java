@@ -5,6 +5,8 @@ import com.mobilesolutions.lolapi.models.champion.ChampionListDto;
 import com.mobilesolutions.lolapi.models.currentgame.CurrentGameInfo;
 import com.mobilesolutions.lolapi.models.featured.FeaturedGames;
 import com.mobilesolutions.lolapi.models.league.LeagueDto;
+import com.mobilesolutions.lolapi.models.matchhistory.Match;
+import com.mobilesolutions.lolapi.models.matchhistory.MatchSummary;
 import com.mobilesolutions.lolapi.models.recent.GameDtoList;
 import com.mobilesolutions.lolapi.models.statics.ItemDto;
 import com.mobilesolutions.lolapi.models.statics.ItemListDto;
@@ -355,5 +357,13 @@ public interface RetrofitApiClient {
     @GET("/api/lol/{region}/v2.4/team/{team_ids}")
     Observable<Map<String, TeamDto>> getTeamsByTeamIdsRx(@Path("region") String region, @Path("team_ids") String teamIds, @Query("api_key") String apiKey);
 
+    @GET("/api/lol/{region}/v2.2/matchhistory/{summoner_id}")
+    MatchSummary getMatchHistoryBySummonerId(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/{region}/v2.2/matchhistory/{summoner_id}")
+    void getMatchHistoryBySummonerId(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("api_key") String apiKey, final Callback<MatchSummary> callback);
+
+    @GET("/api/lol/{region}/v2.2/matchhistory/{summoner_id}")
+    Observable<MatchSummary> getMatchHistoryBySummonerIdRx(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("api_key") String apiKey);
 }
 

@@ -8,6 +8,8 @@ import com.mobilesolutions.lolapi.models.champion.ChampionListDto;
 import com.mobilesolutions.lolapi.models.currentgame.CurrentGameInfo;
 import com.mobilesolutions.lolapi.models.featured.FeaturedGames;
 import com.mobilesolutions.lolapi.models.league.LeagueDto;
+import com.mobilesolutions.lolapi.models.matchhistory.Match;
+import com.mobilesolutions.lolapi.models.matchhistory.MatchSummary;
 import com.mobilesolutions.lolapi.models.recent.GameDtoList;
 import com.mobilesolutions.lolapi.models.statics.ItemDto;
 import com.mobilesolutions.lolapi.models.statics.ItemListDto;
@@ -30,7 +32,6 @@ import com.mobilesolutions.lolapi.retrofit.RetrofitApiClient;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiEndpoint;
 import com.mobilesolutions.lolapi.utls.ErrorConstants;
 import com.mobilesolutions.lolapi.utls.Region;
-import com.squareup.okhttp.Call;
 
 import java.util.List;
 import java.util.Map;
@@ -40,10 +41,7 @@ import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import retrofit.converter.GsonConverter;
-import rx.Notification;
 import rx.Observable;
-import rx.functions.Action0;
-import rx.functions.Action1;
 
 public class LolApi {
 
@@ -977,5 +975,26 @@ public class LolApi {
             throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_TEN_SUMMONERS);
         }
         return retrofitApiClient.getTeamsByTeamIdsRx(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey);
+    }
+
+    /**
+     * Retrieve match history by summoner ID.
+     */
+    public static MatchSummary getMatchHistoryBySummonerId(final long summonerId) {
+        return retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
+    }
+
+    /**
+     * Retrieve match history by summoner ID.
+     */
+    public static void getMatchHistoryBySummonerId(final long summonerId, final Callback<MatchSummary> callback) {
+        retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, apiKey, callback);
+    }
+
+    /**
+     * Retrieve match history by summoner ID.
+     */
+    public static Observable<MatchSummary> getMatchHistoryBySummonerIdRx(final long summonerId) {
+        return retrofitApiClient.getMatchHistoryBySummonerIdRx(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
     }
 }
