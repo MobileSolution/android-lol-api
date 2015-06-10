@@ -6,6 +6,17 @@ import com.mobilesolutions.lolapi.models.currentgame.CurrentGameInfo;
 import com.mobilesolutions.lolapi.models.featured.FeaturedGames;
 import com.mobilesolutions.lolapi.models.league.LeagueDto;
 import com.mobilesolutions.lolapi.models.recent.GameDtoList;
+import com.mobilesolutions.lolapi.models.statics.ItemDto;
+import com.mobilesolutions.lolapi.models.statics.ItemListDto;
+import com.mobilesolutions.lolapi.models.statics.LanguageStringsDto;
+import com.mobilesolutions.lolapi.models.statics.MapDataDto;
+import com.mobilesolutions.lolapi.models.statics.MasteryDto;
+import com.mobilesolutions.lolapi.models.statics.MasteryListDto;
+import com.mobilesolutions.lolapi.models.statics.RealmDto;
+import com.mobilesolutions.lolapi.models.statics.RuneDto;
+import com.mobilesolutions.lolapi.models.statics.RuneList;
+import com.mobilesolutions.lolapi.models.statics.SummonerSpellDto;
+import com.mobilesolutions.lolapi.models.statics.SummonerSpellListDto;
 
 import java.util.List;
 import java.util.Map;
@@ -122,4 +133,138 @@ public interface RetrofitApiClient {
     @GET("/api/lol/{region}/v2.5/league/master")
     Observable<LeagueDto> getMasterLeagueRx(@Path("region") String region, @Query("type") String queue, @Query("api_key") String apiKey);
 
+    @GET("/api/lol/static-data/{region}/v1.2/champion")
+    com.mobilesolutions.lolapi.models.statics.ChampionListDto getChampionList(@Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/champion")
+    void getChampionList(@Path("region") String region, @Query("api_key") String apiKey, final Callback<com.mobilesolutions.lolapi.models.statics.ChampionListDto> callback);
+
+    @GET("/api/lol/static-data/{region}/v1.2/champion")
+    Observable<com.mobilesolutions.lolapi.models.statics.ChampionListDto> getChampionListRx(@Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/champion/{id}")
+    com.mobilesolutions.lolapi.models.statics.ChampionDto getChampionById(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/champion/{id}")
+    void getChampionById(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey, final Callback<com.mobilesolutions.lolapi.models.statics.ChampionDto> callback);
+
+    @GET("/api/lol/static-data/{region}/v1.2/champion/{id}")
+    Observable<com.mobilesolutions.lolapi.models.statics.ChampionDto> getChampionByIdRx(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/item")
+    ItemListDto getItemList(@Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/item")
+    void getItemList(@Path("region") String region, @Query("api_key") String apiKey, final Callback<ItemListDto> callback);
+
+    @GET("/api/lol/static-data/{region}/v1.2/item")
+    Observable<ItemListDto> getItemListRx(@Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/item/{id}")
+    ItemDto getItemById(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/item/{id}")
+    void getItemById(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey, final Callback<ItemDto> callback);
+
+    @GET("/api/lol/static-data/{region}/v1.2/item/{id}")
+    Observable<ItemDto> getItemByIdRx(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/language-strings")
+    LanguageStringsDto getLanguageStrings(@Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/language-strings")
+    void getLanguageStrings(@Path("region") String region, @Query("api_key") String apiKey, final Callback<LanguageStringsDto> callback);
+
+    @GET("/api/lol/static-data/{region}/v1.2/language-strings")
+    Observable<LanguageStringsDto> getLanguageStringsRx(@Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/languages")
+    String[] getLanguages(@Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/languages")
+    void getLanguages(@Path("region") String region, @Query("api_key") String apiKey, final Callback<String[]> callback);
+
+    @GET("/api/lol/static-data/{region}/v1.2/languages")
+    Observable<String[]> getLanguagesRx(@Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/map")
+    MapDataDto getMap(@Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/map")
+    void getMap(@Path("region") String region, @Query("api_key") String apiKey, final Callback<MapDataDto> callback);
+
+    @GET("/api/lol/static-data/{region}/v1.2/map")
+    Observable<MapDataDto> getMapRx(@Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/mastery")
+    MasteryListDto getMasteryList(@Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/mastery")
+    void getMasteryList(@Path("region") String region, @Query("api_key") String apiKey, final Callback<MasteryListDto> callback);
+
+    @GET("/api/lol/static-data/{region}/v1.2/mastery")
+    Observable<MasteryListDto> getMasteryListRx(@Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/mastery/{id}")
+    MasteryDto getMasteryById(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/mastery/{id}")
+    void getMasteryById(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey, final Callback<MasteryDto> callback);
+
+    @GET("/api/lol/static-data/{region}/v1.2/mastery/{id}")
+    Observable<MasteryDto> getMasteryByIdRx(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/realm")
+    RealmDto getRealm(@Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/realm")
+    void getRealm(@Path("region") String region, @Query("api_key") String apiKey, final Callback<RealmDto> callback);
+
+    @GET("/api/lol/static-data/{region}/v1.2/realm")
+    Observable<RealmDto> getRealmRx(@Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/rune")
+    RuneList getRuneList(@Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/rune")
+    void getRuneList(@Path("region") String region, @Query("api_key") String apiKey,final Callback<RuneList> callback);
+
+    @GET("/api/lol/static-data/{region}/v1.2/rune")
+    Observable<RuneList> getRuneListRx(@Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/rune/{id}")
+    RuneDto getRuneById(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/rune/{id}")
+    void getRuneById(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey,final Callback<RuneDto> callback);
+
+    @GET("/api/lol/static-data/{region}/v1.2/rune/{id}")
+    Observable<RuneDto> getRuneByIdRx(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/summoner-spell")
+    SummonerSpellListDto getSummonerSpellList(@Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/summoner-spell")
+    void getSummonerSpellList(@Path("region") String region, @Query("api_key") String apiKey,final Callback<SummonerSpellListDto> callback);
+
+    @GET("/api/lol/static-data/{region}/v1.2/summoner-spell")
+    Observable<SummonerSpellListDto> getSummonerSpellListRx(@Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/summoner-spell/{id}")
+    SummonerSpellDto getSummonerSpellById(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/summoner-spell/{id}")
+    void getSummonerSpellById(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey,final Callback<SummonerSpellDto> callback);
+
+    @GET("/api/lol/static-data/{region}/v1.2/summoner-spell/{id}")
+    Observable<SummonerSpellDto> getSummonerSpellByIdRx(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/versions")
+    String[] getVersions(@Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/static-data/{region}/v1.2/versions")
+    void getVersions(@Path("region") String region, @Query("api_key") String apiKey,final Callback<String[]> callback);
+
+    @GET("/api/lol/static-data/{region}/v1.2/versions")
+    Observable<String[]> getVersionsRx(@Path("region") String region, @Query("api_key") String apiKey);
 }

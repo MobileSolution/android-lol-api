@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class ChampionListDto implements Serializable {
 
+
     private Map<String, ChampionDto> data;
     private Map<String, String> keys;
     private String format;

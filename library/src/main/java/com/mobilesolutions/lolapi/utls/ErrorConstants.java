@@ -13,4 +13,6 @@ public class ErrorConstants {
 
     public static final String ERROR_NO_REGION_PROVIDED = "No region provided. Please call LolApi.setRegion(region).";
     public static final String ERROR_NO_API_KEY_PROVIDED = "Api key should not be null. Please call LolApi.init(apiKey) with not null reference.";
+    public static final String ERROR_LEAGUES_MORE_TEAMS = "Can't get leagues for more than 10 teams!";
+
 }

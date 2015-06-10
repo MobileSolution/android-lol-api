@@ -180,7 +180,7 @@ public class LolApi {
      */
     public static Map<String, List<LeagueDto>> getLeaguesBySummenrIds(final List<String> summonerIds) {
         if (summonerIds.size() > 10) {
-            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
         }
         return retrofitApiClient.getLeaguesBySummenrIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", summonerIds), apiKey);
     }
@@ -190,7 +190,7 @@ public class LolApi {
      */
     public static void getLeaguesBySummenrIds(final List<String> summonerIds, final Callback<Map<String, List<LeagueDto>>> callback) {
         if (summonerIds.size() > 10) {
-            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
         }
         retrofitApiClient.getLeaguesBySummenrIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", summonerIds), apiKey, callback);
     }
@@ -200,7 +200,7 @@ public class LolApi {
      */
     public static Observable<Map<String, List<LeagueDto>>> getLeaguesBySummenrIdsRx(final List<String> summonerIds) {
         if (summonerIds.size() > 10) {
-            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
         }
         return retrofitApiClient.getLeaguesBySummenrIdsRx(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", summonerIds), apiKey);
     }
@@ -210,7 +210,7 @@ public class LolApi {
      */
     public static Map<String, List<LeagueDto>> getLeagueEntriesBySummenrIds(final List<String> summonerIds) {
         if (summonerIds.size() > 10) {
-            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
         }
         return retrofitApiClient.getLeagueEntriesBySummenrIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", summonerIds), apiKey);
     }
@@ -220,7 +220,7 @@ public class LolApi {
      */
     public static void getLeagueEntriesBySummenrIds(final List<String> summonerIds, final Callback<Map<String, List<LeagueDto>>> callback) {
         if (summonerIds.size() > 10) {
-            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
         }
         retrofitApiClient.getLeagueEntriesBySummenrIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", summonerIds), apiKey, callback);
     }
@@ -230,7 +230,7 @@ public class LolApi {
      */
     public static Observable<Map<String, List<LeagueDto>>> getLeagueEntriesBySummenrIdsRx(final List<String> summonerIds) {
         if (summonerIds.size() > 10) {
-            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
         }
         return retrofitApiClient.getLeagueEntriesBySummenrIdsRx(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", summonerIds), apiKey);
     }
@@ -240,7 +240,7 @@ public class LolApi {
      */
     public static Map<String, List<LeagueDto>> getLeaguesByTeamIds(final List<String> teamIds) {
         if (teamIds.size() > 10) {
-            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
         }
         return retrofitApiClient.getLeaguesByTeamIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", teamIds), apiKey);
     }
@@ -250,7 +250,7 @@ public class LolApi {
      */
     public static void getLeaguesByTeamIds(final List<String> teamIds, final Callback<Map<String, List<LeagueDto>>> callback) {
         if (teamIds.size() > 10) {
-            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
         }
         retrofitApiClient.getLeaguesByTeamIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", teamIds), apiKey, callback);
     }
@@ -260,7 +260,7 @@ public class LolApi {
      */
     public static Observable<Map<String, List<LeagueDto>>> getLeaguesByTeamIdsRx(final List<String> teamIds) {
         if (teamIds.size() > 10) {
-            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
         }
         return retrofitApiClient.getLeaguesByTeamIdsRx(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", teamIds), apiKey);
     }
@@ -270,7 +270,7 @@ public class LolApi {
      */
     public static Map<String, List<LeagueDto>> getLeagueEntriesByTeamIds(final List<String> teamIds) {
         if (teamIds.size() > 10) {
-            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
         }
         return retrofitApiClient.getLeagueEntriesByTeamIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", teamIds), apiKey);
     }
@@ -280,7 +280,7 @@ public class LolApi {
      */
     public static void getLeagueEntriesByTeamIds(final List<String> teamIds, final Callback<Map<String, List<LeagueDto>>> callback) {
         if (teamIds.size() > 10) {
-            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
         }
         retrofitApiClient.getLeagueEntriesByTeamIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", teamIds), apiKey, callback);
     }
@@ -290,7 +290,7 @@ public class LolApi {
      */
     public static Observable<Map<String, List<LeagueDto>>> getLeagueEntriesByTeamIdsRx(final List<String> teamIds) {
         if (teamIds.size() > 10) {
-            throw new IllegalArgumentException("Can't get leagues for more than 10 teams!");
+            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
         }
         return retrofitApiClient.getLeagueEntriesByTeamIdsRx(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", teamIds), apiKey);
     }
@@ -336,4 +336,47 @@ public class LolApi {
     public static Observable<LeagueDto> getMasterLeagueRx(final String queueType) {
         return retrofitApiClient.getMasterLeagueRx(retrofitApiEndpoint.getRegionEnum().getRegion(), queueType, apiKey);
     }
+
+    /**
+     * Retrieves champion list.
+     */
+    public static com.mobilesolutions.lolapi.models.statics.ChampionListDto getChampionList() {
+        return retrofitApiClient.getChampionList(retrofitApiEndpoint.getRegionEnum().getRegion(), apiKey);
+    }
+
+    /**
+     * Retrieves champion list.
+     */
+    public static void getChampionList(final Callback<com.mobilesolutions.lolapi.models.statics.ChampionListDto> callback) {
+        retrofitApiClient.getChampionList(retrofitApiEndpoint.getRegionEnum().getRegion(), apiKey, callback);
+    }
+
+    /**
+     * Retrieves champion list.
+     */
+    public static Observable<com.mobilesolutions.lolapi.models.statics.ChampionListDto> getChampionListRx() {
+        return retrofitApiClient.getChampionListRx(retrofitApiEndpoint.getRegionEnum().getRegion(), apiKey);
+    }
+
+    /**
+     * Retrieves a champion by its id.
+     */
+    public static com.mobilesolutions.lolapi.models.statics.ChampionDto getChampionDataById(final long id) {
+        return retrofitApiClient.getChampionById(retrofitApiEndpoint.getRegionEnum().getRegion(), id, apiKey);
+    }
+
+    /**
+     * Retrieves a champion by its id.
+     */
+    public static void getChampionDataById(final long id, final Callback<com.mobilesolutions.lolapi.models.statics.ChampionDto> callback) {
+        retrofitApiClient.getChampionById(retrofitApiEndpoint.getRegionEnum().getRegion(), id, apiKey, callback);
+    }
+
+    /**
+     * Retrieves a champion by its id.
+     */
+    public static Observable<com.mobilesolutions.lolapi.models.statics.ChampionDto> getChampionDataByIdRx(final long id) {
+        return retrofitApiClient.getChampionByIdRx(retrofitApiEndpoint.getRegionEnum().getRegion(), id, apiKey);
+    }
+
 }
