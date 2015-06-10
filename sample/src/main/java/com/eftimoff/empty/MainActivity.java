@@ -13,6 +13,9 @@ import com.mobilesolutions.lolapi.models.statics.LanguageStringsDto;
 import com.mobilesolutions.lolapi.models.statics.MapDataDto;
 import com.mobilesolutions.lolapi.models.statics.MasteryDto;
 import com.mobilesolutions.lolapi.models.statics.MasteryListDto;
+import com.mobilesolutions.lolapi.models.statics.RealmDto;
+import com.mobilesolutions.lolapi.models.statics.RuneDto;
+import com.mobilesolutions.lolapi.models.statics.RuneList;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -29,9 +32,9 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 LolApi.setRegion("eune");
-                LolApi.getMasteryById(4352, new Callback<MasteryDto>() {
+                LolApi.getRuneById(5234,new Callback<RuneDto>() {
                     @Override
-                    public void success(MasteryDto championListDto, Response response) {
+                    public void success(RuneDto championListDto, Response response) {
 
                     }
 

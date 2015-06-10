@@ -15,6 +15,9 @@ import com.mobilesolutions.lolapi.models.statics.LanguageStringsDto;
 import com.mobilesolutions.lolapi.models.statics.MapDataDto;
 import com.mobilesolutions.lolapi.models.statics.MasteryDto;
 import com.mobilesolutions.lolapi.models.statics.MasteryListDto;
+import com.mobilesolutions.lolapi.models.statics.RealmDto;
+import com.mobilesolutions.lolapi.models.statics.RuneDto;
+import com.mobilesolutions.lolapi.models.statics.RuneList;
 import com.mobilesolutions.lolapi.models.status.Shard;
 import com.mobilesolutions.lolapi.models.status.ShardStatus;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiClient;
@@ -631,6 +634,70 @@ public class LolApi {
      */
     public static Observable<MasteryDto> getMasteryByIdRx(final long id) {
         return retrofitApiClient.getMasteryByIdRx(retrofitApiEndpoint.getRegion(), id, apiKey);
+    }
+
+    /**
+     * Retrieve realm data.
+     */
+    public static RealmDto getRealm() {
+        return retrofitApiClient.getRealm(retrofitApiEndpoint.getRegion(), apiKey);
+    }
+
+    /**
+     * Retrieve realm data.
+     */
+    public static void getRealm(final Callback<RealmDto> callback) {
+        retrofitApiClient.getRealm(retrofitApiEndpoint.getRegion(), apiKey, callback);
+    }
+
+    /**
+     * Retrieve realm data.
+     */
+    public static Observable<RealmDto> getRealmRx() {
+        return retrofitApiClient.getRealmRx(retrofitApiEndpoint.getRegion(), apiKey);
+    }
+
+
+    /**
+     * Retrieves rune list.
+     */
+    public static RuneList getRuneList() {
+        return retrofitApiClient.getRuneList(retrofitApiEndpoint.getRegion(), apiKey);
+    }
+
+    /**
+     * Retrieves rune list.
+     */
+    public static void getRuneList(final Callback<RuneList> callback) {
+        retrofitApiClient.getRuneList(retrofitApiEndpoint.getRegion(), apiKey, callback);
+    }
+
+    /**
+     * Retrieves rune list.
+     */
+    public static Observable<RuneList> getRuneListRx() {
+        return retrofitApiClient.getRuneListRx(retrofitApiEndpoint.getRegion(), apiKey);
+    }
+
+    /**
+     * Retrieves rune by its unique id.
+     */
+    public static RuneDto getRuneById(final long id) {
+        return retrofitApiClient.getRuneById(retrofitApiEndpoint.getRegion(), id, apiKey);
+    }
+
+    /**
+     * Retrieves rune by its unique id.
+     */
+    public static void getRuneById(final long id, final Callback<RuneDto> callback) {
+        retrofitApiClient.getRuneById(retrofitApiEndpoint.getRegion(), id, apiKey, callback);
+    }
+
+    /**
+     * Retrieves rune by its unique id.
+     */
+    public static Observable<RuneDto> getRuneByIdRx(final long id) {
+        return retrofitApiClient.getRuneByIdRx(retrofitApiEndpoint.getRegion(), id, apiKey);
     }
 
 }
