@@ -19,6 +19,9 @@ import com.mobilesolutions.lolapi.models.statics.SummonerSpellDto;
 import com.mobilesolutions.lolapi.models.statics.SummonerSpellListDto;
 import com.mobilesolutions.lolapi.models.status.Shard;
 import com.mobilesolutions.lolapi.models.status.ShardStatus;
+import com.mobilesolutions.lolapi.models.summoner.MasteryPagesDto;
+import com.mobilesolutions.lolapi.models.summoner.RunePagesDto;
+import com.mobilesolutions.lolapi.models.summoner.SummonerDto;
 
 import java.util.List;
 import java.util.Map;
@@ -288,4 +291,50 @@ public interface RetrofitApiClient {
     @GET("/shards/{region}")
     Observable<ShardStatus> getShardStatusRx(@Path("region") String region);
 
+    @GET("/api/lol/{region}/v1.4/summoner/by-name/{summoner_names}")
+    Map<String, SummonerDto> getSummonersByNamesList(@Path("region") String region, @Path("summoner_names") String summonerNames, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/{region}/v1.4/summoner/by-name/{summoner_names}")
+    void getSummonersByNamesList(@Path("region") String region, @Path("summoner_names") String summonerNames, @Query("api_key") String apiKey, final Callback<Map<String, SummonerDto>> callback);
+
+    @GET("/api/lol/{region}/v1.4/summoner/by-name/{summoner_names}")
+    Observable<Map<String, SummonerDto>> getSummonersByNamesListRx(@Path("region") String region, @Path("summoner_names") String summonerNames, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/{region}/v1.4/summoner/{summoner_ids}")
+    Map<String, SummonerDto> getSummonersByIds(@Path("region") String region, @Path("summoner_ids") String summonerIds, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/{region}/v1.4/summoner/{summoner_ids}")
+    void getSummonersByIds(@Path("region") String region, @Path("summoner_ids") String summonerIds, @Query("api_key") String apiKey, final Callback<Map<String, SummonerDto>> callback);
+
+    @GET("/api/lol/{region}/v1.4/summoner/{summoner_ids}")
+    Observable<Map<String, SummonerDto>> getSummonersByIdsRx(@Path("region") String region, @Path("summoner_ids") String summonerIds, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/{region}/v1.4/summoner/{summoner_ids}/masteries")
+    Map<String, MasteryPagesDto> getMasteryPagesBySummonerIds(@Path("region") String region, @Path("summoner_ids") String summonerIds, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/{region}/v1.4/summoner/{summoner_ids}/masteries")
+    void getMasteryPagesBySummonerIds(@Path("region") String region, @Path("summoner_ids") String summonerIds, @Query("api_key") String apiKey, final Callback<Map<String, MasteryPagesDto>> callback);
+
+    @GET("/api/lol/{region}/v1.4/summoner/{summoner_ids}/masteries")
+    Observable<Map<String, MasteryPagesDto>> getMasteryPagesBySummonerIdsRx(@Path("region") String region, @Path("summoner_ids") String summonerIds, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/{region}/v1.4/summoner/{summoner_ids}/name")
+    Map<String, String> getSummonerNameByIds(@Path("region") String region, @Path("summoner_ids") String summonerIds, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/{region}/v1.4/summoner/{summoner_ids}/name")
+    void getSummonerNameByIds(@Path("region") String region, @Path("summoner_ids") String summonerIds, @Query("api_key") String apiKey, final Callback<Map<String, String>> callback);
+
+    @GET("/api/lol/{region}/v1.4/summoner/{summoner_ids}/name")
+    Observable<Map<String, String>> getSummonerNameByIdsRx(@Path("region") String region, @Path("summoner_ids") String summonerIds, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/{region}/v1.4/summoner/{summoner_ids}/runes")
+    Map<String, RunePagesDto> getRunePagesBySummonerIds(@Path("region") String region, @Path("summoner_ids") String summonerIds, @Query("api_key") String apiKey);
+
+    @GET("/api/lol/{region}/v1.4/summoner/{summoner_ids}/runes")
+    void getRunePagesBySummonerIds(@Path("region") String region, @Path("summoner_ids") String summonerIds, @Query("api_key") String apiKey, final Callback<Map<String, RunePagesDto>> callback);
+
+    @GET("/api/lol/{region}/v1.4/summoner/{summoner_ids}/runes")
+    Observable<Map<String, RunePagesDto>> getRunePagesBySummonerIdsRx(@Path("region") String region, @Path("summoner_ids") String summonerIds, @Query("api_key") String apiKey);
+
 }
+

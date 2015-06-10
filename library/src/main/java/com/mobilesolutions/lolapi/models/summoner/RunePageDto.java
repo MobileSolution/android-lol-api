@@ -12,7 +12,7 @@ public class RunePageDto implements Serializable {
     @Expose
     private long id;
     @Expose
-    private long name;
+    private String name;
     @Expose
     private Set<RuneSlotDto> slots;
 
@@ -24,7 +24,7 @@ public class RunePageDto implements Serializable {
         return id;
     }
 
-    public long getName() {
+    public String getName() {
         return name;
     }
 

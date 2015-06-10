@@ -22,6 +22,9 @@ import com.mobilesolutions.lolapi.models.statics.SummonerSpellDto;
 import com.mobilesolutions.lolapi.models.statics.SummonerSpellListDto;
 import com.mobilesolutions.lolapi.models.status.Shard;
 import com.mobilesolutions.lolapi.models.status.ShardStatus;
+import com.mobilesolutions.lolapi.models.summoner.MasteryPagesDto;
+import com.mobilesolutions.lolapi.models.summoner.RunePagesDto;
+import com.mobilesolutions.lolapi.models.summoner.SummonerDto;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiClient;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiEndpoint;
 import com.mobilesolutions.lolapi.utls.ErrorConstants;
@@ -764,4 +767,155 @@ public class LolApi {
     public static Observable<String[]> getVersionsRx() {
         return retrofitApiClient.getVersionsRx(retrofitApiEndpoint.getRegion(), apiKey);
     }
+
+    /**
+     * Get summoner objects mapped by standardized summoner name for a given list of summoner names.
+     */
+    public static Map<String, SummonerDto> getSummonersByNamesList(final List<String> summonerNames) {
+        if (summonerNames.size() > 40) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_FOURTY_NAMES);
+        }
+        return retrofitApiClient.getSummonersByNamesList(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerNames), apiKey);
+    }
+
+    /**
+     * Get summoner objects mapped by standardized summoner name for a given list of summoner names.
+     */
+    public static void getSummonersByNamesList(final List<String> summonerNames, final Callback<Map<String, SummonerDto>> callback) {
+        if (summonerNames.size() > 40) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_FOURTY_NAMES);
+        }
+        retrofitApiClient.getSummonersByNamesList(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerNames), apiKey, callback);
+    }
+
+    /**
+     * Get summoner objects mapped by standardized summoner name for a given list of summoner names.
+     */
+    public static Observable<Map<String, SummonerDto>> getSummonersByNamesListRx(final List<String> summonerNames) {
+        if (summonerNames.size() > 40) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_FOURTY_NAMES);
+        }
+        return retrofitApiClient.getSummonersByNamesListRx(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerNames), apiKey);
+    }
+
+    /**
+     * Get summoner objects mapped by summoner ID for a given list of summoner IDs.
+     */
+    public static Map<String, SummonerDto> getSummonersByIds(final List<String> summonerIds) {
+        if (summonerIds.size() > 40) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_FOURTY_NAMES);
+        }
+        return retrofitApiClient.getSummonersByIds(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey);
+    }
+
+    /**
+     * Get summoner objects mapped by summoner ID for a given list of summoner IDs.
+     */
+    public static void getSummonersByIds(final List<String> summonerIds, final Callback<Map<String, SummonerDto>> callback) {
+        if (summonerIds.size() > 40) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_FOURTY_NAMES);
+        }
+        retrofitApiClient.getSummonersByIds(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey, callback);
+    }
+
+    /**
+     * Get summoner objects mapped by summoner ID for a given list of summoner IDs.
+     */
+    public static Observable<Map<String, SummonerDto>> getSummonersByIdsRx(final List<String> summonerIds) {
+        if (summonerIds.size() > 40) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_FOURTY_NAMES);
+        }
+        return retrofitApiClient.getSummonersByIdsRx(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey);
+    }
+
+    /**
+     * Get mastery pages mapped by summoner ID for a given list of summoner IDs
+     */
+    public static Map<String, MasteryPagesDto> getMasteryPagesBySummonerIds(final List<String> summonerIds) {
+        if (summonerIds.size() > 40) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_FOURTY_NAMES);
+        }
+        return retrofitApiClient.getMasteryPagesBySummonerIds(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey);
+    }
+
+    /**
+     * Get mastery pages mapped by summoner ID for a given list of summoner IDs
+     */
+    public static void getMasteryPagesBySummonerIds(final List<String> summonerIds, final Callback<Map<String, MasteryPagesDto>> callback) {
+        if (summonerIds.size() > 40) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_FOURTY_NAMES);
+        }
+        retrofitApiClient.getMasteryPagesBySummonerIds(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey, callback);
+    }
+
+    /**
+     * Get mastery pages mapped by summoner ID for a given list of summoner IDs
+     */
+    public static Observable<Map<String, MasteryPagesDto>> getMasteryPagesBySummonerIdsRx(final List<String> summonerIds) {
+        if (summonerIds.size() > 40) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_FOURTY_NAMES);
+        }
+        return retrofitApiClient.getMasteryPagesBySummonerIdsRx(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey);
+    }
+
+    /**
+     * Get summoner names mapped by summoner ID for a given list of summoner IDs.
+     */
+    public static Map<String, String> getSummonerNameByIds(final List<String> summonerIds) {
+        if (summonerIds.size() > 40) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_FOURTY_NAMES);
+        }
+        return retrofitApiClient.getSummonerNameByIds(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey);
+    }
+
+    /**
+     * Get summoner names mapped by summoner ID for a given list of summoner IDs.
+     */
+    public static void getSummonerNameByIds(final List<String> summonerIds, final Callback<Map<String, String>> callback) {
+        if (summonerIds.size() > 40) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_FOURTY_NAMES);
+        }
+        retrofitApiClient.getSummonerNameByIds(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey, callback);
+    }
+
+    /**
+     * Get summoner names mapped by summoner ID for a given list of summoner IDs.
+     */
+    public static Observable<Map<String, String>> getSummonerNameByIdsRx(final List<String> summonerIds) {
+        if (summonerIds.size() > 40) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_FOURTY_NAMES);
+        }
+        return retrofitApiClient.getSummonerNameByIdsRx(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey);
+    }
+
+    /**
+     * Get rune pages mapped by summoner ID for a given list of summoner IDs.
+     */
+    public static Map<String, RunePagesDto> getRunePagesBySummonerIds(final List<String> summonerIds) {
+        if (summonerIds.size() > 40) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_FOURTY_NAMES);
+        }
+        return retrofitApiClient.getRunePagesBySummonerIds(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey);
+    }
+
+    /**
+     * Get rune pages mapped by summoner ID for a given list of summoner IDs.
+     */
+    public static void getRunePagesBySummonerIds(final List<String> summonerIds, final Callback<Map<String, RunePagesDto>> callback) {
+        if (summonerIds.size() > 40) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_FOURTY_NAMES);
+        }
+        retrofitApiClient.getRunePagesBySummonerIds(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey, callback);
+    }
+
+    /**
+     * Get rune pages mapped by summoner ID for a given list of summoner IDs.
+     */
+    public static Observable<Map<String, RunePagesDto>> getRunePagesBySummonerIdsRx(final List<String> summonerIds) {
+        if (summonerIds.size() > 40) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_FOURTY_NAMES);
+        }
+        return retrofitApiClient.getRunePagesBySummonerIdsRx(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey);
+    }
+
 }

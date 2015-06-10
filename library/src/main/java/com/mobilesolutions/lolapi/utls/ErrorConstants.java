@@ -15,4 +15,6 @@ public class ErrorConstants {
     public static final String ERROR_NO_API_KEY_PROVIDED = "Api key should not be null. Please call LolApi.init(apiKey) with not null reference.";
     public static final String ERROR_NO_RX_FOR_SHARDS = "We do not support shards rx because we can not change the the endpoint back after observable is used.";
     public static final String ERROR_NO_MORE_THAN_TEN_TEAMS = "Can't get leagues for more than 10 teams!";
+    public static final String ERROR_NO_MORE_THAN_FOURTY_NAMES = "Can't get summoner objects for more than 10 names!";
+
 }

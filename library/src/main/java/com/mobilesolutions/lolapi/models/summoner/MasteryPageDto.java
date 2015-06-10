@@ -14,7 +14,7 @@ public class MasteryPageDto implements Serializable {
     @Expose
     private List<MasteryDto> masteries;
     @Expose
-    private long name;
+    private String name;
 
     public boolean isCurrent() {
         return current;
@@ -28,7 +28,7 @@ public class MasteryPageDto implements Serializable {
         return masteries;
     }
 
-    public long getName() {
+    public String getName() {
         return name;
     }
 }
