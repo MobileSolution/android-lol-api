@@ -11,6 +11,10 @@ import com.mobilesolutions.lolapi.models.league.LeagueDto;
 import com.mobilesolutions.lolapi.models.recent.GameDtoList;
 import com.mobilesolutions.lolapi.models.statics.ItemDto;
 import com.mobilesolutions.lolapi.models.statics.ItemListDto;
+import com.mobilesolutions.lolapi.models.statics.LanguageStringsDto;
+import com.mobilesolutions.lolapi.models.statics.MapDataDto;
+import com.mobilesolutions.lolapi.models.statics.MasteryDto;
+import com.mobilesolutions.lolapi.models.statics.MasteryListDto;
 import com.mobilesolutions.lolapi.models.status.Shard;
 import com.mobilesolutions.lolapi.models.status.ShardStatus;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiClient;
@@ -522,6 +526,111 @@ public class LolApi {
      */
     public static Observable<ItemDto> getItemByIdRx(final long id) {
         return retrofitApiClient.getItemByIdRx(retrofitApiEndpoint.getRegion(), id, apiKey);
+    }
+
+    /**
+     * Retrieve language strings data.
+     */
+    public static LanguageStringsDto getLanguageStrings() {
+        return retrofitApiClient.getLanguageStrings(retrofitApiEndpoint.getRegion(), apiKey);
+    }
+
+    /**
+     * Retrieve language strings data.
+     */
+    public static void getLanguageStrings(final Callback<LanguageStringsDto> callback) {
+        retrofitApiClient.getLanguageStrings(retrofitApiEndpoint.getRegion(), apiKey, callback);
+    }
+
+    /**
+     * Retrieve language strings data.
+     */
+    public static Observable<LanguageStringsDto> getLanguageStringsRx() {
+        return retrofitApiClient.getLanguageStringsRx(retrofitApiEndpoint.getRegion(), apiKey);
+    }
+
+    /**
+     * Retrieve supported languages data.
+     */
+    public static String[] getLanguages() {
+        return retrofitApiClient.getLanguages(retrofitApiEndpoint.getRegion(), apiKey);
+    }
+
+    /**
+     * Retrieve supported languages data.
+     */
+    public static void getLanguages(final Callback<String[]> callback) {
+        retrofitApiClient.getLanguages(retrofitApiEndpoint.getRegion(), apiKey, callback);
+    }
+
+    /**
+     * Retrieve supported languages data.
+     */
+    public static Observable<String[]> getLanguagesRx() {
+        return retrofitApiClient.getLanguagesRx(retrofitApiEndpoint.getRegion(), apiKey);
+    }
+
+    /**
+     * Retrieve map data.
+     */
+    public static MapDataDto getMap() {
+        return retrofitApiClient.getMap(retrofitApiEndpoint.getRegion(), apiKey);
+    }
+
+    /**
+     * Retrieve map data.
+     */
+    public static void getMap(final Callback<MapDataDto> callback) {
+        retrofitApiClient.getMap(retrofitApiEndpoint.getRegion(), apiKey, callback);
+    }
+
+    /**
+     * Retrieve map data.
+     */
+    public static Observable<MapDataDto> getMapRx() {
+        return retrofitApiClient.getMapRx(retrofitApiEndpoint.getRegion(), apiKey);
+    }
+
+    /**
+     * Retrieves mastery list.
+     */
+    public static MasteryListDto getMasteryList() {
+        return retrofitApiClient.getMasteryList(retrofitApiEndpoint.getRegion(), apiKey);
+    }
+
+    /**
+     * Retrieves mastery list.
+     */
+    public static void getMasteryList(final Callback<MasteryListDto> callback) {
+        retrofitApiClient.getMasteryList(retrofitApiEndpoint.getRegion(), apiKey, callback);
+    }
+
+    /**
+     * Retrieves mastery list.
+     */
+    public static Observable<MasteryListDto> getMasteryListRx() {
+        return retrofitApiClient.getMasteryListRx(retrofitApiEndpoint.getRegion(), apiKey);
+    }
+
+    /**
+     * Retrieves mastery item by its unique id.
+     */
+    public static MasteryDto getMasteryById(final long id) {
+        return retrofitApiClient.getMasteryById(retrofitApiEndpoint.getRegion(), id, apiKey);
+    }
+
+    /**
+     * Retrieves mastery item by its unique id.
+     */
+    public static void getMasteryById(final long id, final Callback<MasteryDto> callback) {
+        retrofitApiClient.getMasteryById(retrofitApiEndpoint.getRegion(), id, apiKey, callback);
+    }
+
+    /**
+     * Retrieves mastery item by its unique id.
+     */
+    public static Observable<MasteryDto> getMasteryByIdRx(final long id) {
+        return retrofitApiClient.getMasteryByIdRx(retrofitApiEndpoint.getRegion(), id, apiKey);
     }
 
 }
