@@ -18,6 +18,8 @@ import com.mobilesolutions.lolapi.models.statics.MasteryListDto;
 import com.mobilesolutions.lolapi.models.statics.RealmDto;
 import com.mobilesolutions.lolapi.models.statics.RuneDto;
 import com.mobilesolutions.lolapi.models.statics.RuneList;
+import com.mobilesolutions.lolapi.models.statics.SummonerSpellDto;
+import com.mobilesolutions.lolapi.models.statics.SummonerSpellListDto;
 import com.mobilesolutions.lolapi.models.status.Shard;
 import com.mobilesolutions.lolapi.models.status.ShardStatus;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiClient;
@@ -700,4 +702,66 @@ public class LolApi {
         return retrofitApiClient.getRuneByIdRx(retrofitApiEndpoint.getRegion(), id, apiKey);
     }
 
+    /**
+     * Retrieves summoner spell list.
+     */
+    public static SummonerSpellListDto getSummonerSpellList() {
+        return retrofitApiClient.getSummonerSpellList(retrofitApiEndpoint.getRegion(), apiKey);
+    }
+
+    /**
+     * Retrieves summoner spell list.
+     */
+    public static void getSummonerSpellList(final Callback<SummonerSpellListDto> callback) {
+        retrofitApiClient.getSummonerSpellList(retrofitApiEndpoint.getRegion(), apiKey, callback);
+    }
+
+    /**
+     * Retrieves summoner spell list.
+     */
+    public static Observable<SummonerSpellListDto> getSummonerSpellListRx() {
+        return retrofitApiClient.getSummonerSpellListRx(retrofitApiEndpoint.getRegion(), apiKey);
+    }
+
+    /**
+     * Retrieves summoner spell by its unique id.
+     */
+    public static SummonerSpellDto getSummonerSpellById(final long id) {
+        return retrofitApiClient.getSummonerSpellById(retrofitApiEndpoint.getRegion(), id, apiKey);
+    }
+
+    /**
+     * Retrieves summoner spell by its unique id.
+     */
+    public static void getSummonerSpellById(final long id, final Callback<SummonerSpellDto> callback) {
+        retrofitApiClient.getSummonerSpellById(retrofitApiEndpoint.getRegion(), id, apiKey, callback);
+    }
+
+    /**
+     * Retrieves summoner spell by its unique id.
+     */
+    public static Observable<SummonerSpellDto> getSummonerSpellByIdRx(final long id) {
+        return retrofitApiClient.getSummonerSpellByIdRx(retrofitApiEndpoint.getRegion(), id, apiKey);
+    }
+
+    /**
+     * Retrieve version data.
+     */
+    public static String[] getVersions() {
+        return retrofitApiClient.getVersions(retrofitApiEndpoint.getRegion(), apiKey);
+    }
+
+    /**
+     * Retrieve version data.
+     */
+    public static void getVersions(final Callback<String[]> callback) {
+        retrofitApiClient.getVersions(retrofitApiEndpoint.getRegion(), apiKey, callback);
+    }
+
+    /**
+     * Retrieve version data.
+     */
+    public static Observable<String[]> getVersionsRx() {
+        return retrofitApiClient.getVersionsRx(retrofitApiEndpoint.getRegion(), apiKey);
+    }
 }

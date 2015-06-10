@@ -7,19 +7,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.mobilesolutions.lolapi.LolApi;
-import com.mobilesolutions.lolapi.models.statics.ItemDto;
-import com.mobilesolutions.lolapi.models.statics.ItemListDto;
-import com.mobilesolutions.lolapi.models.statics.LanguageStringsDto;
-import com.mobilesolutions.lolapi.models.statics.MapDataDto;
-import com.mobilesolutions.lolapi.models.statics.MasteryDto;
-import com.mobilesolutions.lolapi.models.statics.MasteryListDto;
-import com.mobilesolutions.lolapi.models.statics.RealmDto;
-import com.mobilesolutions.lolapi.models.statics.RuneDto;
-import com.mobilesolutions.lolapi.models.statics.RuneList;
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -32,17 +19,6 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 LolApi.setRegion("eune");
-                LolApi.getRuneById(5234,new Callback<RuneDto>() {
-                    @Override
-                    public void success(RuneDto championListDto, Response response) {
-
-                    }
-
-                    @Override
-                    public void failure(RetrofitError error) {
-
-                    }
-                });
             }
         });
 
