@@ -2,6 +2,7 @@ package com.mobilesolutions.lolapi.models.status;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.mobilesolutions.lolapi.models.status.enums.Severity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class Message implements Serializable {
     @Expose
     private long id;
     @Expose
-    private String severity;
+    private Severity severity;
     @Expose
     private List<Translation> translations = new ArrayList<Translation>();
     @SerializedName("updated_at")
@@ -42,7 +43,7 @@ public class Message implements Serializable {
         return id;
     }
 
-    public String getSeverity() {
+    public Severity getSeverity() {
         return severity;
     }
 

@@ -31,7 +31,7 @@ Rx
  * game-v1.3
  * league-v2.5
  * lol-static-data-v1.2         [NOT YET]
- * lol-status-v1.0              [NOT YET]
+ * lol-status-v1.0
  * match-v2.2                   [NOT YET]
  * matchhistory-v2.2            [NOT YET]
  * stats-v1.3                   [NOT YET]
@@ -47,7 +47,7 @@ Rx
 	}
 
 	dependencies {
-	        compile 'com.github.MobileSolution:android-lol-api:v0.0.2'
+	        compile 'com.github.MobileSolution:android-lol-api:v0.0.3'
 	}
 
 ## Licence

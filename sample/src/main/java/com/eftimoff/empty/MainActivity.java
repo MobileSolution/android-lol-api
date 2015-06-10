@@ -7,12 +7,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.mobilesolutions.lolapi.LolApi;
-import com.mobilesolutions.lolapi.models.champion.ChampionListDto;
+import com.mobilesolutions.lolapi.models.statics.ItemDto;
+import com.mobilesolutions.lolapi.models.statics.ItemListDto;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-
 
 public class MainActivity extends ActionBarActivity {
 
@@ -25,9 +25,9 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 LolApi.setRegion("eune");
-                LolApi.getChampionDataById(23,new Callback<com.mobilesolutions.lolapi.models.statics.ChampionDto>() {
+                LolApi.getItemById(3724,new Callback<ItemDto>() {
                     @Override
-                    public void success(com.mobilesolutions.lolapi.models.statics.ChampionDto championListDto, Response response) {
+                    public void success(ItemDto championListDto, Response response) {
 
                     }
 
@@ -49,4 +49,5 @@ public class MainActivity extends ActionBarActivity {
     private void log(final String message) {
         Log.i("MAIN", message);
     }
+
 }

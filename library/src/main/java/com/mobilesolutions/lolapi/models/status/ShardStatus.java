@@ -22,4 +22,28 @@ public class ShardStatus implements Serializable {
     private String hostname;
     @Expose
     private String slug;
+
+    public String getRegionTag() {
+        return regionTag;
+    }
+
+    public List<Service> getServices() {
+        return services;
+    }
+
+    public List<String> getLocales() {
+        return locales;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getHostname() {
+        return hostname;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
 }

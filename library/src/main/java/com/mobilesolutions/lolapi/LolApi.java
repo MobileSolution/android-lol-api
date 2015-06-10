@@ -9,17 +9,28 @@ import com.mobilesolutions.lolapi.models.currentgame.CurrentGameInfo;
 import com.mobilesolutions.lolapi.models.featured.FeaturedGames;
 import com.mobilesolutions.lolapi.models.league.LeagueDto;
 import com.mobilesolutions.lolapi.models.recent.GameDtoList;
+import com.mobilesolutions.lolapi.models.statics.ItemDto;
+import com.mobilesolutions.lolapi.models.statics.ItemListDto;
+import com.mobilesolutions.lolapi.models.status.Shard;
+import com.mobilesolutions.lolapi.models.status.ShardStatus;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiClient;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiEndpoint;
 import com.mobilesolutions.lolapi.utls.ErrorConstants;
+import com.mobilesolutions.lolapi.utls.Region;
+import com.squareup.okhttp.Call;
 
 import java.util.List;
 import java.util.Map;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 import retrofit.converter.GsonConverter;
+import rx.Notification;
 import rx.Observable;
+import rx.functions.Action0;
+import rx.functions.Action1;
 
 public class LolApi {
 
@@ -37,6 +48,7 @@ public class LolApi {
         final RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint(retrofitApiEndpoint)
                 .setConverter(new GsonConverter(new Gson()))
+                .setLogLevel(RestAdapter.LogLevel.FULL)
                 .build();
         retrofitApiClient = restAdapter.create(RetrofitApiClient.class);
     }
@@ -71,87 +83,99 @@ public class LolApi {
     }
 
     /**
+     * Set the region to be used.
+     *
+     * @param region - "EUNE","NA", etc.
+     */
+    public static void setRegion(final Region region) {
+        if (apiKey == null) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_REGION_PROVIDED);
+        }
+        retrofitApiEndpoint.setRegion(region.getRegion());
+    }
+
+    /**
      * Retrieve all champions.
      */
     public static ChampionListDto getChampions(final boolean freeToPlay) {
-        return retrofitApiClient.getAllChampions(freeToPlay, retrofitApiEndpoint.getRegionEnum().getRegion(), apiKey);
+        return retrofitApiClient.getAllChampions(freeToPlay, retrofitApiEndpoint.getRegion(), apiKey);
     }
 
     /**
      * Retrieve all champions.
      */
     public static void getChampions(final boolean freeToPlay, final Callback<ChampionListDto> callback) {
-        retrofitApiClient.getAllChampions(freeToPlay, retrofitApiEndpoint.getRegionEnum().getRegion(), apiKey, callback);
+        retrofitApiClient.getAllChampions(freeToPlay, retrofitApiEndpoint.getRegion(), apiKey, callback);
     }
 
     /**
      * Retrieve all champions.
      */
     public static Observable<ChampionListDto> getChampionsRx(final boolean freeToPlay) {
-        return retrofitApiClient.getAllChampionsRx(freeToPlay, retrofitApiEndpoint.getRegionEnum().getRegion(), apiKey);
+        return retrofitApiClient.getAllChampionsRx(freeToPlay, retrofitApiEndpoint.getRegion(), apiKey);
     }
 
     /**
      * Get champion by his id.
      */
     public static ChampionDto getChampionById(final long championId) {
-        return retrofitApiClient.getChampionById(championId, retrofitApiEndpoint.getRegionEnum().getRegion(), apiKey);
+        return retrofitApiClient.getChampionById(championId, retrofitApiEndpoint.getRegion(), apiKey);
     }
 
     /**
      * Get champion by his id.
      */
     public static void getChampionById(final long championId, Callback<ChampionDto> callback) {
-        retrofitApiClient.getChampionById(championId, retrofitApiEndpoint.getRegionEnum().getRegion(), apiKey, callback);
+        retrofitApiClient.getChampionById(championId, retrofitApiEndpoint.getRegion(), apiKey, callback);
     }
 
     /**
      * Get champion by his id.
      */
     public static Observable<ChampionDto> getChampionByIdRx(final long championId) {
-        return retrofitApiClient.getChampionByIdRx(championId, retrofitApiEndpoint.getRegionEnum().getRegion(), apiKey);
+        return retrofitApiClient.getChampionByIdRx(championId, retrofitApiEndpoint.getRegion(), apiKey);
     }
 
     /**
      * Get last recent played games by summoner id
      */
     public static GameDtoList getRecentGames(final long summonerId) {
-        return retrofitApiClient.getRecentGames(retrofitApiEndpoint.getRegionEnum().getRegion(), summonerId, apiKey);
+        return retrofitApiClient.getRecentGames(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
     }
 
     /**
      * Get last recent played games by summoner id
      */
     public static void getRecentGames(final long summonerId, Callback<GameDtoList> callback) {
-        retrofitApiClient.getRecentGames(retrofitApiEndpoint.getRegionEnum().getRegion(), summonerId, apiKey, callback);
+        retrofitApiClient.getRecentGames(retrofitApiEndpoint.getRegion(), summonerId, apiKey, callback);
     }
 
     /**
      * Get last recent played games by summoner id
      */
     public static Observable<GameDtoList> getRecentGamesRx(final long summonerId) {
-        return retrofitApiClient.getRecentGamesRx(retrofitApiEndpoint.getRegionEnum().getRegion(), summonerId, apiKey);
+        return retrofitApiClient.getRecentGamesRx(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
     }
 
     /**
      * Get current game by summoner id
      */
     public static CurrentGameInfo getCurrentGame(final long summonerId) {
-        return retrofitApiClient.getCurrentGame(retrofitApiEndpoint.getRegionEnum().getPlatformId(), summonerId, apiKey);
+        return retrofitApiClient.getCurrentGame(retrofitApiEndpoint.getPlatformId(), summonerId, apiKey);
     }
 
     /**
      * Get current game by summoner id
      */
     public static void getCurrentGame(final long summonerId, Callback<CurrentGameInfo> callback) {
-        retrofitApiClient.getCurrentGame(retrofitApiEndpoint.getRegionEnum().getPlatformId(), summonerId, apiKey, callback);
+        retrofitApiClient.getCurrentGame(retrofitApiEndpoint.getPlatformId(), summonerId, apiKey, callback);
     }
 
     /**
      * Get current game by summoner id
      */
     public static Observable<CurrentGameInfo> getCurrentGameRx(final long summonerId) {
-        return retrofitApiClient.getCurrentGameRx(retrofitApiEndpoint.getRegionEnum().getPlatformId(), summonerId, apiKey);
+        return retrofitApiClient.getCurrentGameRx(retrofitApiEndpoint.getPlatformId(), summonerId, apiKey);
     }
 
     /**
@@ -180,9 +204,9 @@ public class LolApi {
      */
     public static Map<String, List<LeagueDto>> getLeaguesBySummenrIds(final List<String> summonerIds) {
         if (summonerIds.size() > 10) {
-            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_TEN_TEAMS);
         }
-        return retrofitApiClient.getLeaguesBySummenrIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", summonerIds), apiKey);
+        return retrofitApiClient.getLeaguesBySummenrIds(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey);
     }
 
     /**
@@ -190,39 +214,39 @@ public class LolApi {
      */
     public static void getLeaguesBySummenrIds(final List<String> summonerIds, final Callback<Map<String, List<LeagueDto>>> callback) {
         if (summonerIds.size() > 10) {
-            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_TEN_TEAMS);
         }
-        retrofitApiClient.getLeaguesBySummenrIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", summonerIds), apiKey, callback);
+        retrofitApiClient.getLeaguesBySummenrIds(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey, callback);
     }
 
     /**
      * Get leagues mapped by summoner ID for a given list of summoner IDs.
      */
-    public static Observable<Map<String, List<LeagueDto>>> getLeaguesBySummenrIdsRx(final List<String> summonerIds) {
+    public static Observable<Map<String, List<LeagueDto>>> getLeaguesBySummonerIdsRx(final List<String> summonerIds) {
         if (summonerIds.size() > 10) {
-            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_TEN_TEAMS);
         }
-        return retrofitApiClient.getLeaguesBySummenrIdsRx(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", summonerIds), apiKey);
+        return retrofitApiClient.getLeaguesBySummenrIdsRx(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey);
     }
 
     /**
      * Get league entries mapped by summoner ID for a given list of summoner IDs.
      */
-    public static Map<String, List<LeagueDto>> getLeagueEntriesBySummenrIds(final List<String> summonerIds) {
+    public static Map<String, List<LeagueDto>> getLeagueEntriesBySummonerIds(final List<String> summonerIds) {
         if (summonerIds.size() > 10) {
-            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_TEN_TEAMS);
         }
-        return retrofitApiClient.getLeagueEntriesBySummenrIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", summonerIds), apiKey);
+        return retrofitApiClient.getLeagueEntriesBySummenrIds(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey);
     }
 
     /**
      * Get leagues mapped by summoner ID for a given list of summoner IDs.
      */
-    public static void getLeagueEntriesBySummenrIds(final List<String> summonerIds, final Callback<Map<String, List<LeagueDto>>> callback) {
+    public static void getLeagueEntriesBySummonerIds(final List<String> summonerIds, final Callback<Map<String, List<LeagueDto>>> callback) {
         if (summonerIds.size() > 10) {
-            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_TEN_TEAMS);
         }
-        retrofitApiClient.getLeagueEntriesBySummenrIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", summonerIds), apiKey, callback);
+        retrofitApiClient.getLeagueEntriesBySummenrIds(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey, callback);
     }
 
     /**
@@ -230,9 +254,9 @@ public class LolApi {
      */
     public static Observable<Map<String, List<LeagueDto>>> getLeagueEntriesBySummenrIdsRx(final List<String> summonerIds) {
         if (summonerIds.size() > 10) {
-            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_TEN_TEAMS);
         }
-        return retrofitApiClient.getLeagueEntriesBySummenrIdsRx(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", summonerIds), apiKey);
+        return retrofitApiClient.getLeagueEntriesBySummenrIdsRx(retrofitApiEndpoint.getRegion(), TextUtils.join(",", summonerIds), apiKey);
     }
 
     /**
@@ -240,9 +264,9 @@ public class LolApi {
      */
     public static Map<String, List<LeagueDto>> getLeaguesByTeamIds(final List<String> teamIds) {
         if (teamIds.size() > 10) {
-            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_TEN_TEAMS);
         }
-        return retrofitApiClient.getLeaguesByTeamIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", teamIds), apiKey);
+        return retrofitApiClient.getLeaguesByTeamIds(retrofitApiEndpoint.getRegion(), TextUtils.join(",", teamIds), apiKey);
     }
 
     /**
@@ -250,9 +274,9 @@ public class LolApi {
      */
     public static void getLeaguesByTeamIds(final List<String> teamIds, final Callback<Map<String, List<LeagueDto>>> callback) {
         if (teamIds.size() > 10) {
-            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_TEN_TEAMS);
         }
-        retrofitApiClient.getLeaguesByTeamIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", teamIds), apiKey, callback);
+        retrofitApiClient.getLeaguesByTeamIds(retrofitApiEndpoint.getRegion(), TextUtils.join(",", teamIds), apiKey, callback);
     }
 
     /**
@@ -260,9 +284,9 @@ public class LolApi {
      */
     public static Observable<Map<String, List<LeagueDto>>> getLeaguesByTeamIdsRx(final List<String> teamIds) {
         if (teamIds.size() > 10) {
-            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_TEN_TEAMS);
         }
-        return retrofitApiClient.getLeaguesByTeamIdsRx(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", teamIds), apiKey);
+        return retrofitApiClient.getLeaguesByTeamIdsRx(retrofitApiEndpoint.getRegion(), TextUtils.join(",", teamIds), apiKey);
     }
 
     /**
@@ -270,9 +294,9 @@ public class LolApi {
      */
     public static Map<String, List<LeagueDto>> getLeagueEntriesByTeamIds(final List<String> teamIds) {
         if (teamIds.size() > 10) {
-            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_TEN_TEAMS);
         }
-        return retrofitApiClient.getLeagueEntriesByTeamIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", teamIds), apiKey);
+        return retrofitApiClient.getLeagueEntriesByTeamIds(retrofitApiEndpoint.getRegion(), TextUtils.join(",", teamIds), apiKey);
     }
 
     /**
@@ -280,9 +304,9 @@ public class LolApi {
      */
     public static void getLeagueEntriesByTeamIds(final List<String> teamIds, final Callback<Map<String, List<LeagueDto>>> callback) {
         if (teamIds.size() > 10) {
-            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_TEN_TEAMS);
         }
-        retrofitApiClient.getLeagueEntriesByTeamIds(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", teamIds), apiKey, callback);
+        retrofitApiClient.getLeagueEntriesByTeamIds(retrofitApiEndpoint.getRegion(), TextUtils.join(",", teamIds), apiKey, callback);
     }
 
     /**
@@ -290,93 +314,214 @@ public class LolApi {
      */
     public static Observable<Map<String, List<LeagueDto>>> getLeagueEntriesByTeamIdsRx(final List<String> teamIds) {
         if (teamIds.size() > 10) {
-            throw new IllegalArgumentException(ErrorConstants.ERROR_LEAGUES_MORE_TEAMS);
+            throw new IllegalArgumentException(ErrorConstants.ERROR_NO_MORE_THAN_TEN_TEAMS);
         }
-        return retrofitApiClient.getLeagueEntriesByTeamIdsRx(retrofitApiEndpoint.getRegionEnum().getRegion(), TextUtils.join(",", teamIds), apiKey);
+        return retrofitApiClient.getLeagueEntriesByTeamIdsRx(retrofitApiEndpoint.getRegion(), TextUtils.join(",", teamIds), apiKey);
     }
 
     /**
      * Get challenger tier leagues.
      */
     public static LeagueDto getChallengerLeague(final String queueType) {
-        return retrofitApiClient.getChallengerLeague(retrofitApiEndpoint.getRegionEnum().getRegion(), queueType, apiKey);
+        return retrofitApiClient.getChallengerLeague(retrofitApiEndpoint.getRegion(), queueType, apiKey);
     }
 
     /**
      * Get challenger tier leagues.
      */
     public static void getChallengerLeague(final String queueType, final Callback<LeagueDto> callback) {
-        retrofitApiClient.getChallengerLeague(retrofitApiEndpoint.getRegionEnum().getRegion(), queueType, apiKey, callback);
+        retrofitApiClient.getChallengerLeague(retrofitApiEndpoint.getRegion(), queueType, apiKey, callback);
     }
 
     /**
      * Get challenger tier leagues.
      */
     public static Observable<LeagueDto> getChallengerLeagueRx(final String queueType) {
-        return retrofitApiClient.getChallengerLeagueRx(retrofitApiEndpoint.getRegionEnum().getRegion(), queueType, apiKey);
+        return retrofitApiClient.getChallengerLeagueRx(retrofitApiEndpoint.getRegion(), queueType, apiKey);
     }
 
     /**
      * Get master tier leagues.
      */
     public static LeagueDto getMasterLeague(final String queueType) {
-        return retrofitApiClient.getMasterLeague(retrofitApiEndpoint.getRegionEnum().getRegion(), queueType, apiKey);
+        return retrofitApiClient.getMasterLeague(retrofitApiEndpoint.getRegion(), queueType, apiKey);
     }
 
     /**
      * Get master tier leagues.
      */
     public static void getMasterLeague(final String queueType, final Callback<LeagueDto> callback) {
-        retrofitApiClient.getMasterLeague(retrofitApiEndpoint.getRegionEnum().getRegion(), queueType, apiKey, callback);
+        retrofitApiClient.getMasterLeague(retrofitApiEndpoint.getRegion(), queueType, apiKey, callback);
     }
 
     /**
      * Get master tier leagues.
      */
     public static Observable<LeagueDto> getMasterLeagueRx(final String queueType) {
-        return retrofitApiClient.getMasterLeagueRx(retrofitApiEndpoint.getRegionEnum().getRegion(), queueType, apiKey);
+        return retrofitApiClient.getMasterLeagueRx(retrofitApiEndpoint.getRegion(), queueType, apiKey);
+    }
+
+    /**
+     * Get shard list.
+     */
+    public static List<Shard> getShards() {
+        retrofitApiEndpoint.useShardsEndpoint();
+        final List<Shard> shards = retrofitApiClient.getShards();
+        retrofitApiEndpoint.useRegionEndpoint();
+        return shards;
+    }
+
+    /**
+     * Get shard list.
+     */
+    public static void getShards(final Callback<List<Shard>> callback) {
+        retrofitApiEndpoint.useShardsEndpoint();
+        retrofitApiClient.getShards(new Callback<List<Shard>>() {
+            @Override
+            public void success(List<Shard> shards, Response response) {
+                retrofitApiEndpoint.useRegionEndpoint();
+                callback.success(shards, response);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                retrofitApiEndpoint.useRegionEndpoint();
+                callback.failure(error);
+            }
+        });
+    }
+
+    /**
+     * Get shard list.
+     */
+    public static Observable<List<Shard>> getShardsRx() {
+        throw new UnsupportedOperationException(ErrorConstants.ERROR_NO_RX_FOR_SHARDS);
+        //retrofitApiEndpoint.useShardsEndpoint();
+        //return retrofitApiClient.getShardsRx();
+    }
+
+    /**
+     * Get shard status. Returns the data available on the status.leagueoflegends.com website for the given region.
+     */
+    public static ShardStatus getShardStatus() {
+        retrofitApiEndpoint.useShardsEndpoint();
+        final ShardStatus shardStatus = retrofitApiClient.getShardStatus(retrofitApiEndpoint.getRegion());
+        retrofitApiEndpoint.useRegionEndpoint();
+        return shardStatus;
+    }
+
+    /**
+     * Get shard status. Returns the data available on the status.leagueoflegends.com website for the given region.
+     */
+    public static void getShardStatus(final Callback<ShardStatus> callback) {
+        retrofitApiEndpoint.useShardsEndpoint();
+        retrofitApiClient.getShardStatus(retrofitApiEndpoint.getRegion(), new Callback<ShardStatus>() {
+            @Override
+            public void success(ShardStatus shardStatus, Response response) {
+                retrofitApiEndpoint.useRegionEndpoint();
+                callback.success(shardStatus, response);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                retrofitApiEndpoint.useRegionEndpoint();
+                callback.failure(error);
+
+            }
+        });
+    }
+
+    /**
+     * Get shard status. Returns the data available on the status.leagueoflegends.com website for the given region.
+     */
+    public static Observable<ShardStatus> getShardStatusRx() {
+        throw new UnsupportedOperationException(ErrorConstants.ERROR_NO_RX_FOR_SHARDS);
+        //retrofitApiEndpoint.useShardsEndpoint();
+        //return retrofitApiClient.getShardStatusRx(retrofitApiEndpoint.getRegion());
     }
 
     /**
      * Retrieves champion list.
      */
     public static com.mobilesolutions.lolapi.models.statics.ChampionListDto getChampionList() {
-        return retrofitApiClient.getChampionList(retrofitApiEndpoint.getRegionEnum().getRegion(), apiKey);
+        return retrofitApiClient.getChampionList(retrofitApiEndpoint.getRegion(), apiKey);
     }
 
     /**
      * Retrieves champion list.
      */
     public static void getChampionList(final Callback<com.mobilesolutions.lolapi.models.statics.ChampionListDto> callback) {
-        retrofitApiClient.getChampionList(retrofitApiEndpoint.getRegionEnum().getRegion(), apiKey, callback);
+        retrofitApiClient.getChampionList(retrofitApiEndpoint.getRegion(), apiKey, callback);
     }
 
     /**
      * Retrieves champion list.
      */
     public static Observable<com.mobilesolutions.lolapi.models.statics.ChampionListDto> getChampionListRx() {
-        return retrofitApiClient.getChampionListRx(retrofitApiEndpoint.getRegionEnum().getRegion(), apiKey);
+        return retrofitApiClient.getChampionListRx(retrofitApiEndpoint.getRegion(), apiKey);
     }
 
     /**
      * Retrieves a champion by its id.
      */
     public static com.mobilesolutions.lolapi.models.statics.ChampionDto getChampionDataById(final long id) {
-        return retrofitApiClient.getChampionById(retrofitApiEndpoint.getRegionEnum().getRegion(), id, apiKey);
+        return retrofitApiClient.getChampionById(retrofitApiEndpoint.getRegion(), id, apiKey);
     }
 
     /**
      * Retrieves a champion by its id.
      */
     public static void getChampionDataById(final long id, final Callback<com.mobilesolutions.lolapi.models.statics.ChampionDto> callback) {
-        retrofitApiClient.getChampionById(retrofitApiEndpoint.getRegionEnum().getRegion(), id, apiKey, callback);
+        retrofitApiClient.getChampionById(retrofitApiEndpoint.getRegion(), id, apiKey, callback);
     }
 
     /**
      * Retrieves a champion by its id.
      */
     public static Observable<com.mobilesolutions.lolapi.models.statics.ChampionDto> getChampionDataByIdRx(final long id) {
-        return retrofitApiClient.getChampionByIdRx(retrofitApiEndpoint.getRegionEnum().getRegion(), id, apiKey);
+        return retrofitApiClient.getChampionByIdRx(retrofitApiEndpoint.getRegion(), id, apiKey);
+    }
+
+    /**
+     * Retrieves item list
+     */
+    public static ItemListDto getItemList() {
+        return retrofitApiClient.getItemList(retrofitApiEndpoint.getRegion(), apiKey);
+    }
+
+    /**
+     * Retrieves item list
+     */
+    public static void getItemList(final Callback<ItemListDto> callback) {
+        retrofitApiClient.getItemList(retrofitApiEndpoint.getRegion(), apiKey, callback);
+    }
+
+    /**
+     * Retrieves item list
+     */
+    public static Observable<ItemListDto> getItemListRx() {
+        return retrofitApiClient.getItemListRx(retrofitApiEndpoint.getRegion(), apiKey);
+    }
+
+    /**
+     * Retrieves item by its unique id.
+     */
+    public static ItemDto getItemById(final long id) {
+        return retrofitApiClient.getItemById(retrofitApiEndpoint.getRegion(), id, apiKey);
+    }
+
+    /**
+     * Retrieves item by its unique id.
+     */
+    public static void getItemById(final long id, final Callback<ItemDto> callback) {
+        retrofitApiClient.getItemById(retrofitApiEndpoint.getRegion(), id, apiKey, callback);
+    }
+
+    /**
+     * Retrieves item by its unique id.
+     */
+    public static Observable<ItemDto> getItemByIdRx(final long id) {
+        return retrofitApiClient.getItemByIdRx(retrofitApiEndpoint.getRegion(), id, apiKey);
     }
 
 }

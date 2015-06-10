@@ -17,6 +17,8 @@ import com.mobilesolutions.lolapi.models.statics.RuneDto;
 import com.mobilesolutions.lolapi.models.statics.RuneList;
 import com.mobilesolutions.lolapi.models.statics.SummonerSpellDto;
 import com.mobilesolutions.lolapi.models.statics.SummonerSpellListDto;
+import com.mobilesolutions.lolapi.models.status.Shard;
+import com.mobilesolutions.lolapi.models.status.ShardStatus;
 
 import java.util.List;
 import java.util.Map;
@@ -227,7 +229,7 @@ public interface RetrofitApiClient {
     RuneList getRuneList(@Path("region") String region, @Query("api_key") String apiKey);
 
     @GET("/api/lol/static-data/{region}/v1.2/rune")
-    void getRuneList(@Path("region") String region, @Query("api_key") String apiKey,final Callback<RuneList> callback);
+    void getRuneList(@Path("region") String region, @Query("api_key") String apiKey, final Callback<RuneList> callback);
 
     @GET("/api/lol/static-data/{region}/v1.2/rune")
     Observable<RuneList> getRuneListRx(@Path("region") String region, @Query("api_key") String apiKey);
@@ -236,7 +238,7 @@ public interface RetrofitApiClient {
     RuneDto getRuneById(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey);
 
     @GET("/api/lol/static-data/{region}/v1.2/rune/{id}")
-    void getRuneById(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey,final Callback<RuneDto> callback);
+    void getRuneById(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey, final Callback<RuneDto> callback);
 
     @GET("/api/lol/static-data/{region}/v1.2/rune/{id}")
     Observable<RuneDto> getRuneByIdRx(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey);
@@ -245,7 +247,7 @@ public interface RetrofitApiClient {
     SummonerSpellListDto getSummonerSpellList(@Path("region") String region, @Query("api_key") String apiKey);
 
     @GET("/api/lol/static-data/{region}/v1.2/summoner-spell")
-    void getSummonerSpellList(@Path("region") String region, @Query("api_key") String apiKey,final Callback<SummonerSpellListDto> callback);
+    void getSummonerSpellList(@Path("region") String region, @Query("api_key") String apiKey, final Callback<SummonerSpellListDto> callback);
 
     @GET("/api/lol/static-data/{region}/v1.2/summoner-spell")
     Observable<SummonerSpellListDto> getSummonerSpellListRx(@Path("region") String region, @Query("api_key") String apiKey);
@@ -254,7 +256,7 @@ public interface RetrofitApiClient {
     SummonerSpellDto getSummonerSpellById(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey);
 
     @GET("/api/lol/static-data/{region}/v1.2/summoner-spell/{id}")
-    void getSummonerSpellById(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey,final Callback<SummonerSpellDto> callback);
+    void getSummonerSpellById(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey, final Callback<SummonerSpellDto> callback);
 
     @GET("/api/lol/static-data/{region}/v1.2/summoner-spell/{id}")
     Observable<SummonerSpellDto> getSummonerSpellByIdRx(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey);
@@ -263,8 +265,27 @@ public interface RetrofitApiClient {
     String[] getVersions(@Path("region") String region, @Query("api_key") String apiKey);
 
     @GET("/api/lol/static-data/{region}/v1.2/versions")
-    void getVersions(@Path("region") String region, @Query("api_key") String apiKey,final Callback<String[]> callback);
+    void getVersions(@Path("region") String region, @Query("api_key") String apiKey, final Callback<String[]> callback);
 
     @GET("/api/lol/static-data/{region}/v1.2/versions")
     Observable<String[]> getVersionsRx(@Path("region") String region, @Query("api_key") String apiKey);
+
+    @GET("/shards")
+    List<Shard> getShards();
+
+    @GET("/shards")
+    void getShards(final Callback<List<Shard>> callback);
+
+    @GET("/shards")
+    Observable<List<Shard>> getShardsRx();
+
+    @GET("/shards/{region}")
+    ShardStatus getShardStatus(@Path("region") String region);
+
+    @GET("/shards/{region}")
+    void getShardStatus(@Path("region") String region, final Callback<ShardStatus> callback);
+
+    @GET("/shards/{region}")
+    Observable<ShardStatus> getShardStatusRx(@Path("region") String region);
+
 }
