@@ -24,6 +24,8 @@ import com.mobilesolutions.lolapi.models.statics.RuneDto;
 import com.mobilesolutions.lolapi.models.statics.RuneList;
 import com.mobilesolutions.lolapi.models.statics.SummonerSpellDto;
 import com.mobilesolutions.lolapi.models.statics.SummonerSpellListDto;
+import com.mobilesolutions.lolapi.models.statics.enums.ChampDataEnum;
+import com.mobilesolutions.lolapi.models.statics.enums.ItemListEnum;
 import com.mobilesolutions.lolapi.models.stats.PlayerStatsSummaryListDto;
 import com.mobilesolutions.lolapi.models.stats.RankedStatsDto;
 import com.mobilesolutions.lolapi.models.status.Shard;
@@ -34,6 +36,7 @@ import com.mobilesolutions.lolapi.models.summoner.SummonerDto;
 import com.mobilesolutions.lolapi.models.team.TeamDto;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiClient;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiEndpoint;
+import com.mobilesolutions.lolapi.utls.Constants;
 import com.mobilesolutions.lolapi.utls.ErrorConstants;
 import com.mobilesolutions.lolapi.utls.Region;
 
@@ -457,6 +460,7 @@ public class LolApi {
     public static Observable<LeagueDto> getMasterLeagueRx() {
         return retrofitApiClient.getMasterLeagueRx(retrofitApiEndpoint.getRegion(), QueueEnum.RANKED_SOLO_5x5.toString(), apiKey);
     }
+
     /**
      * Get shard list.
      */
@@ -540,105 +544,258 @@ public class LolApi {
      * Retrieves champion list.
      */
     public static com.mobilesolutions.lolapi.models.statics.ChampionListDto getChampionList() {
-        return retrofitApiClient.getChampionList(retrofitApiEndpoint.getRegion(), apiKey);
+        return retrofitApiClient.getChampionList(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, false, ChampDataEnum.ALL.toString(), apiKey);
     }
 
     /**
      * Retrieves champion list.
      */
     public static void getChampionList(final Callback<com.mobilesolutions.lolapi.models.statics.ChampionListDto> callback) {
-        retrofitApiClient.getChampionList(retrofitApiEndpoint.getRegion(), apiKey, callback);
+        retrofitApiClient.getChampionList(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, false, ChampDataEnum.ALL.toString(), apiKey, callback);
     }
 
     /**
      * Retrieves champion list.
      */
     public static Observable<com.mobilesolutions.lolapi.models.statics.ChampionListDto> getChampionListRx() {
-        return retrofitApiClient.getChampionListRx(retrofitApiEndpoint.getRegion(), apiKey);
+        return retrofitApiClient.getChampionListRx(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, false, ChampDataEnum.ALL.toString(), apiKey);
+    }
+
+    /**
+     * Retrieves champion list by locale,version,champData and sorted by champId.
+     */
+    public static com.mobilesolutions.lolapi.models.statics.ChampionListDto getChampionList(final String locale, final String version, final boolean champById, final ChampDataEnum champData) {
+        if (locale == null || version == null || champData == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        return retrofitApiClient.getChampionList(retrofitApiEndpoint.getRegion(), locale, version, champById, champData.toString(), apiKey);
+    }
+
+    /**
+     * Retrieves champion list by locale,version,champData and sorted by champId.
+     */
+    public static void getChampionList(final String locale, final String version, final boolean champById, final ChampDataEnum champData, final Callback<com.mobilesolutions.lolapi.models.statics.ChampionListDto> callback) {
+        if (locale == null || version == null || champData == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        retrofitApiClient.getChampionList(retrofitApiEndpoint.getRegion(), locale, version, champById, champData.toString(), apiKey, callback);
+    }
+
+    /**
+     * Retrieves champion list by locale,version,champData and sorted by champId.
+     */
+    public static Observable<com.mobilesolutions.lolapi.models.statics.ChampionListDto> getChampionListRx(final String locale, final String version, final boolean champById, final ChampDataEnum champData) {
+        if (locale == null || version == null || champData == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        return retrofitApiClient.getChampionListRx(retrofitApiEndpoint.getRegion(), locale, version, champById, champData.toString(), apiKey);
     }
 
     /**
      * Retrieves a champion by its id.
      */
     public static com.mobilesolutions.lolapi.models.statics.ChampionDto getChampionDataById(final long id) {
-        return retrofitApiClient.getChampionById(retrofitApiEndpoint.getRegion(), id, apiKey);
+        return retrofitApiClient.getChampionById(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, ChampDataEnum.ALL.toString(), apiKey);
     }
 
     /**
      * Retrieves a champion by its id.
      */
     public static void getChampionDataById(final long id, final Callback<com.mobilesolutions.lolapi.models.statics.ChampionDto> callback) {
-        retrofitApiClient.getChampionById(retrofitApiEndpoint.getRegion(), id, apiKey, callback);
+        retrofitApiClient.getChampionById(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, ChampDataEnum.ALL.toString(), apiKey, callback);
     }
 
     /**
      * Retrieves a champion by its id.
      */
     public static Observable<com.mobilesolutions.lolapi.models.statics.ChampionDto> getChampionDataByIdRx(final long id) {
-        return retrofitApiClient.getChampionByIdRx(retrofitApiEndpoint.getRegion(), id, apiKey);
+        return retrofitApiClient.getChampionByIdRx(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, ChampDataEnum.ALL.toString(), apiKey);
+    }
+
+    /**
+     * Retrieves a champion by its id ,locale , version and champ data.
+     */
+    public static com.mobilesolutions.lolapi.models.statics.ChampionDto getChampionDataById(final long id, final String locale, final String version, final ChampDataEnum champData) {
+        if (locale == null || version == null || champData == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        return retrofitApiClient.getChampionById(retrofitApiEndpoint.getRegion(), id, locale, version, champData.toString(), apiKey);
+    }
+
+    /**
+     * Retrieves a champion by its id ,locale , version and champ data.
+     */
+    public static void getChampionDataById(final long id, final String locale, final String version, final ChampDataEnum champData, final Callback<com.mobilesolutions.lolapi.models.statics.ChampionDto> callback) {
+        if (locale == null || version == null || champData == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        retrofitApiClient.getChampionById(retrofitApiEndpoint.getRegion(), id, locale, version, champData.toString(), apiKey, callback);
+    }
+
+    /**
+     * Retrieves a champion by its id ,locale , version and champ data.
+     */
+    public static Observable<com.mobilesolutions.lolapi.models.statics.ChampionDto> getChampionDataByIdRx(final long id, final String locale, final String version, final ChampDataEnum champData) {
+        if (locale == null || version == null || champData == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        return retrofitApiClient.getChampionByIdRx(retrofitApiEndpoint.getRegion(), id, locale, version, champData.toString(), apiKey);
     }
 
     /**
      * Retrieves item list
      */
     public static ItemListDto getItemList() {
-        return retrofitApiClient.getItemList(retrofitApiEndpoint.getRegion(), apiKey);
+        return retrofitApiClient.getItemList(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, ItemListEnum.ALL.getItemData(),
+                apiKey);
     }
 
     /**
      * Retrieves item list
      */
     public static void getItemList(final Callback<ItemListDto> callback) {
-        retrofitApiClient.getItemList(retrofitApiEndpoint.getRegion(), apiKey, callback);
+        retrofitApiClient.getItemList(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, ItemListEnum.ALL.getItemData(),
+                apiKey, callback);
     }
 
     /**
      * Retrieves item list
      */
     public static Observable<ItemListDto> getItemListRx() {
-        return retrofitApiClient.getItemListRx(retrofitApiEndpoint.getRegion(), apiKey);
+        return retrofitApiClient.getItemListRx(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, ItemListEnum.ALL.getItemData(),
+                apiKey);
+    }
+
+    /**
+     * Retrieves item list by locale,version and item list data
+     */
+    public static ItemListDto getItemList(final String locale, final String version, final ItemListEnum itemListEnum) {
+        if (locale == null || version == null || itemListEnum == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        return retrofitApiClient.getItemList(retrofitApiEndpoint.getRegion(), locale, version, itemListEnum.getItemData(), apiKey);
+    }
+
+    /**
+     * Retrieves item list by locale,version and item list data
+     */
+    public static void getItemList(final String locale, final String version, final ItemListEnum itemListEnum, final Callback<ItemListDto> callback) {
+        if (locale == null || version == null || itemListEnum == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        retrofitApiClient.getItemList(retrofitApiEndpoint.getRegion(), locale, version, itemListEnum.getItemData(), apiKey, callback);
+    }
+
+    /**
+     * Retrieves item list by locale,version and item list data
+     */
+    public static Observable<ItemListDto> getItemListRx(final String locale, final String version, final ItemListEnum itemListEnum) {
+        if (locale == null || version == null || itemListEnum == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        return retrofitApiClient.getItemListRx(retrofitApiEndpoint.getRegion(), locale, version, itemListEnum.getItemData(), apiKey);
     }
 
     /**
      * Retrieves item by its unique id.
      */
     public static ItemDto getItemById(final long id) {
-        return retrofitApiClient.getItemById(retrofitApiEndpoint.getRegion(), id, apiKey);
+        return retrofitApiClient.getItemById(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, ItemListEnum.ALL.getItemData(), apiKey);
     }
 
     /**
      * Retrieves item by its unique id.
      */
     public static void getItemById(final long id, final Callback<ItemDto> callback) {
-        retrofitApiClient.getItemById(retrofitApiEndpoint.getRegion(), id, apiKey, callback);
+        retrofitApiClient.getItemById(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, ItemListEnum.ALL.getItemData(), apiKey, callback);
     }
 
     /**
      * Retrieves item by its unique id.
      */
     public static Observable<ItemDto> getItemByIdRx(final long id) {
-        return retrofitApiClient.getItemByIdRx(retrofitApiEndpoint.getRegion(), id, apiKey);
+        return retrofitApiClient.getItemByIdRx(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, ItemListEnum.ALL.getItemData(), apiKey);
+    }
+
+    /**
+     * Retrieves item by its unique id , locale , api version amd item data.
+     */
+    public static ItemDto getItemById(final long id, final String locale, final String version, final ItemListEnum itemListEnum) {
+        if (locale == null || version == null || itemListEnum == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        return retrofitApiClient.getItemById(retrofitApiEndpoint.getRegion(), id, locale, version, itemListEnum.getItemData(), apiKey);
+    }
+
+    /**
+     * Retrieves item by its unique id , locale , api version amd item data.
+     */
+    public static void getItemById(final long id, final String locale, final String version, final ItemListEnum itemListEnum, final Callback<ItemDto> callback) {
+        if (locale == null || version == null || itemListEnum == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        retrofitApiClient.getItemById(retrofitApiEndpoint.getRegion(), id, locale, version, itemListEnum.getItemData(), apiKey, callback);
+    }
+
+    /**
+     * Retrieves item by its unique id , locale , api version amd item data.
+     */
+    public static Observable<ItemDto> getItemByIdRx(final long id, final String locale, final String version, final ItemListEnum itemListEnum) {
+        if (locale == null || version == null || itemListEnum == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        return retrofitApiClient.getItemByIdRx(retrofitApiEndpoint.getRegion(), id, locale, version, itemListEnum.getItemData(), apiKey);
     }
 
     /**
      * Retrieve language strings data.
      */
     public static LanguageStringsDto getLanguageStrings() {
-        return retrofitApiClient.getLanguageStrings(retrofitApiEndpoint.getRegion(), apiKey);
+        return retrofitApiClient.getLanguageStrings(retrofitApiEndpoint.getRegion(),Constants.DEFAULT_LOCALE,Constants.API_VERSION, apiKey);
     }
 
     /**
      * Retrieve language strings data.
      */
     public static void getLanguageStrings(final Callback<LanguageStringsDto> callback) {
-        retrofitApiClient.getLanguageStrings(retrofitApiEndpoint.getRegion(), apiKey, callback);
+        retrofitApiClient.getLanguageStrings(retrofitApiEndpoint.getRegion(),Constants.DEFAULT_LOCALE,Constants.API_VERSION, apiKey, callback);
     }
 
     /**
      * Retrieve language strings data.
      */
     public static Observable<LanguageStringsDto> getLanguageStringsRx() {
-        return retrofitApiClient.getLanguageStringsRx(retrofitApiEndpoint.getRegion(), apiKey);
+        return retrofitApiClient.getLanguageStringsRx(retrofitApiEndpoint.getRegion(),Constants.DEFAULT_LOCALE,Constants.API_VERSION, apiKey);
+    }
+
+    /**
+     * Retrieve language strings data by locale and api version.
+     */
+    public static LanguageStringsDto getLanguageStrings(final String locale , final String version) {
+        if (locale == null || version == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        return retrofitApiClient.getLanguageStrings(retrofitApiEndpoint.getRegion(),locale,version, apiKey);
+    }
+
+    /**
+     * Retrieve language strings data by locale and api version.
+     */
+    public static void getLanguageStrings(final String locale , final String version,final Callback<LanguageStringsDto> callback) {
+        if (locale == null || version == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        retrofitApiClient.getLanguageStrings(retrofitApiEndpoint.getRegion(), locale,version,apiKey, callback);
+    }
+
+    /**
+     * Retrieve language strings data by locale and api version.
+     */
+    public static Observable<LanguageStringsDto> getLanguageStringsRx(final String locale , final String version) {
+        if (locale == null || version == null ) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        return retrofitApiClient.getLanguageStringsRx(retrofitApiEndpoint.getRegion(),locale,version, apiKey);
     }
 
     /**
