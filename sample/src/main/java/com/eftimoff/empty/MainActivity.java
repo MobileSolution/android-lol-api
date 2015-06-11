@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.mobilesolutions.lolapi.LolApi;
+import com.mobilesolutions.lolapi.models.league.LeagueDto;
+import com.mobilesolutions.lolapi.models.league.enums.QueueEnum;
 import com.mobilesolutions.lolapi.models.matchhistory.Match;
 import com.mobilesolutions.lolapi.models.matchhistory.MatchSummary;
 
@@ -27,9 +29,9 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 LolApi.setRegion("eune");
-                LolApi.getMatchHistoryBySummonerId(40743772, 0, 2, new Callback<MatchSummary>() {
+                LolApi.getMasterLeague(QueueEnum.RANKED_TEAM_3x3,new Callback<LeagueDto>() {
                     @Override
-                    public void success(MatchSummary matchSummary, Response response) {
+                    public void success(LeagueDto leagueDto, Response response) {
 
                     }
 

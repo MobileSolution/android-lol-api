@@ -8,6 +8,7 @@ import com.mobilesolutions.lolapi.models.champion.ChampionListDto;
 import com.mobilesolutions.lolapi.models.currentgame.CurrentGameInfo;
 import com.mobilesolutions.lolapi.models.featured.FeaturedGames;
 import com.mobilesolutions.lolapi.models.league.LeagueDto;
+import com.mobilesolutions.lolapi.models.league.enums.QueueEnum;
 import com.mobilesolutions.lolapi.models.match.MatchDetail;
 import com.mobilesolutions.lolapi.models.matchhistory.Match;
 import com.mobilesolutions.lolapi.models.matchhistory.MatchSummary;
@@ -38,6 +39,7 @@ import com.mobilesolutions.lolapi.utls.Region;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -106,6 +108,27 @@ public class LolApi {
             throw new IllegalArgumentException(ErrorConstants.ERROR_NO_REGION_PROVIDED);
         }
         retrofitApiEndpoint.setRegion(region.getRegion());
+    }
+
+    /**
+     * Retrieve all free to play champions.
+     */
+    public static ChampionListDto getChampions() {
+        return retrofitApiClient.getAllChampions(true, retrofitApiEndpoint.getRegion(), apiKey);
+    }
+
+    /**
+     * Retrieve all free to play champions.
+     */
+    public static void getChampions(final Callback<ChampionListDto> callback) {
+        retrofitApiClient.getAllChampions(true, retrofitApiEndpoint.getRegion(), apiKey, callback);
+    }
+
+    /**
+     * Retrieve all free to play champions.
+     */
+    public static Observable<ChampionListDto> getChampionsRx() {
+        return retrofitApiClient.getAllChampionsRx(true, retrofitApiEndpoint.getRegion(), apiKey);
     }
 
     /**
@@ -334,47 +357,106 @@ public class LolApi {
     }
 
     /**
-     * Get challenger tier leagues.
+     * Get challenger tier leagues for RANKED SOLO 5x5 game type.
      */
-    public static LeagueDto getChallengerLeague(final String queueType) {
-        return retrofitApiClient.getChallengerLeague(retrofitApiEndpoint.getRegion(), queueType, apiKey);
+    public static LeagueDto getChallengerLeague() {
+        return retrofitApiClient.getChallengerLeague(retrofitApiEndpoint.getRegion(), QueueEnum.RANKED_SOLO_5x5.toString(), apiKey);
     }
 
     /**
-     * Get challenger tier leagues.
+     * Get challenger tier leagues for RANKED SOLO 5x5 game type.
      */
-    public static void getChallengerLeague(final String queueType, final Callback<LeagueDto> callback) {
-        retrofitApiClient.getChallengerLeague(retrofitApiEndpoint.getRegion(), queueType, apiKey, callback);
+    public static void getChallengerLeague(final Callback<LeagueDto> callback) {
+        retrofitApiClient.getChallengerLeague(retrofitApiEndpoint.getRegion(), QueueEnum.RANKED_SOLO_5x5.toString(), apiKey, callback);
     }
 
     /**
-     * Get challenger tier leagues.
+     * Get challenger tier leagues for RANKED SOLO 5x5 game type.
      */
-    public static Observable<LeagueDto> getChallengerLeagueRx(final String queueType) {
-        return retrofitApiClient.getChallengerLeagueRx(retrofitApiEndpoint.getRegion(), queueType, apiKey);
+    public static Observable<LeagueDto> getChallengerLeagueRx() {
+        return retrofitApiClient.getChallengerLeagueRx(retrofitApiEndpoint.getRegion(), QueueEnum.RANKED_SOLO_5x5.toString(), apiKey);
+    }
+
+    /**
+     * Get challenger tier leagues by game queue type.
+     */
+    public static LeagueDto getChallengerLeague(final QueueEnum queueType) {
+        if (queueType == null) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_QUEUE_TYPE_NULL);
+        }
+        return retrofitApiClient.getChallengerLeague(retrofitApiEndpoint.getRegion(), queueType.toString(), apiKey);
+    }
+
+    /**
+     * Get challenger tier leagues by game queue type.
+     */
+    public static void getChallengerLeague(final QueueEnum queueType, final Callback<LeagueDto> callback) {
+        if (queueType == null) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_QUEUE_TYPE_NULL);
+        }
+        retrofitApiClient.getChallengerLeague(retrofitApiEndpoint.getRegion(), queueType.toString(), apiKey, callback);
+    }
+
+    /**
+     * Get challenger tier leagues by game queue type.
+     */
+    public static Observable<LeagueDto> getChallengerLeagueRx(final QueueEnum queueType) {
+        if (queueType == null) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_QUEUE_TYPE_NULL);
+        }
+        return retrofitApiClient.getChallengerLeagueRx(retrofitApiEndpoint.getRegion(), queueType.toString(), apiKey);
     }
 
     /**
      * Get master tier leagues.
      */
-    public static LeagueDto getMasterLeague(final String queueType) {
-        return retrofitApiClient.getMasterLeague(retrofitApiEndpoint.getRegion(), queueType, apiKey);
+    public static LeagueDto getMasterLeague(final QueueEnum queueType) {
+        if (queueType == null) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_QUEUE_TYPE_NULL);
+        }
+        return retrofitApiClient.getMasterLeague(retrofitApiEndpoint.getRegion(), queueType.toString(), apiKey);
     }
 
     /**
      * Get master tier leagues.
      */
-    public static void getMasterLeague(final String queueType, final Callback<LeagueDto> callback) {
-        retrofitApiClient.getMasterLeague(retrofitApiEndpoint.getRegion(), queueType, apiKey, callback);
+    public static void getMasterLeague(final QueueEnum queueType, final Callback<LeagueDto> callback) {
+        if (queueType == null) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_QUEUE_TYPE_NULL);
+        }
+        retrofitApiClient.getMasterLeague(retrofitApiEndpoint.getRegion(), queueType.toString(), apiKey, callback);
     }
 
     /**
      * Get master tier leagues.
      */
-    public static Observable<LeagueDto> getMasterLeagueRx(final String queueType) {
-        return retrofitApiClient.getMasterLeagueRx(retrofitApiEndpoint.getRegion(), queueType, apiKey);
+    public static Observable<LeagueDto> getMasterLeagueRx(final QueueEnum queueType) {
+        if (queueType == null) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_QUEUE_TYPE_NULL);
+        }
+        return retrofitApiClient.getMasterLeagueRx(retrofitApiEndpoint.getRegion(), queueType.toString(), apiKey);
     }
 
+    /**
+     * Get master tier leagues for RANKED SOLO 5x5 game type.
+     */
+    public static LeagueDto getMasterLeague() {
+        return retrofitApiClient.getMasterLeague(retrofitApiEndpoint.getRegion(), QueueEnum.RANKED_SOLO_5x5.toString(), apiKey);
+    }
+
+    /**
+     * Get master tier leagues for RANKED SOLO 5x5 game type.
+     */
+    public static void getMasterLeague(final Callback<LeagueDto> callback) {
+        retrofitApiClient.getMasterLeague(retrofitApiEndpoint.getRegion(), QueueEnum.RANKED_SOLO_5x5.toString(), apiKey, callback);
+    }
+
+    /**
+     * Get master tier leagues for RANKED SOLO 5x5 game type.
+     */
+    public static Observable<LeagueDto> getMasterLeagueRx() {
+        return retrofitApiClient.getMasterLeagueRx(retrofitApiEndpoint.getRegion(), QueueEnum.RANKED_SOLO_5x5.toString(), apiKey);
+    }
     /**
      * Get shard list.
      */

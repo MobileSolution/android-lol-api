@@ -17,6 +17,7 @@ public class ErrorConstants {
     public static final String ERROR_NO_MORE_THAN_TEN_TEAMS = "Can't get leagues for more than 10 teams!";
     public static final String ERROR_NO_MORE_THAN_FOURTY_NAMES = "Can't get summoner objects for more than 10 names!";
     public static final String ERROR_NO_MORE_THAN_TEN_SUMMONERS = "Can't get teams for more than 10 summoner ids!";
+    public static final String ERROR_QUEUE_TYPE_NULL = "Queue type cannot be null!";
 
 
 }
