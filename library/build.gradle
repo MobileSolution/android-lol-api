@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'de.mobilej.unmock'
 
 version = "1.0.0"
 group = "com.eftimoff"
@@ -13,6 +14,17 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+unMock {
+    // URI to download the android-all.jar from. e.g. https://oss.sonatype.org/content/groups/public/org/robolectric/android-all/
+    downloadFrom 'https://oss.sonatype.org/content/groups/public/org/robolectric/android-all/4.3_r2-robolectric-0/android-all-4.3_r2-robolectric-0.jar'
+
+    keepStartingWith "android.text.TextUtils"
 }
 
 dependencies {
