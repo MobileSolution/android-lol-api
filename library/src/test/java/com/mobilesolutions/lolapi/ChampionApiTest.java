@@ -10,25 +10,25 @@ import retrofit.RetrofitError;
 
 public class ChampionApiTest extends BaseTest {
 
-    @org.junit.Test
+    @Test
     public void testGetFreeToPlayChampions() {
         final ChampionListDto champions = LolApi.getChampions(true);
         Assert.assertEquals(champions.getChampions().size(), 10);
     }
 
-    @org.junit.Test
+    @Test
     public void testGetAllChampions() {
         final ChampionListDto champions = LolApi.getChampions();
         Assert.assertTrue(champions.getChampions().size() > 120);
     }
 
-    @org.junit.Test
+    @Test
     public void testGetAllChampionsSecond() {
         final ChampionListDto champions = LolApi.getChampions(false);
         Assert.assertTrue(champions.getChampions().size() > 120);
     }
 
-    @org.junit.Test
+    @Test
     public void testGetChampionById() {
         final ChampionDto champion = LolApi.getChampionById(266);
         Assert.assertNotNull(champion);
