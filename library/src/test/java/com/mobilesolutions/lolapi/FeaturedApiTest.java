@@ -9,7 +9,7 @@ import org.junit.Test;
 public class FeaturedApiTest extends BaseTest {
 
     @Test
-    public void testGetFreeToPlayChampions() {
+    public void testGetFeaturedGames() {
         final FeaturedGames featuredGames = LolApi.getFeaturedGames();
         Assert.assertEquals(5, featuredGames.getGameList().size());
     }
