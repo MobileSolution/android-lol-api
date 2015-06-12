@@ -370,22 +370,22 @@ public interface RetrofitApiClient {
     Observable<MatchSummary> getMatchHistoryBySummonerIdRx(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("beginIndex") int beginIndex, @Query("endIndex") int endIndex, @Query("api_key") String apiKey);
 
     @GET("/api/lol/{region}/v1.3/stats/by-summoner/{summoner_id}/ranked")
-    RankedStatsDto getRankedStatsBySummnoerId(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("api_key") String apiKey);
+    RankedStatsDto getRankedStatsBySummnoerId(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("season") String season, @Query("api_key") String apiKey);
 
     @GET("/api/lol/{region}/v1.3/stats/by-summoner/{summoner_id}/ranked")
-    void getRankedStatsBySummnoerId(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("api_key") String apiKey, final Callback<RankedStatsDto> callback);
+    void getRankedStatsBySummnoerId(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("season") String season, @Query("api_key") String apiKey, final Callback<RankedStatsDto> callback);
 
     @GET("/api/lol/{region}/v1.3/stats/by-summoner/{summoner_id}/ranked")
-    Observable<RankedStatsDto> getRankedStatsBySummnoerIdRx(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("api_key") String apiKey);
+    Observable<RankedStatsDto> getRankedStatsBySummnoerIdRx(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("season") String season, @Query("api_key") String apiKey);
 
     @GET("/api/lol/{region}/v1.3/stats/by-summoner/{summoner_id}/summary")
-    PlayerStatsSummaryListDto getStatsSummariesBySummonerId(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("api_key") String apiKey);
+    PlayerStatsSummaryListDto getStatsSummariesBySummonerId(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("season") String season, @Query("api_key") String apiKey);
 
     @GET("/api/lol/{region}/v1.3/stats/by-summoner/{summoner_id}/summary")
-    void getStatsSummariesBySummonerId(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("api_key") String apiKey, final Callback<PlayerStatsSummaryListDto> callback);
+    void getStatsSummariesBySummonerId(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("season") String season, @Query("api_key") String apiKey, final Callback<PlayerStatsSummaryListDto> callback);
 
     @GET("/api/lol/{region}/v1.3/stats/by-summoner/{summoner_id}/summary")
-    Observable<PlayerStatsSummaryListDto> getStatsSummariesBySummonerIdRx(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("api_key") String apiKey);
+    Observable<PlayerStatsSummaryListDto> getStatsSummariesBySummonerIdRx(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("season") String season, @Query("api_key") String apiKey);
 
     @GET("/api/lol/{region}/v2.2/match/{match_id}")
     MatchDetail getMatchByMatchId(@Path("region") String region, @Path("match_id") long matchId, @Query("includeTimeline") boolean includeTimeline, @Query("api_key") String apiKey);

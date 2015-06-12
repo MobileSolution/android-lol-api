@@ -28,6 +28,7 @@ import com.mobilesolutions.lolapi.models.statics.enums.ChampDataEnum;
 import com.mobilesolutions.lolapi.models.statics.enums.ItemListEnum;
 import com.mobilesolutions.lolapi.models.statics.enums.MasteryListEnum;
 import com.mobilesolutions.lolapi.models.statics.enums.RuneListEnum;
+import com.mobilesolutions.lolapi.models.statics.enums.SeasonEnum;
 import com.mobilesolutions.lolapi.models.statics.enums.SpellDataEnum;
 import com.mobilesolutions.lolapi.models.stats.PlayerStatsSummaryListDto;
 import com.mobilesolutions.lolapi.models.stats.RankedStatsDto;
@@ -1479,43 +1480,104 @@ public class LolApi {
      * Get ranked stats by summoner ID.
      */
     public static RankedStatsDto getRankedStatsBySummnoerId(final long summonerId) {
-        return retrofitApiClient.getRankedStatsBySummnoerId(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
+        return retrofitApiClient.getRankedStatsBySummnoerId(retrofitApiEndpoint.getRegion(), summonerId, SeasonEnum.SEASON2015.toString(), apiKey);
     }
 
     /**
      * Get ranked stats by summoner ID.
      */
     public static void getRankedStatsBySummnoerId(final long summonerId, final Callback<RankedStatsDto> callback) {
-        retrofitApiClient.getRankedStatsBySummnoerId(retrofitApiEndpoint.getRegion(), summonerId, apiKey, callback);
+        retrofitApiClient.getRankedStatsBySummnoerId(retrofitApiEndpoint.getRegion(), summonerId, SeasonEnum.SEASON2015.toString(), apiKey, callback);
     }
 
     /**
      * Get ranked stats by summoner ID.
      */
     public static Observable<RankedStatsDto> getRankedStatsBySummnoerIdRx(final long summonerId) {
-        return retrofitApiClient.getRankedStatsBySummnoerIdRx(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
+        return retrofitApiClient.getRankedStatsBySummnoerIdRx(retrofitApiEndpoint.getRegion(), summonerId, SeasonEnum.SEASON2015.toString(), apiKey);
+    }
+
+    /**
+     * Get ranked stats by summoner ID and by season.
+     */
+    public static RankedStatsDto getRankedStatsBySummnoerId(final long summonerId, final SeasonEnum seasonEnum) {
+        if (seasonEnum == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        return retrofitApiClient.getRankedStatsBySummnoerId(retrofitApiEndpoint.getRegion(), summonerId, seasonEnum.toString(), apiKey);
+    }
+
+    /**
+     * Get ranked stats by summoner ID and by season.
+     */
+    public static void getRankedStatsBySummnoerId(final long summonerId, final SeasonEnum seasonEnum, final Callback<RankedStatsDto> callback) {
+        if (seasonEnum == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        retrofitApiClient.getRankedStatsBySummnoerId(retrofitApiEndpoint.getRegion(), summonerId, seasonEnum.toString(), apiKey, callback);
+    }
+
+    /**
+     * Get ranked stats by summoner ID and by season.
+     */
+    public static Observable<RankedStatsDto> getRankedStatsBySummnoerIdRx(final long summonerId, final SeasonEnum seasonEnum) {
+        if (seasonEnum == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        return retrofitApiClient.getRankedStatsBySummnoerIdRx(retrofitApiEndpoint.getRegion(), summonerId, seasonEnum.toString(), apiKey);
     }
 
     /**
      * Get player stats summaries by summoner ID.
      */
     public static PlayerStatsSummaryListDto getStatsSummariesBySummonerId(final long summonerId) {
-        return retrofitApiClient.getStatsSummariesBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
+        return retrofitApiClient.getStatsSummariesBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, SeasonEnum.SEASON2015.toString(), apiKey);
     }
 
     /**
      * Get player stats summaries by summoner ID.
      */
     public static void getStatsSummariesBySummonerId(final long summonerId, final Callback<PlayerStatsSummaryListDto> callback) {
-        retrofitApiClient.getStatsSummariesBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, apiKey, callback);
+        retrofitApiClient.getStatsSummariesBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, SeasonEnum.SEASON2015.toString(), apiKey, callback);
     }
 
     /**
      * Get player stats summaries by summoner ID.
      */
     public static Observable<PlayerStatsSummaryListDto> getStatsSummariesBySummonerIdRx(final long summonerId) {
-        return retrofitApiClient.getStatsSummariesBySummonerIdRx(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
+        return retrofitApiClient.getStatsSummariesBySummonerIdRx(retrofitApiEndpoint.getRegion(), summonerId, SeasonEnum.SEASON2015.toString(), apiKey);
     }
+
+    /**
+     * Get player stats summaries by summoner ID and by season.
+     */
+    public static PlayerStatsSummaryListDto getStatsSummariesBySummonerId(final long summonerId, final SeasonEnum seasonEnum) {
+        if (seasonEnum == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        return retrofitApiClient.getStatsSummariesBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, seasonEnum.toString(), apiKey);
+    }
+
+    /**
+     * Get player stats summaries by summoner ID and by season.
+     */
+    public static void getStatsSummariesBySummonerId(final long summonerId, final SeasonEnum seasonEnum, final Callback<PlayerStatsSummaryListDto> callback) {
+        if (seasonEnum == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        retrofitApiClient.getStatsSummariesBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, seasonEnum.toString(), apiKey, callback);
+    }
+
+    /**
+     * Get player stats summaries by summoner ID and by season.
+     */
+    public static Observable<PlayerStatsSummaryListDto> getStatsSummariesBySummonerIdRx(final long summonerId, final SeasonEnum seasonEnum) {
+        if (seasonEnum == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        return retrofitApiClient.getStatsSummariesBySummonerIdRx(retrofitApiEndpoint.getRegion(), summonerId, seasonEnum.toString(), apiKey);
+    }
+
 
     /**
      * Retrieve match by match ID.
@@ -1528,7 +1590,7 @@ public class LolApi {
      * Retrieve match by match ID.
      */
     public static void getMatchByMatchId(final long summonerId, final boolean includeTimeline, final Callback<MatchDetail> callback) {
-        retrofitApiClient.getMatchByMatchId(retrofitApiEndpoint.getRegion(), summonerId,includeTimeline, apiKey ,callback);
+        retrofitApiClient.getMatchByMatchId(retrofitApiEndpoint.getRegion(), summonerId, includeTimeline, apiKey, callback);
     }
 
     /**
