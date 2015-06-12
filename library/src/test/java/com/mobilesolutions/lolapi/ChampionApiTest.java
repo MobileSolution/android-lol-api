@@ -36,7 +36,7 @@ public class ChampionApiTest extends BaseTest {
 
     @Test(expected = RetrofitError.class)
     public void testGetChampionByIdNull() {
-        final ChampionDto champion = LolApi.getChampionById(1500);
+        LolApi.getChampionById(-1);
     }
 
 }
