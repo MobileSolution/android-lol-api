@@ -9,7 +9,7 @@ import retrofit.RetrofitError;
 public class CurrentGameApiTest extends BaseTest {
 
     @Test(expected = RetrofitError.class)
-    public void testGetChampionByIdNull() {
+    public void testCurrentGameIdNull() {
         final CurrentGameInfo currentGame = LolApi.getCurrentGame(-1);
     }
 }
