@@ -1446,21 +1446,21 @@ public class LolApi {
      * Retrieve last 15 match histories by summoner ID.
      */
     public static MatchSummary getMatchHistoryBySummonerId(final long summonerId) {
-        return retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, 0, 14, apiKey);
+        return retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, 0, 15, apiKey);
     }
 
     /**
      * Retrieve last 15 match histories by summoner ID.
      */
     public static void getMatchHistoryBySummonerId(final long summonerId, final Callback<MatchSummary> callback) {
-        retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, 0, 14, apiKey, callback);
+        retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, 0, 15, apiKey, callback);
     }
 
     /**
      * Retrieve last 15 match histories by summoner ID.
      */
     public static Observable<MatchSummary> getMatchHistoryBySummonerIdRx(final long summonerId) {
-        return retrofitApiClient.getMatchHistoryBySummonerIdRx(retrofitApiEndpoint.getRegion(), summonerId, 0, 14, apiKey);
+        return retrofitApiClient.getMatchHistoryBySummonerIdRx(retrofitApiEndpoint.getRegion(), summonerId, 0, 15, apiKey);
     }
 
     /**
