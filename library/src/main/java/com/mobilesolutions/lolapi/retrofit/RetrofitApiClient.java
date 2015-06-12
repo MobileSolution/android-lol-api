@@ -253,22 +253,22 @@ public interface RetrofitApiClient {
     Observable<RuneDto> getRuneByIdRx(@Path("region") String region, @Path("id") long id, @Query("locale") String locale, @Query("version") String version, @Query("runeListData") String runeListData, @Query("api_key") String apiKey);
 
     @GET("/api/lol/static-data/{region}/v1.2/summoner-spell")
-    SummonerSpellListDto getSummonerSpellList(@Path("region") String region, @Query("api_key") String apiKey);
+    SummonerSpellListDto getSummonerSpellList(@Path("region") String region, @Query("locale") String locale, @Query("version") String version, @Query("dataById") boolean dataById, @Query("spellData") String spellData, @Query("api_key") String apiKey);
 
     @GET("/api/lol/static-data/{region}/v1.2/summoner-spell")
-    void getSummonerSpellList(@Path("region") String region, @Query("api_key") String apiKey, final Callback<SummonerSpellListDto> callback);
+    void getSummonerSpellList(@Path("region") String region, @Query("locale") String locale, @Query("version") String version, @Query("dataById") boolean dataById, @Query("spellData") String spellData, @Query("api_key") String apiKey, final Callback<SummonerSpellListDto> callback);
 
     @GET("/api/lol/static-data/{region}/v1.2/summoner-spell")
-    Observable<SummonerSpellListDto> getSummonerSpellListRx(@Path("region") String region, @Query("api_key") String apiKey);
+    Observable<SummonerSpellListDto> getSummonerSpellListRx(@Path("region") String region, @Query("locale") String locale, @Query("version") String version, @Query("dataById") boolean dataById, @Query("spellData") String spellData, @Query("api_key") String apiKey);
 
     @GET("/api/lol/static-data/{region}/v1.2/summoner-spell/{id}")
-    SummonerSpellDto getSummonerSpellById(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey);
+    SummonerSpellDto getSummonerSpellById(@Path("region") String region, @Path("id") long id, @Query("locale") String locale, @Query("version") String version, @Query("spellData") String spellData, @Query("api_key") String apiKey);
 
     @GET("/api/lol/static-data/{region}/v1.2/summoner-spell/{id}")
-    void getSummonerSpellById(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey, final Callback<SummonerSpellDto> callback);
+    void getSummonerSpellById(@Path("region") String region, @Path("id") long id, @Query("locale") String locale, @Query("version") String version, @Query("spellData") String spellData, @Query("api_key") String apiKey, final Callback<SummonerSpellDto> callback);
 
     @GET("/api/lol/static-data/{region}/v1.2/summoner-spell/{id}")
-    Observable<SummonerSpellDto> getSummonerSpellByIdRx(@Path("region") String region, @Path("id") long id, @Query("api_key") String apiKey);
+    Observable<SummonerSpellDto> getSummonerSpellByIdRx(@Path("region") String region, @Path("id") long id, @Query("locale") String locale, @Query("version") String version, @Query("spellData") String spellData, @Query("api_key") String apiKey);
 
     @GET("/api/lol/static-data/{region}/v1.2/versions")
     String[] getVersions(@Path("region") String region, @Query("api_key") String apiKey);

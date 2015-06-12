@@ -16,10 +16,13 @@ import com.mobilesolutions.lolapi.models.statics.MasteryDto;
 import com.mobilesolutions.lolapi.models.statics.MasteryListDto;
 import com.mobilesolutions.lolapi.models.statics.RuneDto;
 import com.mobilesolutions.lolapi.models.statics.RuneList;
+import com.mobilesolutions.lolapi.models.statics.SummonerSpellDto;
+import com.mobilesolutions.lolapi.models.statics.SummonerSpellListDto;
 import com.mobilesolutions.lolapi.models.statics.enums.ChampDataEnum;
 import com.mobilesolutions.lolapi.models.statics.enums.ItemListEnum;
 import com.mobilesolutions.lolapi.models.statics.enums.MasteryListEnum;
 import com.mobilesolutions.lolapi.models.statics.enums.RuneListEnum;
+import com.mobilesolutions.lolapi.models.statics.enums.SpellDataEnum;
 import com.mobilesolutions.lolapi.utls.Constants;
 
 import retrofit.Callback;
@@ -37,18 +40,6 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 LolApi.setRegion("eune");
-
-                LolApi.getRuneById(5237, new Callback<RuneDto>() {
-                    @Override
-                    public void success(RuneDto runeList, Response response) {
-                        toast(runeList.getDescription() + "");
-                    }
-
-                    @Override
-                    public void failure(RetrofitError error) {
-                        toast("Error");
-                    }
-                });
             }
         });
     }

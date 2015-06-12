@@ -28,6 +28,7 @@ import com.mobilesolutions.lolapi.models.statics.enums.ChampDataEnum;
 import com.mobilesolutions.lolapi.models.statics.enums.ItemListEnum;
 import com.mobilesolutions.lolapi.models.statics.enums.MasteryListEnum;
 import com.mobilesolutions.lolapi.models.statics.enums.RuneListEnum;
+import com.mobilesolutions.lolapi.models.statics.enums.SpellDataEnum;
 import com.mobilesolutions.lolapi.models.stats.PlayerStatsSummaryListDto;
 import com.mobilesolutions.lolapi.models.stats.RankedStatsDto;
 import com.mobilesolutions.lolapi.models.status.Shard;
@@ -1103,42 +1104,102 @@ public class LolApi {
      * Retrieves summoner spell list.
      */
     public static SummonerSpellListDto getSummonerSpellList() {
-        return retrofitApiClient.getSummonerSpellList(retrofitApiEndpoint.getRegion(), apiKey);
+        return retrofitApiClient.getSummonerSpellList(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, false, SpellDataEnum.ALL.getSpellData(), apiKey);
     }
 
     /**
      * Retrieves summoner spell list.
      */
     public static void getSummonerSpellList(final Callback<SummonerSpellListDto> callback) {
-        retrofitApiClient.getSummonerSpellList(retrofitApiEndpoint.getRegion(), apiKey, callback);
+        retrofitApiClient.getSummonerSpellList(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, false, SpellDataEnum.ALL.getSpellData(), apiKey, callback);
     }
 
     /**
      * Retrieves summoner spell list.
      */
     public static Observable<SummonerSpellListDto> getSummonerSpellListRx() {
-        return retrofitApiClient.getSummonerSpellListRx(retrofitApiEndpoint.getRegion(), apiKey);
+        return retrofitApiClient.getSummonerSpellListRx(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, false, SpellDataEnum.ALL.getSpellData(), apiKey);
+    }
+
+    /**
+     * Retrieves summoner spell list by locale, version , spell data and sort by spell id.
+     */
+    public static SummonerSpellListDto getSummonerSpellList(final String locale, final String version, final boolean dataByid, final SpellDataEnum spellDataEnum) {
+        if (locale == null || version == null || spellDataEnum == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        return retrofitApiClient.getSummonerSpellList(retrofitApiEndpoint.getRegion(), locale, version, dataByid, spellDataEnum.getSpellData(), apiKey);
+    }
+
+    /**
+     * Retrieves summoner spell list by locale, version , spell data and sort by spell id.
+     */
+    public static void getSummonerSpellList(final String locale, final String version, final boolean dataByid, final SpellDataEnum spellDataEnum, final Callback<SummonerSpellListDto> callback) {
+        if (locale == null || version == null || spellDataEnum == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        retrofitApiClient.getSummonerSpellList(retrofitApiEndpoint.getRegion(), locale, version, dataByid, spellDataEnum.getSpellData(), apiKey, callback);
+    }
+
+    /**
+     * Retrieves summoner spell list by locale, version , spell data and sort by spell id.
+     */
+    public static Observable<SummonerSpellListDto> getSummonerSpellListRx(final String locale, final String version, final boolean dataByid, final SpellDataEnum spellDataEnum) {
+        if (locale == null || version == null || spellDataEnum == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        return retrofitApiClient.getSummonerSpellListRx(retrofitApiEndpoint.getRegion(), locale, version, dataByid, spellDataEnum.getSpellData(), apiKey);
     }
 
     /**
      * Retrieves summoner spell by its unique id.
      */
     public static SummonerSpellDto getSummonerSpellById(final long id) {
-        return retrofitApiClient.getSummonerSpellById(retrofitApiEndpoint.getRegion(), id, apiKey);
+        return retrofitApiClient.getSummonerSpellById(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, SpellDataEnum.ALL.getSpellData(), apiKey);
     }
 
     /**
      * Retrieves summoner spell by its unique id.
      */
     public static void getSummonerSpellById(final long id, final Callback<SummonerSpellDto> callback) {
-        retrofitApiClient.getSummonerSpellById(retrofitApiEndpoint.getRegion(), id, apiKey, callback);
+        retrofitApiClient.getSummonerSpellById(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, SpellDataEnum.ALL.getSpellData(), apiKey, callback);
     }
 
     /**
      * Retrieves summoner spell by its unique id.
      */
     public static Observable<SummonerSpellDto> getSummonerSpellByIdRx(final long id) {
-        return retrofitApiClient.getSummonerSpellByIdRx(retrofitApiEndpoint.getRegion(), id, apiKey);
+        return retrofitApiClient.getSummonerSpellByIdRx(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, SpellDataEnum.ALL.getSpellData(), apiKey);
+    }
+
+    /**
+     * Retrieves summoner spell by its unique id by locale , api version and item data.
+     */
+    public static SummonerSpellDto getSummonerSpellById(final long id, final String locale, final String version, final SpellDataEnum spellDataEnum) {
+        if (locale == null || version == null || spellDataEnum == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        return retrofitApiClient.getSummonerSpellById(retrofitApiEndpoint.getRegion(), id, locale, version, spellDataEnum.getSpellData(), apiKey);
+    }
+
+    /**
+     * Retrieves summoner spell by its unique id by locale , api version and item data.
+     */
+    public static void getSummonerSpellById(final long id, final String locale, final String version, final SpellDataEnum spellDataEnum, final Callback<SummonerSpellDto> callback) {
+        if (locale == null || version == null || spellDataEnum == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        retrofitApiClient.getSummonerSpellById(retrofitApiEndpoint.getRegion(), id, locale, version, spellDataEnum.getSpellData(), apiKey, callback);
+    }
+
+    /**
+     * Retrieves summoner spell by its unique id by locale , api version and item data.
+     */
+    public static Observable<SummonerSpellDto> getSummonerSpellByIdRx(final long id, final String locale, final String version, final SpellDataEnum spellDataEnum) {
+        if (locale == null || version == null || spellDataEnum == null) {
+            throw new UnsupportedOperationException(ErrorConstants.ERROR_PARAMETER_NULL);
+        }
+        return retrofitApiClient.getSummonerSpellByIdRx(retrofitApiEndpoint.getRegion(), id, locale, version, spellDataEnum.getSpellData(), apiKey);
     }
 
     /**
