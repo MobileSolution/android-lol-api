@@ -10,7 +10,6 @@ import com.mobilesolutions.lolapi.models.featured.FeaturedGames;
 import com.mobilesolutions.lolapi.models.league.LeagueDto;
 import com.mobilesolutions.lolapi.models.league.enums.QueueEnum;
 import com.mobilesolutions.lolapi.models.match.MatchDetail;
-import com.mobilesolutions.lolapi.models.matchhistory.Match;
 import com.mobilesolutions.lolapi.models.matchhistory.MatchSummary;
 import com.mobilesolutions.lolapi.models.recent.GameDtoList;
 import com.mobilesolutions.lolapi.models.statics.ItemDto;
@@ -46,7 +45,6 @@ import com.mobilesolutions.lolapi.utls.Region;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -62,7 +60,7 @@ public class LolApi {
     private static RetrofitApiEndpoint retrofitApiEndpoint = null;
     private static RetrofitApiClient retrofitApiClient;
 
-    private LolApi(final String apiKeys) {
+    private LolApi(final String apiKeys, final RestAdapter.LogLevel logLevel) {
         if (apiKeys == null) {
             throw new IllegalArgumentException(ErrorConstants.ERROR_NO_API_KEY_PROVIDED);
         }
@@ -71,7 +69,7 @@ public class LolApi {
         final RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint(retrofitApiEndpoint)
                 .setConverter(new GsonConverter(new Gson()))
-                .setLogLevel(RestAdapter.LogLevel.FULL)
+                .setLogLevel(logLevel)
                 .build();
         retrofitApiClient = restAdapter.create(RetrofitApiClient.class);
     }
@@ -83,10 +81,20 @@ public class LolApi {
      * @param apiKey String - the api key from https://developer.riotgames.com
      */
     public static LolApi init(final String apiKey) {
+        return init(apiKey, RestAdapter.LogLevel.NONE);
+    }
+
+    /**
+     * Init the the api.
+     * It is better to init in the Application.onCreate().
+     *
+     * @param apiKey String - the api key from https://developer.riotgames.com
+     */
+    public static LolApi init(final String apiKey, final RestAdapter.LogLevel logLevel) {
         if (instance == null) {
             synchronized (LolApi.class) {
                 if (instance == null) {
-                    instance = new LolApi(apiKey);
+                    instance = new LolApi(apiKey, logLevel);
                 }
             }
         }
@@ -121,21 +129,21 @@ public class LolApi {
      * Retrieve all free to play champions.
      */
     public static ChampionListDto getChampions() {
-        return retrofitApiClient.getAllChampions(true, retrofitApiEndpoint.getRegion(), apiKey);
+        return retrofitApiClient.getAllChampions(false, retrofitApiEndpoint.getRegion(), apiKey);
     }
 
     /**
      * Retrieve all free to play champions.
      */
     public static void getChampions(final Callback<ChampionListDto> callback) {
-        retrofitApiClient.getAllChampions(true, retrofitApiEndpoint.getRegion(), apiKey, callback);
+        retrofitApiClient.getAllChampions(false, retrofitApiEndpoint.getRegion(), apiKey, callback);
     }
 
     /**
      * Retrieve all free to play champions.
      */
     public static Observable<ChampionListDto> getChampionsRx() {
-        return retrofitApiClient.getAllChampionsRx(true, retrofitApiEndpoint.getRegion(), apiKey);
+        return retrofitApiClient.getAllChampionsRx(false, retrofitApiEndpoint.getRegion(), apiKey);
     }
 
     /**

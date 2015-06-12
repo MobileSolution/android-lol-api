@@ -21,4 +21,5 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.4.0'
     compile 'com.squareup.okhttp:okhttp:2.4.0'
     compile 'io.reactivex:rxandroid:0.24.0'
+    testCompile 'junit:junit:4.12'
 }
