@@ -388,13 +388,13 @@ public interface RetrofitApiClient {
     Observable<PlayerStatsSummaryListDto> getStatsSummariesBySummonerIdRx(@Path("region") String region, @Path("summoner_id") long summonerId, @Query("api_key") String apiKey);
 
     @GET("/api/lol/{region}/v2.2/match/{match_id}")
-    MatchDetail getMatchByMatchId(@Path("region") String region, @Path("match_id") long matchId, @Query("api_key") String apiKey);
+    MatchDetail getMatchByMatchId(@Path("region") String region, @Path("match_id") long matchId, @Query("includeTimeline") boolean includeTimeline, @Query("api_key") String apiKey);
 
     @GET("/api/lol/{region}/v2.2/match/{match_id}")
-    void getMatchByMatchId(@Path("region") String region, @Path("match_id") long matchId, @Query("api_key") String apiKey, final Callback<MatchDetail> callback);
+    void getMatchByMatchId(@Path("region") String region, @Path("match_id") long matchId, @Query("includeTimeline") boolean includeTimeline, @Query("api_key") String apiKey, final Callback<MatchDetail> callback);
 
     @GET("/api/lol/{region}/v2.2/match/{match_id}")
-    Observable<MatchDetail> getMatchByMatchIdRx(@Path("region") String region, @Path("match_id") long matchId, @Query("api_key") String apiKey);
+    Observable<MatchDetail> getMatchByMatchIdRx(@Path("region") String region, @Path("match_id") long matchId, @Query("includeTimeline") boolean includeTimeline, @Query("api_key") String apiKey);
 
 }
 

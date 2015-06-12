@@ -1520,21 +1520,21 @@ public class LolApi {
     /**
      * Retrieve match by match ID.
      */
-    public static MatchDetail getMatchByMatchId(final long summonerId) {
-        return retrofitApiClient.getMatchByMatchId(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
+    public static MatchDetail getMatchByMatchId(final long summonerId, final boolean includeTimeline) {
+        return retrofitApiClient.getMatchByMatchId(retrofitApiEndpoint.getRegion(), summonerId, includeTimeline, apiKey);
     }
 
     /**
      * Retrieve match by match ID.
      */
-    public static void getMatchByMatchId(final long summonerId, final Callback<MatchDetail> callback) {
-        retrofitApiClient.getMatchByMatchId(retrofitApiEndpoint.getRegion(), summonerId, apiKey, callback);
+    public static void getMatchByMatchId(final long summonerId, final boolean includeTimeline, final Callback<MatchDetail> callback) {
+        retrofitApiClient.getMatchByMatchId(retrofitApiEndpoint.getRegion(), summonerId,includeTimeline, apiKey ,callback);
     }
 
     /**
      * Retrieve match by match ID.
      */
-    public static Observable<MatchDetail> getMatchByMatchIdRx(final long summonerId) {
-        return retrofitApiClient.getMatchByMatchIdRx(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
+    public static Observable<MatchDetail> getMatchByMatchIdRx(final long summonerId, final boolean includeTimeline) {
+        return retrofitApiClient.getMatchByMatchIdRx(retrofitApiEndpoint.getRegion(), summonerId, includeTimeline, apiKey);
     }
 }

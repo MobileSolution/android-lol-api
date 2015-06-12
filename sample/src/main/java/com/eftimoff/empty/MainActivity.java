@@ -7,27 +7,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.mobilesolutions.lolapi.LolApi;
-import com.mobilesolutions.lolapi.models.statics.ChampionDto;
-import com.mobilesolutions.lolapi.models.statics.ItemDto;
-import com.mobilesolutions.lolapi.models.statics.ItemListDto;
-import com.mobilesolutions.lolapi.models.statics.LanguageStringsDto;
-import com.mobilesolutions.lolapi.models.statics.MapDataDto;
-import com.mobilesolutions.lolapi.models.statics.MasteryDto;
-import com.mobilesolutions.lolapi.models.statics.MasteryListDto;
-import com.mobilesolutions.lolapi.models.statics.RuneDto;
-import com.mobilesolutions.lolapi.models.statics.RuneList;
-import com.mobilesolutions.lolapi.models.statics.SummonerSpellDto;
-import com.mobilesolutions.lolapi.models.statics.SummonerSpellListDto;
-import com.mobilesolutions.lolapi.models.statics.enums.ChampDataEnum;
-import com.mobilesolutions.lolapi.models.statics.enums.ItemListEnum;
-import com.mobilesolutions.lolapi.models.statics.enums.MasteryListEnum;
-import com.mobilesolutions.lolapi.models.statics.enums.RuneListEnum;
-import com.mobilesolutions.lolapi.models.statics.enums.SpellDataEnum;
-import com.mobilesolutions.lolapi.utls.Constants;
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 public class MainActivity extends ActionBarActivity {
 
