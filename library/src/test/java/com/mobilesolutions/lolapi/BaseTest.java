@@ -2,6 +2,8 @@ package com.mobilesolutions.lolapi;
 
 import org.junit.Before;
 
+import retrofit.RestAdapter;
+
 /**
  * The base test for all tests.
  * <p/>
@@ -13,7 +15,7 @@ public class BaseTest {
 
     @Before
     public void init() {
-        LolApi.init(API_KEY);
+        LolApi.init(API_KEY, RestAdapter.LogLevel.FULL);
         LolApi.setRegion("eune");
     }
 }

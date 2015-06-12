@@ -1,15 +1,14 @@
 package com.mobilesolutions.lolapi;
 
-import com.mobilesolutions.lolapi.LolApi;
+import com.mobilesolutions.lolapi.models.champion.ChampionDto;
 import com.mobilesolutions.lolapi.models.champion.ChampionListDto;
 
 import org.junit.Assert;
-import org.junit.Before;
+import org.junit.Test;
 
-import retrofit.RestAdapter;
+import retrofit.RetrofitError;
 
 public class ChampionApiTest extends BaseTest {
-
 
     @org.junit.Test
     public void testGetFreeToPlayChampions() {
@@ -22,4 +21,22 @@ public class ChampionApiTest extends BaseTest {
         final ChampionListDto champions = LolApi.getChampions();
         Assert.assertTrue(champions.getChampions().size() > 120);
     }
+
+    @org.junit.Test
+    public void testGetAllChampionsSecond() {
+        final ChampionListDto champions = LolApi.getChampions(false);
+        Assert.assertTrue(champions.getChampions().size() > 120);
+    }
+
+    @org.junit.Test
+    public void testGetChampionById() {
+        final ChampionDto champion = LolApi.getChampionById(266);
+        Assert.assertNotNull(champion);
+    }
+
+    @Test(expected = RetrofitError.class)
+    public void testGetChampionByIdNull() {
+        final ChampionDto champion = LolApi.getChampionById(1500);
+    }
+
 }
