@@ -4,6 +4,8 @@ import com.mobilesolutions.lolapi.models.statics.ChampionDto;
 import com.mobilesolutions.lolapi.models.statics.ChampionListDto;
 import com.mobilesolutions.lolapi.models.statics.ItemDto;
 import com.mobilesolutions.lolapi.models.statics.ItemListDto;
+import com.mobilesolutions.lolapi.models.statics.LanguageStringsDto;
+import com.mobilesolutions.lolapi.models.statics.MapDataDto;
 import com.mobilesolutions.lolapi.models.statics.enums.ChampDataEnum;
 import com.mobilesolutions.lolapi.models.statics.enums.ItemListEnum;
 import com.mobilesolutions.lolapi.utls.Constants;
@@ -58,7 +60,7 @@ public class StaticDataApiTest extends BaseTest {
 
     @Test(expected = RetrofitError.class)
     public void testGetItemsListError() {
-        final ItemListDto itemList = LolApi.getItemList("zzzz" ,"dfs", ItemListEnum.ALL);
+        final ItemListDto itemList = LolApi.getItemList("zzzz", "dfs", ItemListEnum.ALL);
     }
 
     @Test
@@ -75,12 +77,52 @@ public class StaticDataApiTest extends BaseTest {
 
     @Test(expected = RetrofitError.class)
     public void testGetItemsByIdError() {
-        final ItemDto itemById = LolApi.getItemById(3260 ,"fsa","sda",ItemListEnum.ALL);
+        final ItemDto itemById = LolApi.getItemById(3260, "fsa", "sda", ItemListEnum.ALL);
     }
 
     @Test
     public void testGetItemsByIdWithParams() {
         final ItemDto itemById = LolApi.getItemById(3260, Constants.DEFAULT_LOCALE, Constants.API_VERSION, ItemListEnum.ALL);
         Assert.assertNotNull(itemById);
+    }
+
+    @Test
+    public void testGetLanguagesStrings() {
+        final LanguageStringsDto languageStrings = LolApi.getLanguageStrings();
+        Assert.assertNotNull(languageStrings);
+    }
+
+    @Test(expected = RetrofitError.class)
+    public void testGetLanguagesStringsError() {
+        final LanguageStringsDto languageStrings = LolApi.getLanguageStrings("dsa", "dsa");
+    }
+
+    @Test
+    public void testGetLanguagesStringsErrorWithParams() {
+        final LanguageStringsDto languageStrings = LolApi.getLanguageStrings(Constants.DEFAULT_LOCALE, Constants.API_VERSION);
+        Assert.assertNotNull(languageStrings);
+    }
+
+    @Test
+    public void testGetLanguages() {
+        final String[] languages = LolApi.getLanguages();
+        Assert.assertTrue(languages.length > 5);
+    }
+
+    @Test
+    public void testGeMap() {
+        final MapDataDto map = LolApi.getMap();
+        Assert.assertNotNull(map);
+    }
+
+    @Test(expected = RetrofitError.class)
+    public void testGeMapError() {
+        LolApi.getMap("dsa","dsa");
+    }
+
+    @Test
+    public void testGeMapWithParams() {
+        final MapDataDto map = LolApi.getMap(Constants.DEFAULT_LOCALE,Constants.API_VERSION);
+        Assert.assertNotNull(map);
     }
 }
