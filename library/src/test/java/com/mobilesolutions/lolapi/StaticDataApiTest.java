@@ -6,8 +6,11 @@ import com.mobilesolutions.lolapi.models.statics.ItemDto;
 import com.mobilesolutions.lolapi.models.statics.ItemListDto;
 import com.mobilesolutions.lolapi.models.statics.LanguageStringsDto;
 import com.mobilesolutions.lolapi.models.statics.MapDataDto;
+import com.mobilesolutions.lolapi.models.statics.MasteryDto;
+import com.mobilesolutions.lolapi.models.statics.MasteryListDto;
 import com.mobilesolutions.lolapi.models.statics.enums.ChampDataEnum;
 import com.mobilesolutions.lolapi.models.statics.enums.ItemListEnum;
+import com.mobilesolutions.lolapi.models.statics.enums.MasteryListEnum;
 import com.mobilesolutions.lolapi.utls.Constants;
 
 import junit.framework.Assert;
@@ -124,5 +127,39 @@ public class StaticDataApiTest extends BaseTest {
     public void testGeMapWithParams() {
         final MapDataDto map = LolApi.getMap(Constants.DEFAULT_LOCALE,Constants.API_VERSION);
         Assert.assertNotNull(map);
+    }
+
+    @Test
+    public void testGetMasteryList() {
+        final MasteryListDto masteryList = LolApi.getMasteryList();
+        Assert.assertTrue(masteryList.getData().size() > 10);
+    }
+
+    @Test(expected = RetrofitError.class)
+    public void testGetMasteryListError() {
+        LolApi.getMasteryList("sdad", "sad", MasteryListEnum.ALL);
+    }
+
+    @Test
+    public void testGetMasteryListWithParams() {
+        final MasteryListDto masteryList = LolApi.getMasteryList(Constants.DEFAULT_LOCALE,Constants.API_VERSION, MasteryListEnum.ALL);
+        Assert.assertTrue(masteryList.getData().size() > 10);
+    }
+
+    @Test
+    public void testGetMasteryById() {
+        final MasteryDto masteryById = LolApi.getMasteryById(4352);
+        Assert.assertNotNull(masteryById);
+    }
+
+    @Test(expected = RetrofitError.class)
+    public void testGetMasteryByIdError() {
+        final MasteryDto masteryById = LolApi.getMasteryById(4352, "sdad", "sad", MasteryListEnum.ALL);
+    }
+
+    @Test
+    public void testGetMasteryByIdWithParams() {
+        final MasteryDto masteryById = LolApi.getMasteryById(4352, Constants.DEFAULT_LOCALE, Constants.API_VERSION, MasteryListEnum.ALL);
+        Assert.assertNotNull(masteryById);
     }
 }
