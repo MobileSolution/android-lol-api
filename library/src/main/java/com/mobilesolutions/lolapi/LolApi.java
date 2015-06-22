@@ -76,7 +76,7 @@ public class LolApi {
         if (cache != null) {
             okHttpClient.setCache(cache);
         }
-g
+
         if (apiKeys == null) {
             throw new IllegalArgumentException(ErrorConstants.ERROR_NO_API_KEY_PROVIDED);
         }
