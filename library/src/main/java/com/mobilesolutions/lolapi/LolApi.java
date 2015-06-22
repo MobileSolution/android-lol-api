@@ -72,7 +72,7 @@ public class LolApi {
         Cache cache = null;
         cache = new Cache(httpCacheDirectory, 10 * 1024 * 1024);
 
-        OkHttpClient okHttpClient = new OkHttpClient();
+        final OkHttpClient okHttpClient = new OkHttpClient();
         if (cache != null) {
             okHttpClient.setCache(cache);
         }

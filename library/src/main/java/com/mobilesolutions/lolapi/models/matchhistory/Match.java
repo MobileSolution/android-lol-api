@@ -3,6 +3,8 @@ package com.mobilesolutions.lolapi.models.matchhistory;
 import com.google.gson.annotations.Expose;
 import com.mobilesolutions.lolapi.models.common.Participant;
 import com.mobilesolutions.lolapi.models.common.ParticipantIdentity;
+import com.mobilesolutions.lolapi.models.statics.ChampionDto;
+import com.mobilesolutions.lolapi.models.statics.SummonerSpellDto;
 
 import java.io.Serializable;
 import java.util.List;
@@ -35,6 +37,9 @@ public class Match implements Serializable {
     private String region;
     @Expose
     private String season;
+    private ChampionDto champion;
+    private SummonerSpellDto spell1;
+    private SummonerSpellDto spell2;
 
     public int getMapId() {
         return mapId;
@@ -86,5 +91,29 @@ public class Match implements Serializable {
 
     public String getSeason() {
         return season;
+    }
+
+    public void setChampion(ChampionDto champion) {
+        this.champion = champion;
+    }
+
+    public void setSpell1(SummonerSpellDto spell1) {
+        this.spell1 = spell1;
+    }
+
+    public void setSpell2(SummonerSpellDto spell2) {
+        this.spell2 = spell2;
+    }
+
+    public ChampionDto getChampion() {
+        return champion;
+    }
+
+    public SummonerSpellDto getSpell1() {
+        return spell1;
+    }
+
+    public SummonerSpellDto getSpell2() {
+        return spell2;
     }
 }

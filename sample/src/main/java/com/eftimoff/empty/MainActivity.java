@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.mobilesolutions.lolapi.LolApi;
+import com.mobilesolutions.lolapi.models.matchhistory.MatchSummary;
 import com.mobilesolutions.lolapi.models.statics.enums.SeasonEnum;
 import com.mobilesolutions.lolapi.models.stats.PlayerStatsSummaryDto;
 import com.mobilesolutions.lolapi.models.stats.PlayerStatsSummaryListDto;
@@ -27,6 +28,17 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 LolApi.setRegion("eune");
+                LolApi.getMatchHistoryBySummonerId(40743772, new Callback<MatchSummary>() {
+                    @Override
+                    public void success(MatchSummary matchSummary, Response response) {
+
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+
+                    }
+                });
             }
         });
     }
