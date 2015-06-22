@@ -1,6 +1,8 @@
 package com.mobilesolutions.lolapi;
 
+import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.mobilesolutions.lolapi.models.champion.ChampionDto;
@@ -42,13 +44,17 @@ import com.mobilesolutions.lolapi.retrofit.RetrofitApiEndpoint;
 import com.mobilesolutions.lolapi.utls.Constants;
 import com.mobilesolutions.lolapi.utls.ErrorConstants;
 import com.mobilesolutions.lolapi.utls.Region;
+import com.squareup.okhttp.Cache;
+import com.squareup.okhttp.OkHttpClient;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
+import retrofit.client.OkClient;
 import retrofit.client.Response;
 import retrofit.converter.GsonConverter;
 import rx.Observable;
@@ -60,7 +66,17 @@ public class LolApi {
     private static RetrofitApiEndpoint retrofitApiEndpoint = null;
     private static RetrofitApiClient retrofitApiClient;
 
-    private LolApi(final String apiKeys, final RestAdapter.LogLevel logLevel) {
+    private LolApi(final String apiKeys, final RestAdapter.LogLevel logLevel,final Context context) {
+        final File httpCacheDirectory = new File(context.getApplicationContext().getCacheDir(), "responses");
+
+        Cache cache = null;
+        cache = new Cache(httpCacheDirectory, 10 * 1024 * 1024);
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+        if (cache != null) {
+            okHttpClient.setCache(cache);
+        }
+g
         if (apiKeys == null) {
             throw new IllegalArgumentException(ErrorConstants.ERROR_NO_API_KEY_PROVIDED);
         }
@@ -68,6 +84,7 @@ public class LolApi {
         retrofitApiEndpoint = new RetrofitApiEndpoint();
         final RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint(retrofitApiEndpoint)
+                .setClient(new OkClient(okHttpClient))
                 .setConverter(new GsonConverter(new Gson()))
                 .setLogLevel(logLevel)
                 .build();
@@ -80,8 +97,8 @@ public class LolApi {
      *
      * @param apiKey String - the api key from https://developer.riotgames.com
      */
-    public static LolApi init(final String apiKey) {
-        return init(apiKey, RestAdapter.LogLevel.NONE);
+    public static LolApi init(final String apiKey,final Context context) {
+        return init(apiKey, RestAdapter.LogLevel.NONE,context);
     }
 
     /**
@@ -90,11 +107,11 @@ public class LolApi {
      *
      * @param apiKey String - the api key from https://developer.riotgames.com
      */
-    public static LolApi init(final String apiKey, final RestAdapter.LogLevel logLevel) {
+    public static LolApi init(final String apiKey, final RestAdapter.LogLevel logLevel,final Context context) {
         if (instance == null) {
             synchronized (LolApi.class) {
                 if (instance == null) {
-                    instance = new LolApi(apiKey, logLevel);
+                    instance = new LolApi(apiKey, logLevel,context);
                 }
             }
         }
@@ -1446,7 +1463,7 @@ public class LolApi {
      * Retrieve last 15 match histories by summoner ID.
      */
     public static MatchSummary getMatchHistoryBySummonerId(final long summonerId) {
-        return retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, 0, 15, apiKey);
+      return retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, 0, 15, apiKey);
     }
 
     /**
