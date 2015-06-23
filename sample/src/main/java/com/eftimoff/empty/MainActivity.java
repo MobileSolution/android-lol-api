@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.mobilesolutions.lolapi.LolApi;
 import com.mobilesolutions.lolapi.models.matchhistory.MatchSummary;
+import com.mobilesolutions.lolapi.models.statics.SummonerSpellListDto;
 import com.mobilesolutions.lolapi.models.statics.enums.SeasonEnum;
 import com.mobilesolutions.lolapi.models.stats.PlayerStatsSummaryDto;
 import com.mobilesolutions.lolapi.models.stats.PlayerStatsSummaryListDto;
@@ -18,27 +19,18 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class MainActivity extends ActionBarActivity {
+    MatchSummary matchHistory = new MatchSummary();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final View viewById = findViewById(R.id.button);
+
         viewById.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LolApi.setRegion("eune");
-                LolApi.getMatchHistoryBySummonerId(40743772, new Callback<MatchSummary>() {
-                    @Override
-                    public void success(MatchSummary matchSummary, Response response) {
-
-                    }
-
-                    @Override
-                    public void failure(RetrofitError error) {
-
-                    }
-                });
             }
         });
     }

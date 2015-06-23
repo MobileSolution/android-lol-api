@@ -70,7 +70,7 @@ public class LolApi {
         final File httpCacheDirectory = new File(context.getApplicationContext().getCacheDir(), "responses");
 
         Cache cache = null;
-        cache = new Cache(httpCacheDirectory, 10 * 1024 * 1024);
+        cache = new Cache(httpCacheDirectory, 50 * 1024 * 1024);
 
         final OkHttpClient okHttpClient = new OkHttpClient();
         if (cache != null) {
