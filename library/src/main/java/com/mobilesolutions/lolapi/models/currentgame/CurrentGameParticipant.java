@@ -3,6 +3,8 @@ package com.mobilesolutions.lolapi.models.currentgame;
 import com.google.gson.annotations.Expose;
 import com.mobilesolutions.lolapi.models.common.Mastery;
 import com.mobilesolutions.lolapi.models.common.Rune;
+import com.mobilesolutions.lolapi.models.statics.ChampionDto;
+import com.mobilesolutions.lolapi.models.statics.SummonerSpellDto;
 
 import java.io.Serializable;
 import java.util.List;
@@ -29,6 +31,10 @@ public class CurrentGameParticipant implements Serializable {
     private String summonerName;
     @Expose
     private long teamId;
+
+    private ChampionDto champion;
+    private SummonerSpellDto spell1;
+    private SummonerSpellDto spell2;
 
     public boolean isBot() {
         return bot;
@@ -68,5 +74,29 @@ public class CurrentGameParticipant implements Serializable {
 
     public long getTeamId() {
         return teamId;
+    }
+
+    public ChampionDto getChampion() {
+        return champion;
+    }
+
+    public void setChampion(ChampionDto champion) {
+        this.champion = champion;
+    }
+
+    public SummonerSpellDto getSpell1() {
+        return spell1;
+    }
+
+    public void setSpell1(SummonerSpellDto spell1) {
+        this.spell1 = spell1;
+    }
+
+    public SummonerSpellDto getSpell2() {
+        return spell2;
+    }
+
+    public void setSpell2(SummonerSpellDto spell2) {
+        this.spell2 = spell2;
     }
 }
