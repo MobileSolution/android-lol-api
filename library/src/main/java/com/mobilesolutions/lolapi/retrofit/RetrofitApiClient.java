@@ -6,7 +6,6 @@ import com.mobilesolutions.lolapi.models.currentgame.CurrentGameInfo;
 import com.mobilesolutions.lolapi.models.featured.FeaturedGames;
 import com.mobilesolutions.lolapi.models.league.LeagueDto;
 import com.mobilesolutions.lolapi.models.match.MatchDetail;
-import com.mobilesolutions.lolapi.models.matchhistory.Match;
 import com.mobilesolutions.lolapi.models.matchhistory.MatchSummary;
 import com.mobilesolutions.lolapi.models.recent.GameDtoList;
 import com.mobilesolutions.lolapi.models.statics.ItemDto;
@@ -156,6 +155,18 @@ public interface RetrofitApiClient {
     @Headers("Cache-Control: public, max-age=640000, s-maxage=640000")
     @GET("/api/lol/static-data/{region}/v1.2/champion")
     Observable<com.mobilesolutions.lolapi.models.statics.ChampionListDto> getChampionListRx(@Path("region") String region, @Query("locale") String locale, @Query("version") String version, @Query("dataById") boolean dataById, @Query("champData") String champData, @Query("api_key") String apiKey);
+
+    @Headers("Cache-Control: public, max-age=640000, s-maxage=640000")
+    @GET("/api/lol/static-data/{region}/v1.2/champion/{id}")
+    com.mobilesolutions.lolapi.models.statics.ChampionDto getChampionById(@Path("region") String region, @Path("id") long id, @Query("champData") String champData, @Query("api_key") String apiKey);
+
+    @Headers("Cache-Control: public, max-age=640000, s-maxage=640000")
+    @GET("/api/lol/static-data/{region}/v1.2/champion/{id}")
+    void getChampionById(@Path("region") String region, @Path("id") long id, @Query("champData") String champData, @Query("api_key") String apiKey, final Callback<com.mobilesolutions.lolapi.models.statics.ChampionDto> callback);
+
+    @Headers("Cache-Control: public, max-age=640000, s-maxage=640000")
+    @GET("/api/lol/static-data/{region}/v1.2/champion/{id}")
+    Observable<com.mobilesolutions.lolapi.models.statics.ChampionDto> getChampionByIdRx(@Path("region") String region, @Path("id") long id, @Query("champData") String champData, @Query("api_key") String apiKey);
 
     @Headers("Cache-Control: public, max-age=640000, s-maxage=640000")
     @GET("/api/lol/static-data/{region}/v1.2/champion/{id}")

@@ -2,7 +2,6 @@ package com.mobilesolutions.lolapi;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.mobilesolutions.lolapi.models.champion.ChampionDto;
@@ -66,7 +65,7 @@ public class LolApi {
     private static RetrofitApiEndpoint retrofitApiEndpoint = null;
     private static RetrofitApiClient retrofitApiClient;
 
-    private LolApi(final String apiKeys, final RestAdapter.LogLevel logLevel,final Context context) {
+    private LolApi(final String apiKeys, final RestAdapter.LogLevel logLevel, final Context context) {
         final File httpCacheDirectory = new File(context.getApplicationContext().getCacheDir(), "responses");
 
         Cache cache = null;
@@ -97,8 +96,8 @@ public class LolApi {
      *
      * @param apiKey String - the api key from https://developer.riotgames.com
      */
-    public static LolApi init(final String apiKey,final Context context) {
-        return init(apiKey, RestAdapter.LogLevel.NONE,context);
+    public static LolApi init(final String apiKey, final Context context) {
+        return init(apiKey, RestAdapter.LogLevel.NONE, context);
     }
 
     /**
@@ -107,11 +106,11 @@ public class LolApi {
      *
      * @param apiKey String - the api key from https://developer.riotgames.com
      */
-    public static LolApi init(final String apiKey, final RestAdapter.LogLevel logLevel,final Context context) {
+    public static LolApi init(final String apiKey, final RestAdapter.LogLevel logLevel, final Context context) {
         if (instance == null) {
             synchronized (LolApi.class) {
                 if (instance == null) {
-                    instance = new LolApi(apiKey, logLevel,context);
+                    instance = new LolApi(apiKey, logLevel, context);
                 }
             }
         }
@@ -624,21 +623,21 @@ public class LolApi {
      * Retrieves a champion by its id.
      */
     public static com.mobilesolutions.lolapi.models.statics.ChampionDto getChampionDataById(final long id) {
-        return retrofitApiClient.getChampionById(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, ChampDataEnum.ALL.toString(), apiKey);
+        return retrofitApiClient.getChampionById(retrofitApiEndpoint.getRegion(), id, ChampDataEnum.ALL.toString(), apiKey);
     }
 
     /**
      * Retrieves a champion by its id.
      */
     public static void getChampionDataById(final long id, final Callback<com.mobilesolutions.lolapi.models.statics.ChampionDto> callback) {
-        retrofitApiClient.getChampionById(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, ChampDataEnum.ALL.toString(), apiKey, callback);
+        retrofitApiClient.getChampionById(retrofitApiEndpoint.getRegion(), id, ChampDataEnum.ALL.toString(), apiKey, callback);
     }
 
     /**
      * Retrieves a champion by its id.
      */
     public static Observable<com.mobilesolutions.lolapi.models.statics.ChampionDto> getChampionDataByIdRx(final long id) {
-        return retrofitApiClient.getChampionByIdRx(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, ChampDataEnum.ALL.toString(), apiKey);
+        return retrofitApiClient.getChampionByIdRx(retrofitApiEndpoint.getRegion(), id, ChampDataEnum.ALL.toString(), apiKey);
     }
 
     /**
@@ -1463,7 +1462,7 @@ public class LolApi {
      * Retrieve last 15 match histories by summoner ID.
      */
     public static MatchSummary getMatchHistoryBySummonerId(final long summonerId) {
-      return retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, 0, 15, apiKey);
+        return retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, 0, 15, apiKey);
     }
 
     /**
