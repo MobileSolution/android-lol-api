@@ -40,7 +40,6 @@ import com.mobilesolutions.lolapi.models.summoner.SummonerDto;
 import com.mobilesolutions.lolapi.models.team.TeamDto;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiClient;
 import com.mobilesolutions.lolapi.retrofit.RetrofitApiEndpoint;
-import com.mobilesolutions.lolapi.utls.Constants;
 import com.mobilesolutions.lolapi.utls.ErrorConstants;
 import com.mobilesolutions.lolapi.utls.Region;
 import com.squareup.okhttp.Cache;
