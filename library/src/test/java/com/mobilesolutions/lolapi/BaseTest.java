@@ -1,14 +1,8 @@
 package com.mobilesolutions.lolapi;
 
-import android.content.Context;
 import android.test.InstrumentationTestCase;
-import android.test.ServiceTestCase;
-
-import junit.framework.TestCase;
 
 import org.junit.Before;
-
-import java.lang.reflect.Method;
 
 import retrofit.RestAdapter;
 

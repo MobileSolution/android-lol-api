@@ -11,7 +11,6 @@ import com.mobilesolutions.lolapi.models.statics.MasteryListDto;
 import com.mobilesolutions.lolapi.models.statics.RealmDto;
 import com.mobilesolutions.lolapi.models.statics.RuneDto;
 import com.mobilesolutions.lolapi.models.statics.RuneList;
-import com.mobilesolutions.lolapi.models.statics.RuneStatDto;
 import com.mobilesolutions.lolapi.models.statics.SummonerSpellDto;
 import com.mobilesolutions.lolapi.models.statics.SummonerSpellListDto;
 import com.mobilesolutions.lolapi.models.statics.enums.ChampDataEnum;
@@ -19,7 +18,6 @@ import com.mobilesolutions.lolapi.models.statics.enums.ItemListEnum;
 import com.mobilesolutions.lolapi.models.statics.enums.MasteryListEnum;
 import com.mobilesolutions.lolapi.models.statics.enums.RuneListEnum;
 import com.mobilesolutions.lolapi.models.statics.enums.SpellDataEnum;
-import com.mobilesolutions.lolapi.utls.Constants;
 
 import junit.framework.Assert;
 
@@ -28,6 +26,9 @@ import org.junit.Test;
 import retrofit.RetrofitError;
 
 public class StaticDataApiTest extends BaseTest {
+
+    private static final String DEFAULT_LOCALE = "en_US";
+    private static final String API_VERSION = "5.2.1";
 
     @Test
     public void testGetChampionList() {
@@ -42,7 +43,7 @@ public class StaticDataApiTest extends BaseTest {
 
     @Test
     public void testGetChampionListWithParams() {
-        final ChampionListDto championList = LolApi.getChampionList(Constants.DEFAULT_LOCALE, Constants.API_VERSION, true, ChampDataEnum.ALL);
+        final ChampionListDto championList = LolApi.getChampionList(DEFAULT_LOCALE, API_VERSION, true, ChampDataEnum.ALL);
         Assert.assertTrue(championList.getData().size() > 120);
     }
 
@@ -59,7 +60,7 @@ public class StaticDataApiTest extends BaseTest {
 
     @Test
     public void testGetChampionByIdWithParams() {
-        final ChampionDto championDataById = LolApi.getChampionDataById(23, Constants.DEFAULT_LOCALE, Constants.API_VERSION, ChampDataEnum.ALL);
+        final ChampionDto championDataById = LolApi.getChampionDataById(23, DEFAULT_LOCALE, API_VERSION, ChampDataEnum.ALL);
         Assert.assertNotNull(championDataById);
     }
 
@@ -76,7 +77,7 @@ public class StaticDataApiTest extends BaseTest {
 
     @Test
     public void testGetItemsListWithParams() {
-        final ItemListDto itemList = LolApi.getItemList(Constants.DEFAULT_LOCALE, Constants.API_VERSION, ItemListEnum.ALL);
+        final ItemListDto itemList = LolApi.getItemList(DEFAULT_LOCALE, API_VERSION, ItemListEnum.ALL);
         Assert.assertTrue(itemList.getData().size() > 40);
     }
 
@@ -93,7 +94,7 @@ public class StaticDataApiTest extends BaseTest {
 
     @Test
     public void testGetItemsByIdWithParams() {
-        final ItemDto itemById = LolApi.getItemById(3260, Constants.DEFAULT_LOCALE, Constants.API_VERSION, ItemListEnum.ALL);
+        final ItemDto itemById = LolApi.getItemById(3260, DEFAULT_LOCALE, API_VERSION, ItemListEnum.ALL);
         Assert.assertNotNull(itemById);
     }
 
@@ -110,7 +111,7 @@ public class StaticDataApiTest extends BaseTest {
 
     @Test
     public void testGetLanguagesStringsErrorWithParams() {
-        final LanguageStringsDto languageStrings = LolApi.getLanguageStrings(Constants.DEFAULT_LOCALE, Constants.API_VERSION);
+        final LanguageStringsDto languageStrings = LolApi.getLanguageStrings(DEFAULT_LOCALE, API_VERSION);
         Assert.assertNotNull(languageStrings);
     }
 
@@ -133,7 +134,7 @@ public class StaticDataApiTest extends BaseTest {
 
     @Test
     public void testGeMapWithParams() {
-        final MapDataDto map = LolApi.getMap(Constants.DEFAULT_LOCALE, Constants.API_VERSION);
+        final MapDataDto map = LolApi.getMap(DEFAULT_LOCALE, API_VERSION);
         Assert.assertNotNull(map);
     }
 
@@ -150,7 +151,7 @@ public class StaticDataApiTest extends BaseTest {
 
     @Test
     public void testGetMasteryListWithParams() {
-        final MasteryListDto masteryList = LolApi.getMasteryList(Constants.DEFAULT_LOCALE, Constants.API_VERSION, MasteryListEnum.ALL);
+        final MasteryListDto masteryList = LolApi.getMasteryList(DEFAULT_LOCALE, API_VERSION, MasteryListEnum.ALL);
         Assert.assertTrue(masteryList.getData().size() > 10);
     }
 
@@ -167,7 +168,7 @@ public class StaticDataApiTest extends BaseTest {
 
     @Test
     public void testGetMasteryByIdWithParams() {
-        final MasteryDto masteryById = LolApi.getMasteryById(4352, Constants.DEFAULT_LOCALE, Constants.API_VERSION, MasteryListEnum.ALL);
+        final MasteryDto masteryById = LolApi.getMasteryById(4352, DEFAULT_LOCALE, API_VERSION, MasteryListEnum.ALL);
         Assert.assertNotNull(masteryById);
     }
 
@@ -190,7 +191,7 @@ public class StaticDataApiTest extends BaseTest {
 
     @Test
     public void testGetRuneListWithParams() {
-        final RuneList runeList = LolApi.getRuneList(Constants.DEFAULT_LOCALE, Constants.API_VERSION, RuneListEnum.ALL);
+        final RuneList runeList = LolApi.getRuneList(DEFAULT_LOCALE, API_VERSION, RuneListEnum.ALL);
         Assert.assertTrue(runeList.getData().size() > 10);
     }
 
@@ -207,7 +208,7 @@ public class StaticDataApiTest extends BaseTest {
 
     @Test
     public void testGetRuneByIdWithParams() {
-        final RuneDto runeById = LolApi.getRuneById(5235, Constants.DEFAULT_LOCALE, Constants.API_VERSION, RuneListEnum.ALL);
+        final RuneDto runeById = LolApi.getRuneById(5235, DEFAULT_LOCALE, API_VERSION, RuneListEnum.ALL);
         Assert.assertNotNull(runeById);
     }
 
@@ -224,7 +225,7 @@ public class StaticDataApiTest extends BaseTest {
 
     @Test
     public void testGetSummonerSpellListWithParams() {
-        final SummonerSpellListDto summonerSpellList = LolApi.getSummonerSpellList(Constants.DEFAULT_LOCALE, Constants.API_VERSION, true, SpellDataEnum.ALL);
+        final SummonerSpellListDto summonerSpellList = LolApi.getSummonerSpellList(DEFAULT_LOCALE, API_VERSION, true, SpellDataEnum.ALL);
         Assert.assertTrue(summonerSpellList.getData().size() > 10);
     }
 
@@ -241,7 +242,7 @@ public class StaticDataApiTest extends BaseTest {
 
     @Test
     public void testGetSummonerSpellByIdWithParams() {
-        final SummonerSpellDto summonerSpellById = LolApi.getSummonerSpellById(12, Constants.DEFAULT_LOCALE, Constants.API_VERSION, SpellDataEnum.ALL);
+        final SummonerSpellDto summonerSpellById = LolApi.getSummonerSpellById(12, DEFAULT_LOCALE, API_VERSION, SpellDataEnum.ALL);
         Assert.assertNotNull(summonerSpellById);
     }
 
