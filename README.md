@@ -47,7 +47,7 @@ Rx
 	}
 
 	dependencies {
-	        compile 'com.github.MobileSolution:android-lol-api:v0.1.2'
+	        compile 'com.github.MobileSolution:android-lol-api:v0.1.4'
 	}
 
 ## Licence

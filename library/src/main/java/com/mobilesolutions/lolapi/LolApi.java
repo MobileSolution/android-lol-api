@@ -2,7 +2,6 @@ package com.mobilesolutions.lolapi;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.mobilesolutions.lolapi.models.champion.ChampionDto;
@@ -66,7 +65,7 @@ public class LolApi {
     private static RetrofitApiEndpoint retrofitApiEndpoint = null;
     private static RetrofitApiClient retrofitApiClient;
 
-    private LolApi(final String apiKeys, final RestAdapter.LogLevel logLevel,final Context context) {
+    private LolApi(final String apiKeys, final RestAdapter.LogLevel logLevel, final Context context) {
         final File httpCacheDirectory = new File(context.getApplicationContext().getCacheDir(), "responses");
 
         Cache cache = null;
@@ -97,8 +96,8 @@ public class LolApi {
      *
      * @param apiKey String - the api key from https://developer.riotgames.com
      */
-    public static LolApi init(final String apiKey,final Context context) {
-        return init(apiKey, RestAdapter.LogLevel.NONE,context);
+    public static LolApi init(final String apiKey, final Context context) {
+        return init(apiKey, RestAdapter.LogLevel.NONE, context);
     }
 
     /**
@@ -107,11 +106,11 @@ public class LolApi {
      *
      * @param apiKey String - the api key from https://developer.riotgames.com
      */
-    public static LolApi init(final String apiKey, final RestAdapter.LogLevel logLevel,final Context context) {
+    public static LolApi init(final String apiKey, final RestAdapter.LogLevel logLevel, final Context context) {
         if (instance == null) {
             synchronized (LolApi.class) {
                 if (instance == null) {
-                    instance = new LolApi(apiKey, logLevel,context);
+                    instance = new LolApi(apiKey, logLevel, context);
                 }
             }
         }
@@ -573,21 +572,21 @@ public class LolApi {
      * Retrieves champion list.
      */
     public static com.mobilesolutions.lolapi.models.statics.ChampionListDto getChampionList() {
-        return retrofitApiClient.getChampionList(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, false, ChampDataEnum.ALL.toString(), apiKey);
+        return retrofitApiClient.getChampionList(retrofitApiEndpoint.getRegion(), ChampDataEnum.ALL.toString(), apiKey);
     }
 
     /**
      * Retrieves champion list.
      */
     public static void getChampionList(final Callback<com.mobilesolutions.lolapi.models.statics.ChampionListDto> callback) {
-        retrofitApiClient.getChampionList(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, false, ChampDataEnum.ALL.toString(), apiKey, callback);
+        retrofitApiClient.getChampionList(retrofitApiEndpoint.getRegion(), ChampDataEnum.ALL.toString(), apiKey, callback);
     }
 
     /**
      * Retrieves champion list.
      */
     public static Observable<com.mobilesolutions.lolapi.models.statics.ChampionListDto> getChampionListRx() {
-        return retrofitApiClient.getChampionListRx(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, false, ChampDataEnum.ALL.toString(), apiKey);
+        return retrofitApiClient.getChampionListRx(retrofitApiEndpoint.getRegion(), ChampDataEnum.ALL.toString(), apiKey);
     }
 
     /**
@@ -624,21 +623,21 @@ public class LolApi {
      * Retrieves a champion by its id.
      */
     public static com.mobilesolutions.lolapi.models.statics.ChampionDto getChampionDataById(final long id) {
-        return retrofitApiClient.getChampionById(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, ChampDataEnum.ALL.toString(), apiKey);
+        return retrofitApiClient.getChampionById(retrofitApiEndpoint.getRegion(), id, ChampDataEnum.ALL.toString(), apiKey);
     }
 
     /**
      * Retrieves a champion by its id.
      */
     public static void getChampionDataById(final long id, final Callback<com.mobilesolutions.lolapi.models.statics.ChampionDto> callback) {
-        retrofitApiClient.getChampionById(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, ChampDataEnum.ALL.toString(), apiKey, callback);
+        retrofitApiClient.getChampionById(retrofitApiEndpoint.getRegion(), id, ChampDataEnum.ALL.toString(), apiKey, callback);
     }
 
     /**
      * Retrieves a champion by its id.
      */
     public static Observable<com.mobilesolutions.lolapi.models.statics.ChampionDto> getChampionDataByIdRx(final long id) {
-        return retrofitApiClient.getChampionByIdRx(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, ChampDataEnum.ALL.toString(), apiKey);
+        return retrofitApiClient.getChampionByIdRx(retrofitApiEndpoint.getRegion(), id, ChampDataEnum.ALL.toString(), apiKey);
     }
 
     /**
@@ -675,7 +674,7 @@ public class LolApi {
      * Retrieves item list
      */
     public static ItemListDto getItemList() {
-        return retrofitApiClient.getItemList(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, ItemListEnum.ALL.getItemData(),
+        return retrofitApiClient.getItemList(retrofitApiEndpoint.getRegion(), ItemListEnum.ALL.getItemData(),
                 apiKey);
     }
 
@@ -683,7 +682,7 @@ public class LolApi {
      * Retrieves item list
      */
     public static void getItemList(final Callback<ItemListDto> callback) {
-        retrofitApiClient.getItemList(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, ItemListEnum.ALL.getItemData(),
+        retrofitApiClient.getItemList(retrofitApiEndpoint.getRegion(), ItemListEnum.ALL.getItemData(),
                 apiKey, callback);
     }
 
@@ -691,7 +690,7 @@ public class LolApi {
      * Retrieves item list
      */
     public static Observable<ItemListDto> getItemListRx() {
-        return retrofitApiClient.getItemListRx(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, ItemListEnum.ALL.getItemData(),
+        return retrofitApiClient.getItemListRx(retrofitApiEndpoint.getRegion(), ItemListEnum.ALL.getItemData(),
                 apiKey);
     }
 
@@ -729,21 +728,21 @@ public class LolApi {
      * Retrieves item by its unique id.
      */
     public static ItemDto getItemById(final long id) {
-        return retrofitApiClient.getItemById(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, ItemListEnum.ALL.getItemData(), apiKey);
+        return retrofitApiClient.getItemById(retrofitApiEndpoint.getRegion(), id, ItemListEnum.ALL.getItemData(), apiKey);
     }
 
     /**
      * Retrieves item by its unique id.
      */
     public static void getItemById(final long id, final Callback<ItemDto> callback) {
-        retrofitApiClient.getItemById(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, ItemListEnum.ALL.getItemData(), apiKey, callback);
+        retrofitApiClient.getItemById(retrofitApiEndpoint.getRegion(), id, ItemListEnum.ALL.getItemData(), apiKey, callback);
     }
 
     /**
      * Retrieves item by its unique id.
      */
     public static Observable<ItemDto> getItemByIdRx(final long id) {
-        return retrofitApiClient.getItemByIdRx(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, ItemListEnum.ALL.getItemData(), apiKey);
+        return retrofitApiClient.getItemByIdRx(retrofitApiEndpoint.getRegion(), id, ItemListEnum.ALL.getItemData(), apiKey);
     }
 
     /**
@@ -780,21 +779,21 @@ public class LolApi {
      * Retrieve language strings data.
      */
     public static LanguageStringsDto getLanguageStrings() {
-        return retrofitApiClient.getLanguageStrings(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, apiKey);
+        return retrofitApiClient.getLanguageStrings(retrofitApiEndpoint.getRegion(), apiKey);
     }
 
     /**
      * Retrieve language strings data.
      */
     public static void getLanguageStrings(final Callback<LanguageStringsDto> callback) {
-        retrofitApiClient.getLanguageStrings(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, apiKey, callback);
+        retrofitApiClient.getLanguageStrings(retrofitApiEndpoint.getRegion(), apiKey, callback);
     }
 
     /**
      * Retrieve language strings data.
      */
     public static Observable<LanguageStringsDto> getLanguageStringsRx() {
-        return retrofitApiClient.getLanguageStringsRx(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, apiKey);
+        return retrofitApiClient.getLanguageStringsRx(retrofitApiEndpoint.getRegion(), apiKey);
     }
 
     /**
@@ -852,21 +851,21 @@ public class LolApi {
      * Retrieve map data.
      */
     public static MapDataDto getMap() {
-        return retrofitApiClient.getMap(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, apiKey);
+        return retrofitApiClient.getMap(retrofitApiEndpoint.getRegion(), apiKey);
     }
 
     /**
      * Retrieve map data.
      */
     public static void getMap(final Callback<MapDataDto> callback) {
-        retrofitApiClient.getMap(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, apiKey, callback);
+        retrofitApiClient.getMap(retrofitApiEndpoint.getRegion(), apiKey, callback);
     }
 
     /**
      * Retrieve map data.
      */
     public static Observable<MapDataDto> getMapRx() {
-        return retrofitApiClient.getMapRx(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, apiKey);
+        return retrofitApiClient.getMapRx(retrofitApiEndpoint.getRegion(), apiKey);
     }
 
 
@@ -904,21 +903,21 @@ public class LolApi {
      * Retrieves mastery list.
      */
     public static MasteryListDto getMasteryList() {
-        return retrofitApiClient.getMasteryList(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, MasteryListEnum.ALL.getMasteryData(), apiKey);
+        return retrofitApiClient.getMasteryList(retrofitApiEndpoint.getRegion(), MasteryListEnum.ALL.getMasteryData(), apiKey);
     }
 
     /**
      * Retrieves mastery list.
      */
     public static void getMasteryList(final Callback<MasteryListDto> callback) {
-        retrofitApiClient.getMasteryList(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, MasteryListEnum.ALL.getMasteryData(), apiKey, callback);
+        retrofitApiClient.getMasteryList(retrofitApiEndpoint.getRegion(), MasteryListEnum.ALL.getMasteryData(), apiKey, callback);
     }
 
     /**
      * Retrieves mastery list.
      */
     public static Observable<MasteryListDto> getMasteryListRx() {
-        return retrofitApiClient.getMasteryListRx(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, MasteryListEnum.ALL.getMasteryData(), apiKey);
+        return retrofitApiClient.getMasteryListRx(retrofitApiEndpoint.getRegion(), MasteryListEnum.ALL.getMasteryData(), apiKey);
     }
 
     /**
@@ -955,21 +954,21 @@ public class LolApi {
      * Retrieves mastery item by its unique id.
      */
     public static MasteryDto getMasteryById(final long id) {
-        return retrofitApiClient.getMasteryById(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, MasteryListEnum.ALL.getMasteryData(), apiKey);
+        return retrofitApiClient.getMasteryById(retrofitApiEndpoint.getRegion(), id, MasteryListEnum.ALL.getMasteryData(), apiKey);
     }
 
     /**
      * Retrieves mastery item by its unique id.
      */
     public static void getMasteryById(final long id, final Callback<MasteryDto> callback) {
-        retrofitApiClient.getMasteryById(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, MasteryListEnum.ALL.getMasteryData(), apiKey, callback);
+        retrofitApiClient.getMasteryById(retrofitApiEndpoint.getRegion(), id, MasteryListEnum.ALL.getMasteryData(), apiKey, callback);
     }
 
     /**
      * Retrieves mastery item by its unique id.
      */
     public static Observable<MasteryDto> getMasteryByIdRx(final long id) {
-        return retrofitApiClient.getMasteryByIdRx(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, MasteryListEnum.ALL.getMasteryData(), apiKey);
+        return retrofitApiClient.getMasteryByIdRx(retrofitApiEndpoint.getRegion(), id, MasteryListEnum.ALL.getMasteryData(), apiKey);
     }
 
     /**
@@ -1028,21 +1027,21 @@ public class LolApi {
      * Retrieves rune list.
      */
     public static RuneList getRuneList() {
-        return retrofitApiClient.getRuneList(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, RuneListEnum.ALL.getRuneData(), apiKey);
+        return retrofitApiClient.getRuneList(retrofitApiEndpoint.getRegion(), RuneListEnum.ALL.getRuneData(), apiKey);
     }
 
     /**
      * Retrieves rune list.
      */
     public static void getRuneList(final Callback<RuneList> callback) {
-        retrofitApiClient.getRuneList(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, RuneListEnum.ALL.getRuneData(), apiKey, callback);
+        retrofitApiClient.getRuneList(retrofitApiEndpoint.getRegion(), RuneListEnum.ALL.getRuneData(), apiKey, callback);
     }
 
     /**
      * Retrieves rune list.
      */
     public static Observable<RuneList> getRuneListRx() {
-        return retrofitApiClient.getRuneListRx(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, RuneListEnum.ALL.getRuneData(), apiKey);
+        return retrofitApiClient.getRuneListRx(retrofitApiEndpoint.getRegion(), RuneListEnum.ALL.getRuneData(), apiKey);
     }
 
     /**
@@ -1079,21 +1078,21 @@ public class LolApi {
      * Retrieves rune by its unique id.
      */
     public static RuneDto getRuneById(final long id) {
-        return retrofitApiClient.getRuneById(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, RuneListEnum.ALL.getRuneData(), apiKey);
+        return retrofitApiClient.getRuneById(retrofitApiEndpoint.getRegion(), id, RuneListEnum.ALL.getRuneData(), apiKey);
     }
 
     /**
      * Retrieves rune by its unique id.
      */
     public static void getRuneById(final long id, final Callback<RuneDto> callback) {
-        retrofitApiClient.getRuneById(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, RuneListEnum.ALL.getRuneData(), apiKey, callback);
+        retrofitApiClient.getRuneById(retrofitApiEndpoint.getRegion(), id, RuneListEnum.ALL.getRuneData(), apiKey, callback);
     }
 
     /**
      * Retrieves rune by its unique id.
      */
     public static Observable<RuneDto> getRuneByIdRx(final long id) {
-        return retrofitApiClient.getRuneByIdRx(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, RuneListEnum.ALL.getRuneData(), apiKey);
+        return retrofitApiClient.getRuneByIdRx(retrofitApiEndpoint.getRegion(), id, RuneListEnum.ALL.getRuneData(), apiKey);
     }
 
     /**
@@ -1130,21 +1129,21 @@ public class LolApi {
      * Retrieves summoner spell list.
      */
     public static SummonerSpellListDto getSummonerSpellList() {
-        return retrofitApiClient.getSummonerSpellList(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, false, SpellDataEnum.ALL.getSpellData(), apiKey);
+        return retrofitApiClient.getSummonerSpellList(retrofitApiEndpoint.getRegion(), SpellDataEnum.ALL.getSpellData(), apiKey);
     }
 
     /**
      * Retrieves summoner spell list.
      */
     public static void getSummonerSpellList(final Callback<SummonerSpellListDto> callback) {
-        retrofitApiClient.getSummonerSpellList(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, false, SpellDataEnum.ALL.getSpellData(), apiKey, callback);
+        retrofitApiClient.getSummonerSpellList(retrofitApiEndpoint.getRegion(), SpellDataEnum.ALL.getSpellData(), apiKey, callback);
     }
 
     /**
      * Retrieves summoner spell list.
      */
     public static Observable<SummonerSpellListDto> getSummonerSpellListRx() {
-        return retrofitApiClient.getSummonerSpellListRx(retrofitApiEndpoint.getRegion(), Constants.DEFAULT_LOCALE, Constants.API_VERSION, false, SpellDataEnum.ALL.getSpellData(), apiKey);
+        return retrofitApiClient.getSummonerSpellListRx(retrofitApiEndpoint.getRegion(), SpellDataEnum.ALL.getSpellData(), apiKey);
     }
 
     /**
@@ -1181,21 +1180,21 @@ public class LolApi {
      * Retrieves summoner spell by its unique id.
      */
     public static SummonerSpellDto getSummonerSpellById(final long id) {
-        return retrofitApiClient.getSummonerSpellById(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, SpellDataEnum.ALL.getSpellData(), apiKey);
+        return retrofitApiClient.getSummonerSpellById(retrofitApiEndpoint.getRegion(), id, SpellDataEnum.ALL.getSpellData(), apiKey);
     }
 
     /**
      * Retrieves summoner spell by its unique id.
      */
     public static void getSummonerSpellById(final long id, final Callback<SummonerSpellDto> callback) {
-        retrofitApiClient.getSummonerSpellById(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, SpellDataEnum.ALL.getSpellData(), apiKey, callback);
+        retrofitApiClient.getSummonerSpellById(retrofitApiEndpoint.getRegion(), id, SpellDataEnum.ALL.getSpellData(), apiKey, callback);
     }
 
     /**
      * Retrieves summoner spell by its unique id.
      */
     public static Observable<SummonerSpellDto> getSummonerSpellByIdRx(final long id) {
-        return retrofitApiClient.getSummonerSpellByIdRx(retrofitApiEndpoint.getRegion(), id, Constants.DEFAULT_LOCALE, Constants.API_VERSION, SpellDataEnum.ALL.getSpellData(), apiKey);
+        return retrofitApiClient.getSummonerSpellByIdRx(retrofitApiEndpoint.getRegion(), id, SpellDataEnum.ALL.getSpellData(), apiKey);
     }
 
     /**
@@ -1463,7 +1462,7 @@ public class LolApi {
      * Retrieve last 15 match histories by summoner ID.
      */
     public static MatchSummary getMatchHistoryBySummonerId(final long summonerId) {
-      return retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, 0, 15, apiKey);
+        return retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, 0, 15, apiKey);
     }
 
     /**
@@ -1505,21 +1504,21 @@ public class LolApi {
      * Get ranked stats by summoner ID.
      */
     public static RankedStatsDto getRankedStatsBySummnoerId(final long summonerId) {
-        return retrofitApiClient.getRankedStatsBySummnoerId(retrofitApiEndpoint.getRegion(), summonerId, SeasonEnum.SEASON2015.toString(), apiKey);
+        return retrofitApiClient.getRankedStatsBySummnoerId(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
     }
 
     /**
      * Get ranked stats by summoner ID.
      */
     public static void getRankedStatsBySummnoerId(final long summonerId, final Callback<RankedStatsDto> callback) {
-        retrofitApiClient.getRankedStatsBySummnoerId(retrofitApiEndpoint.getRegion(), summonerId, SeasonEnum.SEASON2015.toString(), apiKey, callback);
+        retrofitApiClient.getRankedStatsBySummnoerId(retrofitApiEndpoint.getRegion(), summonerId, apiKey, callback);
     }
 
     /**
      * Get ranked stats by summoner ID.
      */
     public static Observable<RankedStatsDto> getRankedStatsBySummnoerIdRx(final long summonerId) {
-        return retrofitApiClient.getRankedStatsBySummnoerIdRx(retrofitApiEndpoint.getRegion(), summonerId, SeasonEnum.SEASON2015.toString(), apiKey);
+        return retrofitApiClient.getRankedStatsBySummnoerIdRx(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
     }
 
     /**
@@ -1556,21 +1555,21 @@ public class LolApi {
      * Get player stats summaries by summoner ID.
      */
     public static PlayerStatsSummaryListDto getStatsSummariesBySummonerId(final long summonerId) {
-        return retrofitApiClient.getStatsSummariesBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, SeasonEnum.SEASON2015.toString(), apiKey);
+        return retrofitApiClient.getStatsSummariesBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
     }
 
     /**
      * Get player stats summaries by summoner ID.
      */
     public static void getStatsSummariesBySummonerId(final long summonerId, final Callback<PlayerStatsSummaryListDto> callback) {
-        retrofitApiClient.getStatsSummariesBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, SeasonEnum.SEASON2015.toString(), apiKey, callback);
+        retrofitApiClient.getStatsSummariesBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, apiKey, callback);
     }
 
     /**
      * Get player stats summaries by summoner ID.
      */
     public static Observable<PlayerStatsSummaryListDto> getStatsSummariesBySummonerIdRx(final long summonerId) {
-        return retrofitApiClient.getStatsSummariesBySummonerIdRx(retrofitApiEndpoint.getRegion(), summonerId, SeasonEnum.SEASON2015.toString(), apiKey);
+        return retrofitApiClient.getStatsSummariesBySummonerIdRx(retrofitApiEndpoint.getRegion(), summonerId, apiKey);
     }
 
     /**
