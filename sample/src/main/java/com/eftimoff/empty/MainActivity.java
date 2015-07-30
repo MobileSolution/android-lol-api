@@ -31,6 +31,17 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 LolApi.setRegion("eune");
+                LolApi.getVersions(new Callback<String[]>() {
+                    @Override
+                    public void success(String[] summonerSpellListDto, Response response) {
+                        Log.d("SPELL LIST SIZE ", "" + summonerSpellListDto.length);
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Log.d("ERROR ", "" + error);
+                    }
+                });
             }
         });
     }

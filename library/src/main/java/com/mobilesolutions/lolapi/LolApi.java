@@ -43,9 +43,11 @@ import com.mobilesolutions.lolapi.retrofit.RetrofitApiEndpoint;
 import com.mobilesolutions.lolapi.utls.ErrorConstants;
 import com.mobilesolutions.lolapi.utls.Region;
 import com.squareup.okhttp.Cache;
+import com.squareup.okhttp.Interceptor;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -71,10 +73,8 @@ public class LolApi {
         cache = new Cache(httpCacheDirectory, 50 * 1024 * 1024);
 
         final OkHttpClient okHttpClient = new OkHttpClient();
-        if (cache != null) {
-            okHttpClient.setCache(cache);
-        }
-
+        okHttpClient.setCache(cache);
+        okHttpClient.networkInterceptors().add(REWRITE_CACHE_CONTROL_INTERCEPTOR);
         if (apiKeys == null) {
             throw new IllegalArgumentException(ErrorConstants.ERROR_NO_API_KEY_PROVIDED);
         }
@@ -88,6 +88,16 @@ public class LolApi {
                 .build();
         retrofitApiClient = restAdapter.create(RetrofitApiClient.class);
     }
+
+    private final Interceptor REWRITE_CACHE_CONTROL_INTERCEPTOR = new Interceptor() {
+        @Override
+        public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
+            com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+            return originalResponse.newBuilder()
+                    .header("Cache-Control", String.format("max-age=%d, only-if-cached, max-stale=%d", 640000, 0))
+                    .build();
+        }
+    };
 
     /**
      * Init the the api.
