@@ -33,6 +33,7 @@ public class CurrentGameInfo implements Serializable {
     private List<CurrentGameParticipant> participants;
     @Expose
     private String platformId;
+    private String queueType;
 
     public List<BannedChampion> getBannedChampions() {
         return bannedChampions;
@@ -76,5 +77,13 @@ public class CurrentGameInfo implements Serializable {
 
     public String getPlatformId() {
         return platformId;
+    }
+
+    public String getQueueType() {
+        return queueType;
+    }
+
+    public void setQueueType(String queueType) {
+        this.queueType = queueType;
     }
 }
