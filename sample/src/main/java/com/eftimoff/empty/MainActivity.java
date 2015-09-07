@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.mobilesolutions.lolapi.LolApi;
+import com.mobilesolutions.lolapi.models.champion.ChampionListDto;
 import com.mobilesolutions.lolapi.models.matchhistory.MatchSummary;
 import com.mobilesolutions.lolapi.models.statics.SummonerSpellListDto;
 import com.mobilesolutions.lolapi.models.statics.enums.SeasonEnum;
@@ -42,8 +43,22 @@ public class MainActivity extends ActionBarActivity {
                         Log.d("ERROR ", "" + error);
                     }
                 });
+
+                LolApi.getChampions(new Callback<ChampionListDto>() {
+                    @Override
+                    public void success(ChampionListDto championListDto, Response response) {
+                        Log.d("Champions LIST SIZE ", "" + championListDto.getChampions().size());
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Log.d("ERROR ", "" + error);
+                    }
+                });
             }
         });
+
+
     }
 
     private void toast(final String message) {
