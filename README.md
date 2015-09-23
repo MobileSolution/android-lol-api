@@ -33,7 +33,7 @@ Rx
  * lol-static-data-v1.2
  * lol-status-v1.0
  * match-v2.2
- * matchhistory-v2.2
+ * matchlist-v2.2
  * stats-v1.3
  * summoner-v1.4
  * team-v2.4
@@ -47,7 +47,7 @@ Rx
 	}
 
 	dependencies {
-	        compile 'com.github.MobileSolution:android-lol-api:v0.1.8'
+	        compile 'com.github.MobileSolution:android-lol-api:v0.1.9'
 	}
 
 ## Licence

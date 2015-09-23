@@ -11,7 +11,9 @@ import com.mobilesolutions.lolapi.models.featured.FeaturedGames;
 import com.mobilesolutions.lolapi.models.league.LeagueDto;
 import com.mobilesolutions.lolapi.models.league.enums.QueueEnum;
 import com.mobilesolutions.lolapi.models.match.MatchDetail;
-import com.mobilesolutions.lolapi.models.matchhistory.MatchSummary;
+import com.mobilesolutions.lolapi.models.matchhistory.MatchList;
+import com.mobilesolutions.lolapi.models.matchhistory.enums.MatchListSeasonsEnum;
+import com.mobilesolutions.lolapi.models.matchhistory.enums.RankedQueueEnum;
 import com.mobilesolutions.lolapi.models.recent.GameDtoList;
 import com.mobilesolutions.lolapi.models.statics.ItemDto;
 import com.mobilesolutions.lolapi.models.statics.ItemListDto;
@@ -43,11 +45,9 @@ import com.mobilesolutions.lolapi.retrofit.RetrofitApiEndpoint;
 import com.mobilesolutions.lolapi.utls.ErrorConstants;
 import com.mobilesolutions.lolapi.utls.Region;
 import com.squareup.okhttp.Cache;
-import com.squareup.okhttp.Interceptor;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
@@ -1464,45 +1464,45 @@ public class LolApi {
     }
 
     /**
-     * Retrieve last 15 match histories by summoner ID.
-     */
-    public static MatchSummary getMatchHistoryBySummonerId(final long summonerId) {
-        return retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, 0, 15, apiKey);
-    }
-
-    /**
-     * Retrieve last 15 match histories by summoner ID.
-     */
-    public static void getMatchHistoryBySummonerId(final long summonerId, final Callback<MatchSummary> callback) {
-        retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, 0, 15, apiKey, callback);
-    }
-
-    /**
-     * Retrieve last 15 match histories by summoner ID.
-     */
-    public static Observable<MatchSummary> getMatchHistoryBySummonerIdRx(final long summonerId) {
-        return retrofitApiClient.getMatchHistoryBySummonerIdRx(retrofitApiEndpoint.getRegion(), summonerId, 0, 15, apiKey);
-    }
-
-    /**
      * Retrieve last match histories by summoner ID.
      */
-    public static MatchSummary getMatchHistoryBySummonerId(final long summonerId, final int beginIndex, final int endIndex) {
+    public static MatchList getMatchHistoryBySummonerId(final long summonerId, final int beginIndex, final int endIndex) {
         return retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, beginIndex, endIndex, apiKey);
     }
 
     /**
      * Retrieve last match histories by summoner ID.
      */
-    public static void getMatchHistoryBySummonerId(final long summonerId, final int beginIndex, final int endIndex, final Callback<MatchSummary> callback) {
+    public static void getMatchHistoryBySummonerId(final long summonerId, final int beginIndex, final int endIndex, final Callback<MatchList> callback) {
         retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, beginIndex, endIndex, apiKey, callback);
     }
 
     /**
      * Retrieve last match histories by summoner ID.
      */
-    public static Observable<MatchSummary> getMatchHistoryBySummonerIdRx(final long summonerId, final int beginIndex, final int endIndex) {
+    public static Observable<MatchList> getMatchHistoryBySummonerIdRx(final long summonerId, final int beginIndex, final int endIndex) {
         return retrofitApiClient.getMatchHistoryBySummonerIdRx(retrofitApiEndpoint.getRegion(), summonerId, beginIndex, endIndex, apiKey);
+    }
+
+    /**
+     * Retrieve last match histories by summoner ID.
+     */
+    public static MatchList getMatchHistoryBySummonerId(final long summonerId, final int beginIndex, final int endIndex, final List<String> championIds, final long beginTime, final long endTime, final RankedQueueEnum rankedQueue, final MatchListSeasonsEnum season) {
+        return retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, beginIndex, endIndex, TextUtils.join(",", championIds), beginTime, endTime, rankedQueue.name(), season.name(), apiKey);
+    }
+
+    /**
+     * Retrieve last match histories by summoner ID.
+     */
+    public static void getMatchHistoryBySummonerId(final long summonerId, final int beginIndex, final int endIndex, final List<String> championIds, final long beginTime, final long endTime, final RankedQueueEnum rankedQueue, final MatchListSeasonsEnum season, final Callback<MatchList> callback) {
+        retrofitApiClient.getMatchHistoryBySummonerId(retrofitApiEndpoint.getRegion(), summonerId, beginIndex, endIndex, TextUtils.join(",", championIds), beginTime, endTime, rankedQueue.name(), season.name(), apiKey, callback);
+    }
+
+    /**
+     * Retrieve last match histories by summoner ID.
+     */
+    public static Observable<MatchList> getMatchHistoryBySummonerIdRx(final long summonerId, final int beginIndex, final int endIndex, final List<String> championIds, final long beginTime, final long endTime, final RankedQueueEnum rankedQueue, final MatchListSeasonsEnum season) {
+        return retrofitApiClient.getMatchHistoryBySummonerIdRx(retrofitApiEndpoint.getRegion(), summonerId, beginIndex, endIndex,TextUtils.join(",", championIds), beginTime, endTime, rankedQueue.name(), season.name(),  apiKey);
     }
 
     /**

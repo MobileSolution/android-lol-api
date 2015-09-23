@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import retrofit.RetrofitError;
 
-public class MatchApiTest extends BaseTest {
+public class MatchReferenceApiTest extends BaseTest {
 
     @Test
     public void testGetMatchByIdNotNull(){
